@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Ma Boussole Politique",
+    "slug": "boussole-politique",
+    "scheme": "boussole",
+    "version": "1.0.0",
+    "platforms": ["ios", "android", "web"],
+    "web": {
+      "bundler": "metro",
+      "output": "server"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
