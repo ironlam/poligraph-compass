@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "generate:questions": "npx tsx scripts/generate-questions.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.2",
