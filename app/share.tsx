@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { View, Text, Pressable, Alert } from "react-native";
+import { View, Text, Pressable, Alert, Share } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { captureRef } from "react-native-view-shot";
@@ -25,7 +25,6 @@ export default function ShareScreen() {
       });
     } catch (error) {
       // Fallback to text share if image capture fails
-      const { Share } = require("react-native");
       await Share.share({
         message: shareUrl
           ? `Découvre ma position politique ! ${shareUrl}`

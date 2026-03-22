@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { View } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -5,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useQuizStore } from "@/lib/store";
 import { QuizCard } from "@/components/QuizCard";
 import { ProgressBar } from "@/components/ProgressBar";
-import type { QuizPack, UserAnswer } from "@/lib/types";
+import type { QuizPack, UserAnswer, CompassPosition } from "@/lib/types";
 import { computeCompassPosition } from "@/lib/compass";
 import { computePoliticianConcordance, computePartyConcordance } from "@/lib/concordance";
 
@@ -32,27 +33,27 @@ export default function Quiz() {
     staleTime: 24 * 60 * 60 * 1000,
   });
 
-  // Store quiz pack when loaded
-  if (data && !quizPack) {
-    setQuizPack(data);
-  }
+  // Store quiz pack when loaded (in useEffect to avoid render-time state mutation)
+  useEffect(() => {
+    if (data && !quizPack) {
+      setQuizPack(data);
+    }
+  }, [data, quizPack, setQuizPack]);
 
   const pack = quizPack || data;
-  if (isLoading || !pack) {
-    return (
-      <SafeAreaView className="flex-1 bg-white items-center justify-center">
-        <View className="animate-spin h-8 w-8 border-2 border-indigo-500 border-t-transparent rounded-full" />
-      </SafeAreaView>
-    );
-  }
 
-  const questions = pack.questions.filter((q) =>
+  const questions = pack?.questions.filter((q) =>
     phase === "essential" ? q.tier === "essential" : q.tier === "refine"
-  );
+  ) ?? [];
   const currentQuestion = questions[currentIndex];
+  const quizComplete = pack && !currentQuestion && questions.length > 0;
+  const hasNavigated = useRef(false);
 
-  if (!currentQuestion) {
-    // Quiz complete: compute results locally
+  // Handle quiz completion in useEffect (not during render)
+  useEffect(() => {
+    if (!quizComplete || !pack || hasNavigated.current) return;
+    hasNavigated.current = true;
+
     const position = computeCompassPosition(answers, pack.axes);
 
     const politicians = pack.politicians
@@ -73,12 +74,12 @@ export default function Quiz() {
 
     const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;
 
-    // Compute party compass positions (same algo applied to party majority votes)
-    const partyPos: Record<string, any> = {};
+    // Compute party compass positions
+    const partyPos: Record<string, CompassPosition> = {};
     for (const party of pack.parties) {
       const partyVotes: Record<string, string> = {};
       for (const [scrutinId, partyVotesMap] of Object.entries(pack.partyMajorities)) {
-        const pos = (partyVotesMap as Record<string, string>)[party.id];
+        const pos = partyVotesMap[party.id];
         if (pos) partyVotes[scrutinId] = pos;
       }
       partyPos[party.id] = computeCompassPosition(partyVotes, pack.axes);
@@ -89,7 +90,7 @@ export default function Quiz() {
       politicians,
       parties,
       answeredCount,
-      totalQuestions: questions.length,
+      totalQuestions: pack.questions.length,
     });
     setPartyPositions(partyPos);
 
@@ -100,13 +101,29 @@ export default function Quiz() {
       body: JSON.stringify({ answers }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.shareId) useQuizStore.getState().setShareId(data.shareId);
+      .then((serverData) => {
+        if (serverData.shareId) useQuizStore.getState().setShareId(serverData.shareId);
       })
-      .catch(() => {}); // sharing is optional, don't block on failure
+      .catch(() => {});
 
     router.replace("/results");
-    return null;
+  }, [quizComplete, pack, answers, phase, setResults, setPartyPositions, router]);
+
+  if (isLoading || !pack) {
+    return (
+      <SafeAreaView className="flex-1 bg-white items-center justify-center">
+        <View className="animate-spin h-8 w-8 border-2 border-indigo-500 border-t-transparent rounded-full" />
+      </SafeAreaView>
+    );
+  }
+
+  if (quizComplete) {
+    // Waiting for useEffect to navigate
+    return (
+      <SafeAreaView className="flex-1 bg-white items-center justify-center">
+        <View className="animate-spin h-8 w-8 border-2 border-indigo-500 border-t-transparent rounded-full" />
+      </SafeAreaView>
+    );
   }
 
   function handleAnswer(answer: UserAnswer) {
