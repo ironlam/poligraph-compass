@@ -1,0 +1,93 @@
+import { ComputeRequestSchema } from "@/lib/schemas";
+import { computePoliticianConcordance, computePartyConcordance } from "@/lib/concordance";
+import { computeCompassPosition } from "@/lib/compass";
+import { loadQuizPackData } from "@/lib/quiz-pack-loader";
+import type { ComputeResult, ConcordanceEntry } from "@/lib/types";
+
+export async function POST(request: Request) {
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return Response.json({ error: "Invalid JSON" }, { status: 400 });
+  }
+
+  const parsed = ComputeRequestSchema.safeParse(body);
+  if (!parsed.success) {
+    return Response.json(
+      { error: "Invalid request", details: parsed.error.issues },
+      { status: 400 }
+    );
+  }
+
+  const { answers } = parsed.data;
+
+  // Load quiz pack data directly (shared loader, no self-fetch)
+  const quizPack = await loadQuizPackData();
+
+  // Compute politician concordances
+  const politicianResults: ConcordanceEntry[] = quizPack.politicians
+    .map((pol) => {
+      const { concordance, agree, disagree, partial } = computePoliticianConcordance(
+        pol.id,
+        answers,
+        quizPack.voteMatrix
+      );
+      return {
+        id: pol.id,
+        name: pol.fullName,
+        slug: pol.slug,
+        photoUrl: pol.photoUrl,
+        partyShortName: pol.partyShortName,
+        concordance,
+        agree,
+        disagree,
+        partial,
+      };
+    })
+    .filter((r) => r.concordance >= 0)
+    .sort((a, b) => b.concordance - a.concordance);
+
+  // Compute party concordances
+  const partyResults: ConcordanceEntry[] = quizPack.parties
+    .map((party) => {
+      const { concordance, agree, disagree, partial } = computePartyConcordance(
+        party.id,
+        answers,
+        quizPack.partyMajorities
+      );
+      return {
+        id: party.id,
+        name: party.name,
+        slug: undefined,
+        photoUrl: null,
+        partyShortName: party.shortName,
+        concordance,
+        agree,
+        disagree,
+        partial,
+      };
+    })
+    .filter((r) => r.concordance >= 0)
+    .sort((a, b) => b.concordance - a.concordance);
+
+  // Compute compass position
+  const position = computeCompassPosition(answers, quizPack.axes);
+
+  const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;
+
+  const result: ComputeResult = {
+    position,
+    politicians: politicianResults,
+    parties: partyResults,
+    answeredCount,
+    totalQuestions: Object.keys(answers).length,
+  };
+
+  // Store result in KV for sharing (crypto.randomUUID is built-in, no extra dependency)
+  const shareId = crypto.randomUUID().slice(0, 10);
+  // TODO: store in Vercel KV once configured
+  // await kv.set(`share:${shareId}`, JSON.stringify({...}), { ex: 90 * 24 * 60 * 60 });
+
+  return Response.json({ ...result, shareId });
+}
