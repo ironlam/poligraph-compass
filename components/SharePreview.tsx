@@ -4,7 +4,7 @@ import { Compass } from "./Compass";
 import { useQuizStore } from "@/lib/store";
 
 interface Props {
-  captureRef?: React.RefObject<View>;
+  captureRef?: React.RefObject<View | null>;
 }
 
 export function SharePreview({ captureRef }: Props) {
