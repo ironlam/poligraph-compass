@@ -1,0 +1,47 @@
+[
+  {
+    "scrutinId": "PLACEHOLDER_1",
+    "order": 1,
+    "tier": "essential",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "INSTITUTIONS",
+    "question": "Faut-il passer au scrutin proportionnel pour les élections ?"
+  },
+  {
+    "scrutinId": "PLACEHOLDER_2",
+    "order": 2,
+    "tier": "essential",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il baisser les impôts sur les entreprises ?"
+  },
+  {
+    "scrutinId": "PLACEHOLDER_3",
+    "order": 3,
+    "tier": "essential",
+    "axis": "society",
+    "polarity": -1,
+    "theme": "SECURITE_JUSTICE",
+    "question": "Faut-il renforcer les peines pour les récidivistes ?"
+  },
+  {
+    "scrutinId": "PLACEHOLDER_4",
+    "order": 4,
+    "tier": "essential",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "SOCIAL_TRAVAIL",
+    "question": "Faut-il augmenter le salaire minimum ?"
+  },
+  {
+    "scrutinId": "PLACEHOLDER_5",
+    "order": 5,
+    "tier": "essential",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "IMMIGRATION",
+    "question": "Faut-il faciliter la régularisation des sans-papiers ?"
+  }
+]
