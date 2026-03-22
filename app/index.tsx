@@ -1,9 +1,50 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
+import { useRouter } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useQuizStore } from "@/lib/store";
 
 export default function Home() {
+  const router = useRouter();
+  const reset = useQuizStore((s) => s.reset);
+
+  function handleStart() {
+    reset();
+    router.push("/quiz");
+  }
+
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-2xl font-bold">Ma Boussole Politique</Text>
-    </View>
+    <SafeAreaView className="flex-1 bg-indigo-950">
+      <View className="flex-1 items-center justify-center px-8">
+        <Text className="text-5xl mb-4">🧭</Text>
+        <Text className="text-3xl font-bold text-white text-center">
+          Ma Boussole{"\n"}Politique
+        </Text>
+        <Text className="text-sm text-indigo-400 mt-1">par Poligraph</Text>
+        <Text className="text-base text-indigo-300 text-center mt-4 leading-6">
+          Découvrez quels élus votent comme vous
+        </Text>
+
+        <Pressable
+          onPress={handleStart}
+          accessibilityRole="button"
+          accessibilityLabel="Commencer le quiz"
+          className="mt-10 bg-amber-500 px-10 py-4 rounded-full active:bg-amber-600"
+          style={{ minHeight: 48 }}
+        >
+          <Text className="text-lg font-bold text-indigo-950">
+            Commencer
+          </Text>
+        </Pressable>
+
+        <Text className="text-sm text-indigo-400 mt-4">
+          2 minutes · 10 questions
+        </Text>
+
+        <Text className="text-xs text-indigo-600 mt-16 text-center">
+          Basé sur les votes réels au Parlement{"\n"}
+          Données Poligraph · Association Sankofa
+        </Text>
+      </View>
+    </SafeAreaView>
   );
 }
