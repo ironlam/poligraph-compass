@@ -87,10 +87,15 @@ export function computeScrutinWeights(
 // Same approach used by Reddit for ranking comments (Evan Miller, 2009,
 // based on Edwin Wilson, 1927).
 //
-// With few observations, the lower bound drops significantly below the raw
-// rate. With many observations, it converges to the raw rate.
+// Answers the question: "Given the votes we observed, what is the LOWEST
+// plausible true agreement rate?"
 //
-// Partial votes (ABSTENTION matches) count as half an agreement.
+// With few observations, the lower bound drops significantly below the raw
+// rate. With many observations, it converges to the raw rate. This naturally
+// penalizes matches based on sparse data without arbitrary thresholds.
+//
+// Partial votes (ABSTENTION matches) count as half an agreement: the deputy
+// didn't fully agree or disagree, so we give partial credit.
 
 export function wilsonScore(
   agree: number,
