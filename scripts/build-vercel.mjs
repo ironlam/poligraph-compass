@@ -51,17 +51,15 @@ for (const parts of depsToBundle) {
   }
 }
 
-// Function handler
+// Function handler (CJS: @expo/server uses extensionless imports that only resolve with require())
 writeFileSync(
-  join(funcDir, "index.mjs"),
-  `import { createRequestHandler } from "./node_modules/@expo/server/build/mjs/vendor/vercel.js";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+  join(funcDir, "index.js"),
+  `const { createRequestHandler } = require("@expo/server/adapter/vercel");
+const path = require("node:path");
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const handler = createRequestHandler({ build: path.join(__dirname, "server") });
 
-export default handler;
+module.exports = handler;
 `
 );
 
@@ -71,7 +69,7 @@ writeFileSync(
   JSON.stringify(
     {
       runtime: "nodejs22.x",
-      handler: "index.mjs",
+      handler: "index.js",
       launcherType: "Nodejs",
       shouldAddHelpers: true,
       supportsResponseStreaming: true,
