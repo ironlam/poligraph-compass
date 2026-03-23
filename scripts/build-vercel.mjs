@@ -61,8 +61,13 @@ for (const parts of depsToBundle) {
 // Function handler (CJS: @expo/server uses extensionless imports that only resolve with require())
 writeFileSync(
   join(funcDir, "index.js"),
-  `const { createRequestHandler } = require("@expo/server/adapter/vercel");
-const path = require("node:path");
+  `const path = require("node:path");
+
+// Ensure process.cwd() returns the function directory so bundled
+// server code can resolve data/ files with fs.readFileSync
+process.chdir(__dirname);
+
+const { createRequestHandler } = require("@expo/server/adapter/vercel");
 
 const handler = createRequestHandler({ build: path.join(__dirname, "server") });
 
