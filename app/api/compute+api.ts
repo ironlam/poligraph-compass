@@ -1,5 +1,5 @@
 import { ComputeRequestSchema } from "@/lib/schemas";
-import { computePoliticianConcordance, computePartyConcordance } from "@/lib/concordance";
+import { computePoliticianConcordance, computePartyConcordance, computeMinOverlap } from "@/lib/concordance";
 import { computeCompassPosition } from "@/lib/compass";
 import { loadQuizPackData } from "@/lib/quiz-pack-loader";
 import type { ComputeResult, ConcordanceEntry } from "@/lib/types";
@@ -21,14 +21,16 @@ export async function POST(request: Request) {
   }
 
   const { answers } = parsed.data;
+  const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;
+  const minOverlap = computeMinOverlap(answeredCount);
 
   // Load quiz pack data directly (shared loader, no self-fetch)
   const quizPack = await loadQuizPackData();
 
-  // Compute politician concordances
+  // Compute politician concordances (sorted by confidence score, not raw %)
   const politicianResults: ConcordanceEntry[] = quizPack.politicians
     .map((pol) => {
-      const r = computePoliticianConcordance(pol.id, answers, quizPack.voteMatrix);
+      const r = computePoliticianConcordance(pol.id, answers, quizPack.voteMatrix, minOverlap);
       return {
         id: pol.id,
         name: pol.fullName,
@@ -39,12 +41,12 @@ export async function POST(request: Request) {
       };
     })
     .filter((r) => r.concordance >= 0)
-    .sort((a, b) => b.concordance - a.concordance);
+    .sort((a, b) => b.score - a.score);
 
-  // Compute party concordances
+  // Compute party concordances (sorted by confidence score)
   const partyResults: ConcordanceEntry[] = quizPack.parties
     .map((party) => {
-      const r = computePartyConcordance(party.id, answers, quizPack.partyMajorities);
+      const r = computePartyConcordance(party.id, answers, quizPack.partyMajorities, minOverlap);
       return {
         id: party.id,
         name: party.name,
@@ -55,12 +57,10 @@ export async function POST(request: Request) {
       };
     })
     .filter((r) => r.concordance >= 0)
-    .sort((a, b) => b.concordance - a.concordance);
+    .sort((a, b) => b.score - a.score);
 
   // Compute compass position
   const position = computeCompassPosition(answers, quizPack.axes);
-
-  const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;
 
   const result: ComputeResult = {
     position,

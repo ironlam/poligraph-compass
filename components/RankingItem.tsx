@@ -13,7 +13,7 @@ function getConcordanceColor(value: number): string {
 }
 
 export function RankingItem({ entry, rank }: Props) {
-  const color = getConcordanceColor(entry.concordance);
+  const color = getConcordanceColor(entry.score);
 
   function handlePress() {
     if (entry.slug) {
@@ -38,10 +38,10 @@ export function RankingItem({ entry, rank }: Props) {
       </View>
       <View className="items-end">
         <Text className="text-base font-bold" style={{ color }}>
-          {entry.concordance}%
+          {entry.score}%
         </Text>
         <Text className="text-xs text-gray-400">
-          {entry.overlap} votes
+          {entry.concordance}% sur {entry.overlap} votes
         </Text>
       </View>
     </Pressable>

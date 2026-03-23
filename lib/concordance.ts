@@ -19,10 +19,28 @@ export function classifyVotePair(
   return "partial";
 }
 
-const MIN_OVERLAP = 5;
+const DEFAULT_MIN_OVERLAP = 5;
+const MIN_OVERLAP_RATIO = 0.4;
+const COVERAGE_TARGET = 0.7;
+
+export function computeMinOverlap(totalAnswered: number): number {
+  return Math.max(DEFAULT_MIN_OVERLAP, Math.ceil(totalAnswered * MIN_OVERLAP_RATIO));
+}
+
+export function computeConfidenceScore(
+  concordance: number,
+  overlap: number,
+  totalAnswered: number
+): number {
+  if (concordance < 0) return -1;
+  const target = totalAnswered * COVERAGE_TARGET;
+  const factor = Math.min(1, overlap / target);
+  return Math.round(concordance * factor);
+}
 
 interface ConcordanceResult {
   concordance: number;
+  score: number;
   agree: number;
   disagree: number;
   partial: number;
@@ -32,7 +50,8 @@ interface ConcordanceResult {
 export function computePoliticianConcordance(
   politicianId: string,
   answers: Record<string, string>,
-  voteMatrix: Record<string, Record<string, string>>
+  voteMatrix: Record<string, Record<string, string>>,
+  minOverlap?: number
 ): ConcordanceResult {
   let agree = 0;
   let disagree = 0;
@@ -46,19 +65,22 @@ export function computePoliticianConcordance(
     if (result === "agree") agree++;
     else if (result === "disagree") disagree++;
     else if (result === "partial") partial++;
-    // skip: don't count
   }
 
   const total = agree + disagree + partial;
-  const concordance = total < MIN_OVERLAP ? -1 : Math.round((agree / total) * 100);
+  const threshold = minOverlap ?? DEFAULT_MIN_OVERLAP;
+  const concordance = total < threshold ? -1 : Math.round((agree / total) * 100);
+  const totalAnswered = Object.values(answers).filter((a) => a !== "SKIP").length;
+  const score = computeConfidenceScore(concordance, total, totalAnswered);
 
-  return { concordance, agree, disagree, partial, overlap: total };
+  return { concordance, score, agree, disagree, partial, overlap: total };
 }
 
 export function computePartyConcordance(
   partyId: string,
   answers: Record<string, string>,
-  partyMajorities: Record<string, Record<string, string>>
+  partyMajorities: Record<string, Record<string, string>>,
+  minOverlap?: number
 ): ConcordanceResult {
   let agree = 0;
   let disagree = 0;
@@ -75,7 +97,10 @@ export function computePartyConcordance(
   }
 
   const total = agree + disagree + partial;
-  const concordance = total < MIN_OVERLAP ? -1 : Math.round((agree / total) * 100);
+  const threshold = minOverlap ?? DEFAULT_MIN_OVERLAP;
+  const concordance = total < threshold ? -1 : Math.round((agree / total) * 100);
+  const totalAnswered = Object.values(answers).filter((a) => a !== "SKIP").length;
+  const score = computeConfidenceScore(concordance, total, totalAnswered);
 
-  return { concordance, agree, disagree, partial, overlap: total };
+  return { concordance, score, agree, disagree, partial, overlap: total };
 }

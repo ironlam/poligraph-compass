@@ -75,6 +75,7 @@ export const ConcordanceEntrySchema = z.object({
   photoUrl: z.string().nullable().optional(),
   partyShortName: z.string().nullable().optional(),
   concordance: z.number().min(0).max(100),
+  score: z.number().min(0).max(100),
   agree: z.number(),
   disagree: z.number(),
   partial: z.number(),
