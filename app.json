@@ -4,6 +4,7 @@
     "slug": "boussole-politique",
     "scheme": "boussole",
     "version": "1.0.0",
+    "userInterfaceStyle": "automatic",
     "platforms": ["ios", "android", "web"],
     "web": {
       "bundler": "metro",

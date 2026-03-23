@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { View } from "react-native";
+import { View, Pressable, Text } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
@@ -121,8 +121,8 @@ export default function Quiz() {
 
   if (isLoading || !pack) {
     return (
-      <SafeAreaView className="flex-1 bg-white items-center justify-center">
-        <View className="animate-spin h-8 w-8 border-2 border-indigo-500 border-t-transparent rounded-full" />
+      <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
+        <View className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
       </SafeAreaView>
     );
   }
@@ -130,8 +130,8 @@ export default function Quiz() {
   if (noQuestionsForPhase) {
     // Waiting for useEffect to redirect
     return (
-      <SafeAreaView className="flex-1 bg-white items-center justify-center">
-        <View className="animate-spin h-8 w-8 border-2 border-indigo-500 border-t-transparent rounded-full" />
+      <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
+        <View className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
       </SafeAreaView>
     );
   }
@@ -139,8 +139,8 @@ export default function Quiz() {
   if (quizComplete) {
     // Waiting for useEffect to navigate
     return (
-      <SafeAreaView className="flex-1 bg-white items-center justify-center">
-        <View className="animate-spin h-8 w-8 border-2 border-indigo-500 border-t-transparent rounded-full" />
+      <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
+        <View className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
       </SafeAreaView>
     );
   }
@@ -150,10 +150,31 @@ export default function Quiz() {
     setCurrentIndex(currentIndex + 1);
   }
 
+  function handleBack() {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  }
+
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="px-6 pt-4">
-        <ProgressBar current={currentIndex + 1} total={questions.length} />
+    <SafeAreaView className="flex-1 bg-indigo-950">
+      <View className="flex-row items-center px-6 pt-4 gap-3">
+        {currentIndex > 0 ? (
+          <Pressable
+            onPress={handleBack}
+            accessibilityRole="button"
+            accessibilityLabel="Question précédente"
+            className="py-2 px-3 -ml-3 rounded-xl active:bg-indigo-900"
+            style={{ minHeight: 44, minWidth: 44, justifyContent: "center" }}
+          >
+            <Text className="text-indigo-300 text-xl font-bold">{"←"}</Text>
+          </Pressable>
+        ) : (
+          <View style={{ width: 44 }} />
+        )}
+        <View className="flex-1">
+          <ProgressBar current={currentIndex + 1} total={questions.length} light />
+        </View>
       </View>
       <QuizCard
         key={currentQuestion.scrutinId}

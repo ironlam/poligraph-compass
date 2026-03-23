@@ -60,6 +60,10 @@ export async function loadQuizPackData(): Promise<QuizPack> {
       order: s.order,
       votingDate: "",
       chamber: "AN",
+      officialTitle: s.officialTitle ?? undefined,
+      summary: s.summary ?? undefined,
+      result: s.result as "adopte" | "rejete" | undefined,
+      voteCount: s.voteCount ?? undefined,
     }));
 
   const axes = {

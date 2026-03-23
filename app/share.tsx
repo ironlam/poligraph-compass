@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { View, Text, Pressable, Alert, Share } from "react-native";
+import { View, Text, Pressable, Alert, Share, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { captureRef } from "react-native-view-shot";
@@ -47,7 +47,7 @@ export default function ShareScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 pt-6">
+      <ScrollView contentContainerClassName="pb-12 pt-6">
         <SharePreview captureRef={previewRef} />
 
         <View className="mx-6 mt-8 gap-3">
@@ -74,7 +74,7 @@ export default function ShareScreen() {
             <Text className="text-gray-400">Recommencer</Text>
           </Pressable>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

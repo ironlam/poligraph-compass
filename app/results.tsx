@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,8 +11,13 @@ export default function Results() {
   const router = useRouter();
   const { results, phase, partyPositions } = useQuizStore();
 
+  useEffect(() => {
+    if (!results) {
+      router.replace("/");
+    }
+  }, [results, router]);
+
   if (!results) {
-    router.replace("/");
     return null;
   }
 
@@ -81,6 +87,16 @@ export default function Results() {
 
         {/* Ranking */}
         <RankingList politicians={politicians} parties={parties} />
+
+        {/* Methodology link */}
+        <Pressable
+          onPress={() => router.push("/methodology")}
+          className="mx-6 mt-6 py-3 items-center"
+        >
+          <Text className="text-sm text-gray-400 underline">
+            Comment ça marche ?
+          </Text>
+        </Pressable>
       </ScrollView>
     </SafeAreaView>
   );

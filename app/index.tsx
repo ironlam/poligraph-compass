@@ -40,10 +40,18 @@ export default function Home() {
           2 minutes · 10 questions
         </Text>
 
-        <Text className="text-xs text-indigo-600 mt-16 text-center">
-          Basé sur les votes réels au Parlement{"\n"}
-          Données Poligraph · Association Sankofa
-        </Text>
+        <Pressable
+          onPress={() => router.push("/methodology")}
+          className="mt-16"
+        >
+          <Text className="text-xs text-indigo-600 text-center">
+            Basé sur les votes réels au Parlement{"\n"}
+            Données Poligraph · Association Sankofa
+          </Text>
+          <Text className="text-xs text-indigo-400 text-center mt-2 underline">
+            Notre méthodologie
+          </Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
