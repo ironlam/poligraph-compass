@@ -33,6 +33,13 @@ mkdirSync(funcDir, { recursive: true });
 // Copy server code into the function
 cpSync(join(DIST, "server"), join(funcDir, "server"), { recursive: true });
 
+// Copy data files so server-side fs.readFileSync can find them
+const dataDir = join(ROOT, "data");
+if (existsSync(dataDir)) {
+  cpSync(dataDir, join(funcDir, "data"), { recursive: true });
+  console.log("Copied data/ -> function bundle");
+}
+
 // Copy @expo/server and its runtime dependencies into the function
 const depsToBundle = [
   ["@expo", "server"],
