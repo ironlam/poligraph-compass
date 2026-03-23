@@ -19,23 +19,46 @@ export function classifyVotePair(
   return "partial";
 }
 
+// --- Configuration ---
+
 const DEFAULT_MIN_OVERLAP = 5;
 const MIN_OVERLAP_RATIO = 0.4;
-const COVERAGE_TARGET = 0.7;
+const WILSON_Z = 1.64; // 90% confidence interval
+
+// --- Wilson Score ---
+//
+// Lower bound of the Wilson confidence interval for a binomial proportion.
+// Same approach used by Reddit for ranking comments (Evan Miller, 2009,
+// based on Edwin Wilson, 1927).
+//
+// Answers the question: "Given the votes we observed, what is the LOWEST
+// plausible true agreement rate?"
+//
+// With few observations, the lower bound drops significantly below the raw
+// rate. With many observations, it converges to the raw rate. This naturally
+// penalizes matches based on sparse data without arbitrary thresholds.
+//
+// Partial votes (ABSTENTION matches) count as half an agreement: the deputy
+// didn't fully agree or disagree, so we give partial credit.
+
+export function wilsonScore(
+  agree: number,
+  partial: number,
+  total: number,
+  z: number = WILSON_Z
+): number {
+  if (total === 0) return 0;
+  const positives = agree + 0.5 * partial;
+  const p = positives / total;
+  const zz = z * z;
+  const denominator = 1 + zz / total;
+  const center = p + zz / (2 * total);
+  const spread = z * Math.sqrt((p * (1 - p) + zz / (4 * total)) / total);
+  return (center - spread) / denominator;
+}
 
 export function computeMinOverlap(totalAnswered: number): number {
   return Math.max(DEFAULT_MIN_OVERLAP, Math.ceil(totalAnswered * MIN_OVERLAP_RATIO));
-}
-
-export function computeConfidenceScore(
-  concordance: number,
-  overlap: number,
-  totalAnswered: number
-): number {
-  if (concordance < 0) return -1;
-  const target = totalAnswered * COVERAGE_TARGET;
-  const factor = Math.min(1, overlap / target);
-  return Math.round(concordance * factor);
 }
 
 interface ConcordanceResult {
@@ -70,8 +93,7 @@ export function computePoliticianConcordance(
   const total = agree + disagree + partial;
   const threshold = minOverlap ?? DEFAULT_MIN_OVERLAP;
   const concordance = total < threshold ? -1 : Math.round((agree / total) * 100);
-  const totalAnswered = Object.values(answers).filter((a) => a !== "SKIP").length;
-  const score = computeConfidenceScore(concordance, total, totalAnswered);
+  const score = concordance < 0 ? -1 : Math.round(wilsonScore(agree, partial, total) * 100);
 
   return { concordance, score, agree, disagree, partial, overlap: total };
 }
@@ -99,8 +121,7 @@ export function computePartyConcordance(
   const total = agree + disagree + partial;
   const threshold = minOverlap ?? DEFAULT_MIN_OVERLAP;
   const concordance = total < threshold ? -1 : Math.round((agree / total) * 100);
-  const totalAnswered = Object.values(answers).filter((a) => a !== "SKIP").length;
-  const score = computeConfidenceScore(concordance, total, totalAnswered);
+  const score = concordance < 0 ? -1 : Math.round(wilsonScore(agree, partial, total) * 100);
 
   return { concordance, score, agree, disagree, partial, overlap: total };
 }
