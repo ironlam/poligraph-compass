@@ -1,4 +1,6 @@
-import { View, Text, Pressable, Linking } from "react-native";
+import { View, Text, Pressable, Image } from "react-native";
+import { useRouter } from "expo-router";
+import { ConcordanceBar } from "./ConcordanceBar";
 import type { ConcordanceEntry } from "@/lib/types";
 
 interface Props {
@@ -13,35 +15,59 @@ function getConcordanceColor(value: number): string {
 }
 
 export function RankingItem({ entry, rank }: Props) {
+  const router = useRouter();
   const color = getConcordanceColor(entry.score);
+  const partyColor = entry.partyColor || "#9ca3af";
 
   function handlePress() {
-    if (entry.slug) {
-      Linking.openURL(`https://poligraph.fr/politiques/${entry.slug}`);
-    }
+    router.push(`/politician/${entry.id}`);
   }
 
   return (
     <Pressable
       onPress={handlePress}
-      className={`flex-row items-center gap-3 px-4 py-3 rounded-xl ${rank === 1 ? "bg-emerald-50" : "bg-gray-50"}`}
+      className="flex-row items-center gap-3 px-4 py-3 rounded-2xl bg-gray-50 active:bg-gray-100"
+      style={{ borderLeftWidth: 3, borderLeftColor: partyColor }}
     >
-      <Text className="text-base font-bold text-gray-400 w-6 text-center">
+      <Text className="text-sm font-extrabold text-gray-300 w-6 text-center">
         {rank}
       </Text>
-      <View className="w-8 h-8 bg-gray-200 rounded-full" />
+
+      {entry.photoUrl ? (
+        <Image
+          source={{ uri: entry.photoUrl }}
+          className="w-10 h-10 rounded-full"
+          style={{ borderWidth: 2, borderColor: partyColor }}
+        />
+      ) : (
+        <View
+          className="w-10 h-10 rounded-full bg-gray-200 items-center justify-center"
+          style={{ borderWidth: 2, borderColor: partyColor }}
+        >
+          <Text className="text-xs text-gray-400">
+            {entry.name.charAt(0)}
+          </Text>
+        </View>
+      )}
+
       <View className="flex-1">
         <Text className="text-sm font-bold text-gray-900">{entry.name}</Text>
         {entry.partyShortName && (
-          <Text className="text-xs text-gray-400">{entry.partyShortName}</Text>
+          <Text className="text-xs font-semibold" style={{ color: partyColor }}>
+            {entry.partyShortName}
+          </Text>
         )}
+        <View className="mt-1">
+          <ConcordanceBar score={entry.score} color={color} />
+        </View>
       </View>
+
       <View className="items-end">
-        <Text className="text-base font-bold" style={{ color }}>
+        <Text className="text-lg font-extrabold" style={{ color }}>
           {entry.score}%
         </Text>
         <Text className="text-xs text-gray-400">
-          sur {entry.overlap} votes
+          {entry.overlap} votes
         </Text>
       </View>
     </Pressable>
