@@ -6,7 +6,7 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "ECONOMIE_BUDGET",
-    "question": "Faut-il nationaliser les usines sidérurgiques en France ?"
+    "question": "Faut-il nationaliser ArcelorMittal pour préserver la souveraineté industrielle ?"
   },
   {
     "scrutinId": "cml2g8dvyfklaijv5awba9t1e",
@@ -15,7 +15,7 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "SOCIAL_TRAVAIL",
-    "question": "Faut-il augmenter le financement de la sécurité sociale ?"
+    "question": "Faut-il adopter le budget proposé pour renforcer la sécurité sociale ?"
   },
   {
     "scrutinId": "cml2g8c2xfisfijv5cqcoyfbo",
@@ -60,7 +60,7 @@
     "axis": "society",
     "polarity": -1,
     "theme": "SECURITE_JUSTICE",
-    "question": "Faut-il faciliter le maintien en rétention des personnes condamnées ?"
+    "question": "Faut-il faciliter le maintien en rétention des condamnés dangereux présentant un risque de récidive ?"
   },
   {
     "scrutinId": "cml2g8dczfjxsijv5bim0dnc1",
