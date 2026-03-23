@@ -3,7 +3,7 @@
  * into Vercel Build Output API v3 format (.vercel/output/).
  */
 
-import { cpSync, mkdirSync, writeFileSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, writeFileSync, existsSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = process.cwd();
@@ -17,7 +17,7 @@ if (!existsSync(join(DIST, "client")) || !existsSync(join(DIST, "server"))) {
 
 // Clean previous output
 if (existsSync(OUTPUT)) {
-  cpSync(OUTPUT, OUTPUT, { recursive: true }); // noop, just ensure exists
+  rmSync(OUTPUT, { recursive: true });
 }
 
 // 1. Copy static assets
@@ -33,11 +33,23 @@ mkdirSync(funcDir, { recursive: true });
 // Copy server code into the function
 cpSync(join(DIST, "server"), join(funcDir, "server"), { recursive: true });
 
-// Copy node_modules/@expo/server into the function (needed at runtime)
-const expoServerSrc = join(ROOT, "node_modules", "@expo", "server");
-const expoServerDest = join(funcDir, "node_modules", "@expo", "server");
-mkdirSync(expoServerDest, { recursive: true });
-cpSync(expoServerSrc, expoServerDest, { recursive: true });
+// Copy @expo/server and its runtime dependencies into the function
+const depsToBundle = [
+  ["@expo", "server"],
+  ["abort-controller"],
+  ["debug"],
+  ["ms"],
+  ["event-target-shim"],
+];
+for (const parts of depsToBundle) {
+  const src = join(ROOT, "node_modules", ...parts);
+  const dest = join(funcDir, "node_modules", ...parts);
+  if (existsSync(src)) {
+    mkdirSync(dest, { recursive: true });
+    cpSync(src, dest, { recursive: true });
+    console.log(`  Bundled ${parts.join("/")}`);
+  }
+}
 
 // Function handler
 writeFileSync(
