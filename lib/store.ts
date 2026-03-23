@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { QuizPack, ComputeResult, UserAnswer, CompassPosition } from "./types";
+import type { QuizPack, ComputeResult, UserAnswer, CompassPosition, ChallengeContext } from "./types";
 import type { Phase } from "./phases";
 
 interface QuizState {
@@ -30,6 +30,11 @@ interface QuizState {
   showPartiesOnShare: boolean;
   toggleShowPartiesOnShare: () => void;
 
+  // Challenge
+  challengeContext: ChallengeContext | null;
+  setChallengeContext: (ctx: ChallengeContext) => void;
+  clearChallengeContext: () => void;
+
   // Reset
   reset: () => void;
 }
@@ -43,6 +48,7 @@ const initialState = {
   partyPositions: null,
   shareId: null,
   showPartiesOnShare: false,
+  challengeContext: null,
 };
 
 export const useQuizStore = create<QuizState>((set) => ({
@@ -65,6 +71,9 @@ export const useQuizStore = create<QuizState>((set) => ({
   setShareId: (id) => set({ shareId: id }),
   toggleShowPartiesOnShare: () =>
     set((state) => ({ showPartiesOnShare: !state.showPartiesOnShare })),
+
+  setChallengeContext: (ctx) => set({ challengeContext: ctx }),
+  clearChallengeContext: () => set({ challengeContext: null }),
 
   reset: () => set(initialState),
 }));

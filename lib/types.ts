@@ -6,6 +6,8 @@ import {
   ComputeRequestSchema,
   ComputeResultSchema,
   ShareResultSchema,
+  ShareTopPartySchema,
+  ChallengeContextSchema,
   PoliticianSchema,
   PartySchema,
   VotePositionSchema,
@@ -21,6 +23,8 @@ export type UserAnswer = z.infer<typeof UserAnswerSchema>;
 export type ComputeRequest = z.infer<typeof ComputeRequestSchema>;
 export type ComputeResult = z.infer<typeof ComputeResultSchema>;
 export type ShareResult = z.infer<typeof ShareResultSchema>;
+export type ShareTopParty = z.infer<typeof ShareTopPartySchema>;
+export type ChallengeContext = z.infer<typeof ChallengeContextSchema>;
 export type Politician = z.infer<typeof PoliticianSchema>;
 export type Party = z.infer<typeof PartySchema>;
 export type VotePosition = z.infer<typeof VotePositionSchema>;

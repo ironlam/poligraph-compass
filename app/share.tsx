@@ -12,6 +12,7 @@ export default function ShareScreen() {
   const router = useRouter();
   const { shareId, reset } = useQuizStore();
   const shareUrl = shareId ? `https://boussole.poligraph.fr/r/${shareId}` : null;
+  const challengeUrl = shareId ? `https://boussole.poligraph.fr/challenge/${shareId}` : null;
   const previewRef = useRef<View>(null);
 
   async function handleShare() {
@@ -40,6 +41,14 @@ export default function ShareScreen() {
     }
   }
 
+  async function handleChallenge() {
+    if (challengeUrl) {
+      await Share.share({
+        message: `Je te defie de faire le quiz politique ! Compare ta position avec la mienne : ${challengeUrl}`,
+      });
+    }
+  }
+
   function handleRestart() {
     reset();
     router.replace("/");
@@ -64,6 +73,15 @@ export default function ShareScreen() {
               className="py-4 bg-gray-100 rounded-xl items-center active:bg-gray-200"
             >
               <Text className="text-gray-700 font-bold">Copier le lien</Text>
+            </Pressable>
+          )}
+
+          {challengeUrl && (
+            <Pressable
+              onPress={handleChallenge}
+              className="py-4 bg-indigo-500 rounded-xl items-center active:bg-indigo-600"
+            >
+              <Text className="text-white font-bold">Defier un ami</Text>
             </Pressable>
           )}
 

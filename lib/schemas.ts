@@ -116,11 +116,27 @@ export const ComputeResultSchema = z.object({
 
 // --- Share Result (stored in KV) ---
 
+export const ShareTopPartySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  shortName: z.string(),
+  score: z.number(),
+  color: z.string().nullable(),
+});
+
 export const ShareResultSchema = z.object({
   id: z.string(),
   position: CompassPositionSchema,
-  topParty: ConcordanceEntrySchema.nullable(),
-  showParties: z.boolean(),
+  topParties: z.array(ShareTopPartySchema),
   answeredCount: z.number(),
   createdAt: z.string(),
+});
+
+// --- Challenge Context ---
+
+export const ChallengeContextSchema = z.object({
+  shareId: z.string(),
+  challengerPosition: CompassPositionSchema,
+  challengerTopParties: z.array(ShareTopPartySchema),
+  challengerAnsweredCount: z.number(),
 });

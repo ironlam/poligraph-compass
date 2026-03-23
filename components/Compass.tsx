@@ -21,6 +21,7 @@ interface Props {
   userPosition: CompassPosition;
   parties: ConcordanceEntry[];
   partyPositions?: Record<string, CompassPosition>;
+  challengerPosition?: CompassPosition;
 }
 
 function toPixel(value: number, axis: "x" | "y"): number {
@@ -45,7 +46,7 @@ const FALLBACK_COLORS = [
   "#ec4899", "#06b6d4", "#f97316", "#84cc16", "#d946ef",
 ];
 
-export function Compass({ userPosition, parties, partyPositions }: Props) {
+export function Compass({ userPosition, parties, partyPositions, challengerPosition }: Props) {
   const partyDots = partyPositions
     ? parties
         .map((party, i) => {
@@ -129,6 +130,19 @@ export function Compass({ userPosition, parties, partyPositions }: Props) {
             />
           ))}
 
+          {/* Challenger position (challenge mode) */}
+          {challengerPosition && challengerPosition.xValid && challengerPosition.yValid && (
+            <Circle
+              cx={toPixel(challengerPosition.x, "x")}
+              cy={toPixel(challengerPosition.y, "y")}
+              r={10}
+              fill="#6366f1"
+              stroke="white"
+              strokeWidth={2}
+              opacity={0.9}
+            />
+          )}
+
         </Svg>
 
         {/* Animated user star (overlay so we can use View transforms) */}
@@ -158,12 +172,18 @@ export function Compass({ userPosition, parties, partyPositions }: Props) {
       </View>
 
       {/* Legend */}
-      {partyDots.length > 0 && (
+      {(partyDots.length > 0 || challengerPosition) && (
         <View className="flex-row flex-wrap justify-center gap-x-4 gap-y-1.5 mt-2 px-4">
           <View className="flex-row items-center gap-1.5">
             <Text className="text-xs" style={{ color: "#f59e0b" }}>{"★"}</Text>
             <Text className="text-xs font-bold" style={{ color: "#d1d5db" }}>Vous</Text>
           </View>
+          {challengerPosition && (
+            <View className="flex-row items-center gap-1.5">
+              <View className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#6366f1" }} />
+              <Text className="text-xs font-bold" style={{ color: "#d1d5db" }}>Challenger</Text>
+            </View>
+          )}
           {partyDots.map((party) => (
             <View key={party.id} className="flex-row items-center gap-1.5">
               <View className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: party.color }} />

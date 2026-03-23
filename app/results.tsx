@@ -13,7 +13,7 @@ import { computePoliticianConcordance, computeMinOverlap, computeScrutinWeights 
 
 export default function Results() {
   const router = useRouter();
-  const { results, phase, partyPositions, quizPack, answers } = useQuizStore();
+  const { results, phase, partyPositions, quizPack, answers, challengeContext } = useQuizStore();
 
   useEffect(() => {
     if (!results) {
@@ -81,7 +81,7 @@ export default function Results() {
         {/* Compass */}
         <View className="mt-6 items-center">
           {hasValidPosition ? (
-            <Compass userPosition={position} parties={parties} partyPositions={partyPositions ?? undefined} />
+            <Compass userPosition={position} parties={parties} partyPositions={partyPositions ?? undefined} challengerPosition={challengeContext?.challengerPosition} />
           ) : (
             <View className="h-48 items-center justify-center">
               <Text className="text-gray-400 text-center px-8">
@@ -99,6 +99,44 @@ export default function Results() {
               Vous êtes plutôt{" "}
               <Text className="font-bold">{quadrantLabel}</Text>
             </Text>
+          </View>
+        )}
+
+        {/* Challenge comparison */}
+        {challengeContext && (
+          <View className="mx-6 mt-4 p-4 bg-indigo-50 rounded-xl gap-3">
+            <Text className="text-sm font-bold text-indigo-900 text-center">
+              Comparaison avec le challenger
+            </Text>
+            <View className="items-center">
+              {(() => {
+                const dx = position.x - challengeContext.challengerPosition.x;
+                const dy = position.y - challengeContext.challengerPosition.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const similarity = Math.max(0, Math.round((1 - distance / 2.83) * 100));
+                return (
+                  <Text className="text-2xl font-extrabold text-indigo-700">
+                    {similarity}% similaires
+                  </Text>
+                );
+              })()}
+            </View>
+            {challengeContext.challengerTopParties.length > 0 && (
+              <View className="gap-1">
+                <View className="flex-row justify-between">
+                  <Text className="text-xs text-gray-500">Vous</Text>
+                  <Text className="text-xs text-gray-500">Challenger</Text>
+                </View>
+                <View className="flex-row justify-between">
+                  <Text className="text-sm font-bold text-gray-900">
+                    {parties[0]?.partyShortName ?? parties[0]?.name ?? "---"}
+                  </Text>
+                  <Text className="text-sm font-bold text-indigo-700">
+                    {challengeContext.challengerTopParties[0]?.shortName ?? "---"}
+                  </Text>
+                </View>
+              </View>
+            )}
           </View>
         )}
 

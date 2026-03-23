@@ -2,6 +2,7 @@ import { View, Text, Pressable, Linking } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
+import Head from "expo-router/head";
 import { Compass } from "@/components/Compass";
 import type { ShareResult } from "@/lib/types";
 
@@ -33,7 +34,7 @@ export default function SharedResult() {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center px-8">
         <Text className="text-white text-xl font-bold text-center">
-          Ce résultat n'existe plus
+          Ce resultat n'existe plus
         </Text>
         <Pressable
           onPress={handleStartQuiz}
@@ -46,27 +47,49 @@ export default function SharedResult() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 items-center justify-center px-8">
-        <Text className="text-xl font-bold text-gray-900 mb-6">
-          Résultat partagé
-        </Text>
-        <Compass
-          userPosition={data.position}
-          parties={data.showParties && data.topParty ? [data.topParty] : []}
-        />
-        <Text className="text-gray-500 mt-4 text-center">
-          D'après {data.answeredCount} votes réels au Parlement
-        </Text>
-        <Pressable
-          onPress={handleStartQuiz}
-          className="mt-8 bg-indigo-500 px-8 py-4 rounded-full active:bg-indigo-600"
-        >
-          <Text className="text-white font-bold text-base">
-            Et toi, tu es où ? Fais le test →
+    <>
+      <Head>
+        <title>Ma Boussole Politique</title>
+        <meta property="og:title" content="Ma Boussole Politique" />
+        <meta property="og:description" content={`Decouvre ma position politique, d'apres ${data.answeredCount} votes reels au Parlement.`} />
+        <meta property="og:image" content={`https://boussole.poligraph.fr/api/og/${id}`} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+      <SafeAreaView className="flex-1 bg-white">
+        <View className="flex-1 items-center justify-center px-8">
+          <Text className="text-xl font-bold text-gray-900 mb-6">
+            Resultat partage
           </Text>
-        </Pressable>
-      </View>
-    </SafeAreaView>
+          <Compass
+            userPosition={data.position}
+            parties={data.topParties?.length ? data.topParties.map((p) => ({
+              id: p.id,
+              name: p.name,
+              partyShortName: p.shortName,
+              partyColor: p.color,
+              concordance: p.score,
+              score: p.score,
+              agree: 0,
+              disagree: 0,
+              partial: 0,
+              overlap: 0,
+              photoUrl: null,
+            })) : []}
+          />
+          <Text className="text-gray-500 mt-4 text-center">
+            D'apres {data.answeredCount} votes reels au Parlement
+          </Text>
+          <Pressable
+            onPress={handleStartQuiz}
+            className="mt-8 bg-indigo-500 px-8 py-4 rounded-full active:bg-indigo-600"
+          >
+            <Text className="text-white font-bold text-base">
+              Et toi, tu es ou ? Fais le test
+            </Text>
+          </Pressable>
+        </View>
+      </SafeAreaView>
+    </>
   );
 }
