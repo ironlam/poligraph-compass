@@ -42,9 +42,7 @@ export default function Quiz() {
 
   const pack = quizPack || data;
 
-  const questions = pack?.questions.filter((q) =>
-    phase === "essential" ? q.tier === "essential" : q.tier === "refine"
-  ) ?? [];
+  const questions = pack?.questions.filter((q) => q.tier === phase) ?? [];
   const currentQuestion = questions[currentIndex];
   const noQuestionsForPhase = !!pack && questions.length === 0;
   const quizComplete = pack && !currentQuestion && questions.length > 0;

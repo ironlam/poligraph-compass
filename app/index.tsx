@@ -37,7 +37,7 @@ export default function Home() {
         </Pressable>
 
         <Text className="text-sm text-indigo-400 mt-4">
-          2 minutes · 10 questions
+          2 min · 20 questions
         </Text>
 
         <Pressable

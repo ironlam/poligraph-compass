@@ -6,6 +6,7 @@ import { useQuizStore } from "@/lib/store";
 import { Compass } from "@/components/Compass";
 import { RankingList } from "@/components/RankingList";
 import { getQuadrantLabel } from "@/lib/theme-labels";
+import { getNextPhase } from "@/lib/phases";
 
 export default function Results() {
   const router = useRouter();
@@ -75,7 +76,7 @@ export default function Results() {
           >
             <Text className="text-white font-bold">Partager</Text>
           </Pressable>
-          {phase === "essential" && (
+          {getNextPhase(phase) && (
             <Pressable
               onPress={handleRefine}
               className="flex-1 py-3 bg-gray-100 rounded-xl items-center border border-gray-200 active:bg-gray-200"

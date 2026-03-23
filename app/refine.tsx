@@ -2,13 +2,22 @@ import { View, Text, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuizStore } from "@/lib/store";
+import { getNextPhase, getPhaseLabel } from "@/lib/phases";
 
-export default function Refine() {
+export default function RefineGate() {
   const router = useRouter();
-  const setPhase = useQuizStore((s) => s.setPhase);
+  const { phase, setPhase } = useQuizStore();
+  const nextPhase = getNextPhase(phase);
+
+  if (!nextPhase) {
+    router.replace("/share");
+    return null;
+  }
+
+  const label = getPhaseLabel(nextPhase);
 
   function handleContinue() {
-    setPhase("refine");
+    setPhase(nextPhase!);
     router.push("/quiz");
   }
 
@@ -19,34 +28,35 @@ export default function Refine() {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 items-center justify-center px-8">
-        <Text className="text-5xl mb-6">🎯</Text>
-        <Text className="text-2xl font-bold text-gray-900 text-center">
-          Affiner votre position
+        <Text className="text-5xl mb-6">{"🎯"}</Text>
+        <Text className="text-xl font-extrabold text-gray-900 text-center">
+          Envie d'aller plus loin ?
         </Text>
-        <Text className="text-base text-gray-500 text-center mt-4 leading-6">
-          10 questions supplémentaires pour un résultat plus précis
-        </Text>
-        <Text className="text-sm text-gray-400 mt-2">
-          Environ 4 minutes
+        <Text className="text-sm text-gray-500 text-center mt-3 leading-5">
+          {label}
+          {"\n"}Vos résultats seront encore plus précis.
         </Text>
 
-        <Pressable
-          onPress={handleContinue}
-          accessibilityRole="button"
-          accessibilityLabel="Continuer avec les questions supplémentaires"
-          className="mt-10 bg-indigo-500 px-10 py-4 rounded-full active:bg-indigo-600"
-          style={{ minHeight: 48 }}
-        >
-          <Text className="text-lg font-bold text-white">Continuer</Text>
-        </Pressable>
-
-        <Pressable
-          onPress={handleSkip}
-          accessibilityRole="button"
-          className="mt-4 py-3"
-        >
-          <Text className="text-sm text-gray-400">Non merci, partager mes résultats</Text>
-        </Pressable>
+        <View className="w-full mt-10 gap-3">
+          <Pressable
+            onPress={handleContinue}
+            accessibilityRole="button"
+            accessibilityLabel="Continuer avec les questions supplémentaires"
+            className="py-4 bg-indigo-600 rounded-2xl items-center active:bg-indigo-700"
+            style={{ minHeight: 48 }}
+          >
+            <Text className="text-white font-bold text-base">Continuer</Text>
+          </Pressable>
+          <Pressable
+            onPress={handleSkip}
+            accessibilityRole="button"
+            className="py-3 items-center"
+          >
+            <Text className="text-gray-400 text-sm">
+              Non merci, partager mes résultats
+            </Text>
+          </Pressable>
+        </View>
       </View>
     </SafeAreaView>
   );
