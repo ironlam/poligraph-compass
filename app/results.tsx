@@ -5,12 +5,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuizStore } from "@/lib/store";
 import { Compass } from "@/components/Compass";
 import { RankingList } from "@/components/RankingList";
+import { DeputyBanner } from "@/components/DeputyBanner";
 import { getQuadrantLabel } from "@/lib/theme-labels";
 import { getNextPhase } from "@/lib/phases";
+import { useDeputyStore } from "@/lib/deputy-store";
+import { computePoliticianConcordance, computeMinOverlap, computeScrutinWeights } from "@/lib/concordance";
 
 export default function Results() {
   const router = useRouter();
-  const { results, phase, partyPositions } = useQuizStore();
+  const { results, phase, partyPositions, quizPack, answers } = useQuizStore();
 
   useEffect(() => {
     if (!results) {
@@ -27,6 +30,37 @@ export default function Results() {
   const quadrantLabel = hasValidPosition
     ? getQuadrantLabel(position.x, position.y)
     : null;
+
+  const { selectedDeputy } = useDeputyStore();
+
+  // Compute concordance for the selected deputy
+  const deputyConcordance = (() => {
+    if (!selectedDeputy || !quizPack || !answers) return null;
+
+    const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;
+    const minOverlap = computeMinOverlap(answeredCount);
+    const weights = computeScrutinWeights(quizPack.partyMajorities, quizPack.parties);
+    const r = computePoliticianConcordance(
+      selectedDeputy.id,
+      answers as Record<string, string>,
+      quizPack.voteMatrix as Record<string, Record<string, string>>,
+      minOverlap,
+      weights
+    );
+
+    if (r.concordance < 0) return null;
+
+    const party = quizPack.parties.find((p) => p.id === selectedDeputy.partyId);
+    return {
+      id: selectedDeputy.id,
+      name: selectedDeputy.fullName,
+      slug: selectedDeputy.slug,
+      photoUrl: selectedDeputy.photoUrl,
+      partyShortName: selectedDeputy.partyShortName,
+      partyColor: party?.color ?? null,
+      ...r,
+    };
+  })();
 
   function handleRefine() {
     router.push("/refine");
@@ -68,6 +102,9 @@ export default function Results() {
           </View>
         )}
 
+        {/* Deputy banner */}
+        <DeputyBanner />
+
         {/* Action buttons */}
         <View className="flex-row gap-3 mx-6 mt-6">
           <Pressable
@@ -87,7 +124,7 @@ export default function Results() {
         </View>
 
         {/* Ranking */}
-        <RankingList politicians={politicians} parties={parties} />
+        <RankingList politicians={politicians} parties={parties} pinnedDeputy={deputyConcordance} />
 
         {/* Methodology link */}
         <Pressable

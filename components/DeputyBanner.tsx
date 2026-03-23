@@ -1,0 +1,125 @@
+import { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
+import {
+  isValidCodePostal,
+  fetchDeputyByCodePostal,
+} from "@/lib/deputy-lookup";
+import { useDeputyStore, persistDeputyStore } from "@/lib/deputy-store";
+
+export function DeputyBanner() {
+  const { selectedDeputy, codePostal, isLoading, error } = useDeputyStore();
+  const { setDeputy, setLoading, setError, clear } = useDeputyStore();
+  const [input, setInput] = useState(codePostal || "");
+  const [isEditing, setIsEditing] = useState(false);
+
+  async function handleSearch() {
+    const trimmed = input.trim();
+    if (!isValidCodePostal(trimmed)) {
+      setError("Entrez un code postal valide (5 chiffres)");
+      return;
+    }
+
+    setLoading(true);
+    const deputy = await fetchDeputyByCodePostal(trimmed);
+
+    if (deputy) {
+      setDeputy(deputy, trimmed);
+      setIsEditing(false);
+      persistDeputyStore();
+    } else {
+      setError("Aucun depute trouve pour ce code postal");
+    }
+  }
+
+  function handleChange() {
+    setIsEditing(true);
+  }
+
+  function handleClear() {
+    clear();
+    setInput("");
+    setIsEditing(false);
+    persistDeputyStore();
+  }
+
+  // State: deputy selected and not editing
+  if (selectedDeputy && !isEditing) {
+    return (
+      <View className="mx-6 mt-6 p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
+        <View className="flex-row items-center justify-between">
+          <View className="flex-1">
+            <Text className="text-xs text-indigo-400 font-semibold uppercase tracking-wide">
+              Votre depute(e)
+            </Text>
+            <Text className="text-base font-bold text-gray-900 mt-1">
+              {selectedDeputy.fullName}
+            </Text>
+            {selectedDeputy.circonscription && (
+              <Text className="text-xs text-gray-400 mt-0.5">
+                {selectedDeputy.circonscription}
+              </Text>
+            )}
+          </View>
+          <Pressable onPress={handleChange} className="px-3 py-1.5">
+            <Text className="text-xs text-indigo-500 font-semibold">
+              Changer
+            </Text>
+          </Pressable>
+        </View>
+      </View>
+    );
+  }
+
+  // State: no deputy or editing
+  return (
+    <View className="mx-6 mt-6 p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
+      <Text className="text-sm font-bold text-gray-900">
+        Decouvrez comment votre depute a vote
+      </Text>
+      <Text className="text-xs text-gray-400 mt-1 mb-3">
+        Entrez votre code postal pour le trouver
+      </Text>
+
+      <View className="flex-row gap-2">
+        <TextInput
+          value={input}
+          onChangeText={setInput}
+          placeholder="Ex: 75001"
+          keyboardType="number-pad"
+          maxLength={5}
+          className="flex-1 bg-white rounded-xl px-4 py-2.5 text-sm text-gray-900 border border-gray-200"
+          editable={!isLoading}
+          onSubmitEditing={handleSearch}
+          returnKeyType="search"
+        />
+        <Pressable
+          onPress={handleSearch}
+          disabled={isLoading}
+          className="bg-indigo-500 rounded-xl px-5 items-center justify-center active:bg-indigo-600"
+        >
+          {isLoading ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            <Text className="text-white font-bold text-sm">OK</Text>
+          )}
+        </Pressable>
+      </View>
+
+      {error && <Text className="text-xs text-red-500 mt-2">{error}</Text>}
+
+      {selectedDeputy && isEditing && (
+        <Pressable onPress={handleClear} className="mt-2">
+          <Text className="text-xs text-gray-400 underline">
+            Supprimer la selection
+          </Text>
+        </Pressable>
+      )}
+    </View>
+  );
+}
