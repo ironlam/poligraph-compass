@@ -56,7 +56,7 @@ export async function loadQuizPackData(): Promise<QuizPack> {
       scrutinId: s.scrutinId,
       question: s.question,
       theme: s.theme,
-      tier: s.tier as "essential" | "refine",
+      tier: s.tier as "core" | "refine-1" | "refine-2" | "refine-3",
       order: s.order,
       votingDate: "",
       chamber: "AN",

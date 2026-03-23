@@ -2,7 +2,7 @@
   {
     "scrutinId": "cml2g74m4dv2eijv5yeaef1ml",
     "order": 1,
-    "tier": "essential",
+    "tier": "core",
     "axis": "economy",
     "polarity": -1,
     "theme": "ECONOMIE_BUDGET",
@@ -19,7 +19,7 @@
   {
     "scrutinId": "cml2g8dvyfklaijv5awba9t1e",
     "order": 2,
-    "tier": "essential",
+    "tier": "core",
     "axis": "economy",
     "polarity": -1,
     "theme": "SOCIAL_TRAVAIL",
@@ -36,7 +36,7 @@
   {
     "scrutinId": "cml2g8c2xfisfijv5cqcoyfbo",
     "order": 3,
-    "tier": "essential",
+    "tier": "core",
     "axis": "economy",
     "polarity": -1,
     "theme": "LOGEMENT_URBANISME",
@@ -53,7 +53,7 @@
   {
     "scrutinId": "cml2g0v6c67mqijv5qwwpbmsh",
     "order": 4,
-    "tier": "essential",
+    "tier": "core",
     "axis": "economy",
     "polarity": 1,
     "theme": "AGRICULTURE_ALIMENTATION",
@@ -70,7 +70,7 @@
   {
     "scrutinId": "cml2g181g6jigijv55tbw369m",
     "order": 5,
-    "tier": "essential",
+    "tier": "core",
     "axis": "economy",
     "polarity": 1,
     "theme": "LOGEMENT_URBANISME",
@@ -87,7 +87,7 @@
   {
     "scrutinId": "cmm2fg4fw02ju1o214v348cht",
     "order": 6,
-    "tier": "essential",
+    "tier": "core",
     "axis": "society",
     "polarity": 1,
     "theme": "SANTE",
@@ -104,7 +104,7 @@
   {
     "scrutinId": "cml2g0vbq681tijv5fx2s0p9i",
     "order": 7,
-    "tier": "essential",
+    "tier": "core",
     "axis": "society",
     "polarity": -1,
     "theme": "SECURITE_JUSTICE",
@@ -121,7 +121,7 @@
   {
     "scrutinId": "cml2g8dczfjxsijv5bim0dnc1",
     "order": 8,
-    "tier": "essential",
+    "tier": "core",
     "axis": "society",
     "polarity": 1,
     "theme": "IMMIGRATION",
@@ -138,7 +138,7 @@
   {
     "scrutinId": "cml2ga02uh0mmijv55qmm74po",
     "order": 9,
-    "tier": "essential",
+    "tier": "core",
     "axis": "society",
     "polarity": -1,
     "theme": "NUMERIQUE_TECH",
@@ -155,7 +155,7 @@
   {
     "scrutinId": "cml2g88waffqmijv57h01qto4",
     "order": 10,
-    "tier": "essential",
+    "tier": "core",
     "axis": "society",
     "polarity": 1,
     "theme": "SOCIAL_TRAVAIL",
@@ -172,7 +172,7 @@
   {
     "scrutinId": "cml2g2j5v7vtjijv53jk3unha",
     "order": 11,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "economy",
     "polarity": -1,
     "theme": "AGRICULTURE_ALIMENTATION",
@@ -189,7 +189,7 @@
   {
     "scrutinId": "cmldazds3hcxtri3z737rs0e1",
     "order": 12,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "economy",
     "polarity": -1,
     "theme": "ENVIRONNEMENT_ENERGIE",
@@ -206,7 +206,7 @@
   {
     "scrutinId": "cml2g17wy6jdjijv5gw5pkgfe",
     "order": 13,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "economy",
     "polarity": 1,
     "theme": "SOCIAL_TRAVAIL",
@@ -223,7 +223,7 @@
   {
     "scrutinId": "cml2g6ji8d6vtijv5vmksglla",
     "order": 14,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "economy",
     "polarity": -1,
     "theme": "ECONOMIE_BUDGET",
@@ -240,7 +240,7 @@
   {
     "scrutinId": "cml2ga7guh81kijv5ist7yyz2",
     "order": 15,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "economy",
     "polarity": -1,
     "theme": "SANTE",
@@ -257,7 +257,7 @@
   {
     "scrutinId": "cml2g8olafu9xijv5he1w3x8m",
     "order": 16,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "society",
     "polarity": 1,
     "theme": "INSTITUTIONS",
@@ -274,7 +274,7 @@
   {
     "scrutinId": "cml2ga5udh70cijv5nnwofs2z",
     "order": 17,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "society",
     "polarity": 1,
     "theme": "SECURITE_JUSTICE",
@@ -291,7 +291,7 @@
   {
     "scrutinId": "cml2g18su6kgyijv54xpm5pmc",
     "order": 18,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "society",
     "polarity": 1,
     "theme": "SECURITE_JUSTICE",
@@ -308,7 +308,7 @@
   {
     "scrutinId": "cml2g8oy3fuhnijv54sag7xra",
     "order": 19,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "society",
     "polarity": 1,
     "theme": "INSTITUTIONS",
@@ -325,7 +325,7 @@
   {
     "scrutinId": "cml2g8dhdfk1oijv5g1yco48y",
     "order": 20,
-    "tier": "refine",
+    "tier": "refine-1",
     "axis": "economy",
     "polarity": -1,
     "theme": "ECONOMIE_BUDGET",

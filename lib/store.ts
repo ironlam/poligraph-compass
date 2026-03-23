@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { QuizPack, ComputeResult, UserAnswer, CompassPosition } from "./types";
+import type { Phase } from "./phases";
 
 interface QuizState {
   // Quiz pack from API
@@ -14,8 +15,8 @@ interface QuizState {
   // Quiz progress
   currentIndex: number;
   setCurrentIndex: (index: number) => void;
-  phase: "essential" | "refine";
-  setPhase: (phase: "essential" | "refine") => void;
+  phase: Phase;
+  setPhase: (phase: Phase) => void;
 
   // Results
   results: ComputeResult | null;
@@ -37,7 +38,7 @@ const initialState = {
   quizPack: null,
   answers: {},
   currentIndex: 0,
-  phase: "essential" as const,
+  phase: "core" as const,
   results: null,
   partyPositions: null,
   shareId: null,

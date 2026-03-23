@@ -5,7 +5,7 @@ import { z } from "zod";
 export const ScrutinConfigSchema = z.object({
   scrutinId: z.string(),
   order: z.number().int().positive(),
-  tier: z.enum(["essential", "refine"]),
+  tier: z.enum(["core", "refine-1", "refine-2", "refine-3"]),
   axis: z.enum(["economy", "society"]),
   polarity: z.union([z.literal(1), z.literal(-1)]),
   theme: z.string(),
@@ -55,7 +55,7 @@ export const QuizQuestionSchema = z.object({
   scrutinId: z.string(),
   question: z.string(),
   theme: z.string(),
-  tier: z.enum(["essential", "refine"]),
+  tier: z.enum(["core", "refine-1", "refine-2", "refine-3"]),
   order: z.number(),
   votingDate: z.string(),
   chamber: z.string(),
