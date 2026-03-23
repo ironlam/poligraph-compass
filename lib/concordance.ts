@@ -19,11 +19,14 @@ export function classifyVotePair(
   return "partial";
 }
 
+const MIN_OVERLAP = 5;
+
 interface ConcordanceResult {
   concordance: number;
   agree: number;
   disagree: number;
   partial: number;
+  overlap: number;
 }
 
 export function computePoliticianConcordance(
@@ -47,9 +50,9 @@ export function computePoliticianConcordance(
   }
 
   const total = agree + disagree + partial;
-  const concordance = total === 0 ? -1 : Math.round((agree / total) * 100);
+  const concordance = total < MIN_OVERLAP ? -1 : Math.round((agree / total) * 100);
 
-  return { concordance, agree, disagree, partial };
+  return { concordance, agree, disagree, partial, overlap: total };
 }
 
 export function computePartyConcordance(
@@ -72,7 +75,7 @@ export function computePartyConcordance(
   }
 
   const total = agree + disagree + partial;
-  const concordance = total === 0 ? -1 : Math.round((agree / total) * 100);
+  const concordance = total < MIN_OVERLAP ? -1 : Math.round((agree / total) * 100);
 
-  return { concordance, agree, disagree, partial };
+  return { concordance, agree, disagree, partial, overlap: total };
 }

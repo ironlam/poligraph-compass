@@ -28,21 +28,14 @@ export async function POST(request: Request) {
   // Compute politician concordances
   const politicianResults: ConcordanceEntry[] = quizPack.politicians
     .map((pol) => {
-      const { concordance, agree, disagree, partial } = computePoliticianConcordance(
-        pol.id,
-        answers,
-        quizPack.voteMatrix
-      );
+      const r = computePoliticianConcordance(pol.id, answers, quizPack.voteMatrix);
       return {
         id: pol.id,
         name: pol.fullName,
         slug: pol.slug,
         photoUrl: pol.photoUrl,
         partyShortName: pol.partyShortName,
-        concordance,
-        agree,
-        disagree,
-        partial,
+        ...r,
       };
     })
     .filter((r) => r.concordance >= 0)
@@ -51,21 +44,14 @@ export async function POST(request: Request) {
   // Compute party concordances
   const partyResults: ConcordanceEntry[] = quizPack.parties
     .map((party) => {
-      const { concordance, agree, disagree, partial } = computePartyConcordance(
-        party.id,
-        answers,
-        quizPack.partyMajorities
-      );
+      const r = computePartyConcordance(party.id, answers, quizPack.partyMajorities);
       return {
         id: party.id,
         name: party.name,
         slug: undefined,
         photoUrl: null,
         partyShortName: party.shortName,
-        concordance,
-        agree,
-        disagree,
-        partial,
+        ...r,
       };
     })
     .filter((r) => r.concordance >= 0)

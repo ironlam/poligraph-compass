@@ -39,62 +39,92 @@ describe("classifyVotePair", () => {
 });
 
 describe("computePoliticianConcordance", () => {
+  // 6 scrutins to exceed MIN_OVERLAP=5
   const voteMatrix: Record<string, Record<string, string>> = {
-    scrutin1: { pol1: "POUR", pol2: "CONTRE", pol3: "ABSTENTION" },
-    scrutin2: { pol1: "CONTRE", pol2: "POUR", pol3: "POUR" },
-    scrutin3: { pol1: "POUR", pol2: "POUR", pol3: "ABSENT" },
+    s1: { pol1: "POUR", pol2: "CONTRE", pol3: "ABSTENTION" },
+    s2: { pol1: "CONTRE", pol2: "POUR", pol3: "POUR" },
+    s3: { pol1: "POUR", pol2: "POUR", pol3: "ABSENT" },
+    s4: { pol1: "CONTRE", pol2: "CONTRE", pol3: "POUR" },
+    s5: { pol1: "POUR", pol2: "CONTRE", pol3: "CONTRE" },
+    s6: { pol1: "CONTRE", pol2: "POUR", pol3: "POUR" },
   };
 
   it("returns 100% when all answers match", () => {
-    const answers = { scrutin1: "POUR", scrutin2: "CONTRE", scrutin3: "POUR" } as Record<string, any>;
+    const answers = { s1: "POUR", s2: "CONTRE", s3: "POUR", s4: "CONTRE", s5: "POUR", s6: "CONTRE" } as Record<string, any>;
     const result = computePoliticianConcordance("pol1", answers, voteMatrix);
     expect(result.concordance).toBe(100);
-    expect(result.agree).toBe(3);
+    expect(result.agree).toBe(6);
     expect(result.disagree).toBe(0);
+    expect(result.overlap).toBe(6);
   });
 
   it("returns 0% when all answers oppose", () => {
-    const answers = { scrutin1: "CONTRE", scrutin2: "POUR", scrutin3: "CONTRE" } as Record<string, any>;
+    const answers = { s1: "CONTRE", s2: "POUR", s3: "CONTRE", s4: "POUR", s5: "CONTRE", s6: "POUR" } as Record<string, any>;
     const result = computePoliticianConcordance("pol1", answers, voteMatrix);
     expect(result.concordance).toBe(0);
-    expect(result.disagree).toBe(3);
+    expect(result.disagree).toBe(6);
   });
 
   it("excludes skipped questions from total", () => {
-    const answers = { scrutin1: "POUR", scrutin2: "SKIP", scrutin3: "POUR" } as Record<string, any>;
+    const answers = { s1: "POUR", s2: "SKIP", s3: "POUR", s4: "CONTRE", s5: "POUR", s6: "SKIP" } as Record<string, any>;
     const result = computePoliticianConcordance("pol1", answers, voteMatrix);
-    expect(result.agree).toBe(2);
-    expect(result.concordance).toBe(100);
+    // 4 comparable votes, but below MIN_OVERLAP=5 when 2 are skipped
+    // s1: agree, s3: agree, s4: agree, s5: agree = 4 total
+    // overlap=4 < MIN_OVERLAP=5, so concordance=-1
+    expect(result.agree).toBe(4);
+    expect(result.concordance).toBe(-1);
+    expect(result.overlap).toBe(4);
   });
 
   it("excludes absent politicians from total", () => {
-    const answers = { scrutin1: "POUR", scrutin2: "POUR", scrutin3: "POUR" } as Record<string, any>;
+    // pol3 is ABSENT on s3, so only 5 comparable votes
+    const answers = { s1: "POUR", s2: "POUR", s3: "POUR", s4: "POUR", s5: "POUR", s6: "POUR" } as Record<string, any>;
     const result = computePoliticianConcordance("pol3", answers, voteMatrix);
-    // scrutin1: ABSTENTION vs POUR = partial, scrutin2: POUR vs POUR = agree, scrutin3: ABSENT = skip
-    expect(result.agree).toBe(1);
+    // s1: ABSTENTION vs POUR = partial, s2: POUR=agree, s3: ABSENT=skip,
+    // s4: POUR=agree, s5: CONTRE=disagree, s6: POUR=agree
+    expect(result.agree).toBe(3);
     expect(result.partial).toBe(1);
-    expect(result.concordance).toBe(50); // 1 / (1+0+1)
+    expect(result.disagree).toBe(1);
+    expect(result.overlap).toBe(5);
+    expect(result.concordance).toBe(60); // 3/5
   });
 
   it("returns -1 concordance when no comparable votes", () => {
-    const answers = { scrutin1: "SKIP", scrutin2: "SKIP", scrutin3: "SKIP" } as Record<string, any>;
+    const answers = { s1: "SKIP", s2: "SKIP", s3: "SKIP", s4: "SKIP", s5: "SKIP", s6: "SKIP" } as Record<string, any>;
     const result = computePoliticianConcordance("pol1", answers, voteMatrix);
     expect(result.concordance).toBe(-1);
+  });
+
+  it("returns -1 when overlap is below minimum threshold", () => {
+    // Only 3 scrutins available for pol4
+    const smallMatrix: Record<string, Record<string, string>> = {
+      s1: { pol4: "POUR" },
+      s2: { pol4: "POUR" },
+      s3: { pol4: "POUR" },
+    };
+    const answers = { s1: "POUR", s2: "POUR", s3: "POUR" } as Record<string, any>;
+    const result = computePoliticianConcordance("pol4", answers, smallMatrix);
+    expect(result.agree).toBe(3);
+    expect(result.overlap).toBe(3);
+    expect(result.concordance).toBe(-1); // below MIN_OVERLAP=5
   });
 });
 
 describe("computePartyConcordance", () => {
   it("computes concordance against party majority positions", () => {
     const partyMajorities: Record<string, Record<string, string>> = {
-      scrutin1: { party1: "POUR", party2: "CONTRE" },
-      scrutin2: { party1: "CONTRE", party2: "POUR" },
+      s1: { party1: "POUR", party2: "CONTRE" },
+      s2: { party1: "CONTRE", party2: "POUR" },
+      s3: { party1: "POUR", party2: "CONTRE" },
+      s4: { party1: "CONTRE", party2: "POUR" },
+      s5: { party1: "POUR", party2: "CONTRE" },
     };
-    const answers = { scrutin1: "POUR", scrutin2: "POUR" } as Record<string, any>;
+    const answers = { s1: "POUR", s2: "POUR", s3: "POUR", s4: "POUR", s5: "POUR" } as Record<string, any>;
 
     const result1 = computePartyConcordance("party1", answers, partyMajorities);
-    expect(result1.concordance).toBe(50); // 1 agree, 1 disagree
+    expect(result1.concordance).toBe(60); // 3 agree, 2 disagree
 
     const result2 = computePartyConcordance("party2", answers, partyMajorities);
-    expect(result2.concordance).toBe(50); // 1 disagree, 1 agree
+    expect(result2.concordance).toBe(40); // 2 agree, 3 disagree
   });
 });

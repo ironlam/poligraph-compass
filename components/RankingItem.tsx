@@ -36,9 +36,14 @@ export function RankingItem({ entry, rank }: Props) {
           <Text className="text-xs text-gray-400">{entry.partyShortName}</Text>
         )}
       </View>
-      <Text className="text-base font-bold" style={{ color }}>
-        {entry.concordance}%
-      </Text>
+      <View className="items-end">
+        <Text className="text-base font-bold" style={{ color }}>
+          {entry.concordance}%
+        </Text>
+        <Text className="text-xs text-gray-400">
+          {entry.overlap} votes
+        </Text>
+      </View>
     </Pressable>
   );
 }

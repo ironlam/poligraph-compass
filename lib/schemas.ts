@@ -78,6 +78,7 @@ export const ConcordanceEntrySchema = z.object({
   agree: z.number(),
   disagree: z.number(),
   partial: z.number(),
+  overlap: z.number(),
 });
 
 export const CompassPositionSchema = z.object({
