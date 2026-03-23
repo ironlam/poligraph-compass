@@ -7,6 +7,7 @@ import * as Sharing from "expo-sharing";
 import { useQuizStore } from "@/lib/store";
 import { SharePreview } from "@/components/SharePreview";
 import * as Clipboard from "expo-clipboard";
+import { track } from "@/lib/analytics";
 
 export default function ShareScreen() {
   const router = useRouter();
@@ -17,26 +18,26 @@ export default function ShareScreen() {
 
   async function handleShare() {
     try {
-      // Capture preview as PNG image
       const uri = await captureRef(previewRef, { format: "png", quality: 1 });
-      // Share via native share sheet
       await Sharing.shareAsync(uri, {
         mimeType: "image/png",
         dialogTitle: "Partager ma boussole politique",
       });
+      track({ name: "result_shared", data: { method: "image" } });
     } catch (error) {
-      // Fallback to text share if image capture fails
       await Share.share({
         message: shareUrl
           ? `Découvre ma position politique ! ${shareUrl}`
           : "Découvre ta position politique sur Ma Boussole Politique !",
       });
+      track({ name: "result_shared", data: { method: "link" } });
     }
   }
 
   async function handleCopyLink() {
     if (shareUrl) {
       await Clipboard.setStringAsync(shareUrl);
+      track({ name: "result_shared", data: { method: "link" } });
       Alert.alert("Lien copié !");
     }
   }
@@ -46,6 +47,7 @@ export default function ShareScreen() {
       await Share.share({
         message: `Je te defie de faire le quiz politique ! Compare ta position avec la mienne : ${challengeUrl}`,
       });
+      track({ name: "challenge_created" });
     }
   }
 

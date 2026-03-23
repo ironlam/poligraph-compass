@@ -11,6 +11,7 @@ import {
   fetchDeputyByCodePostal,
 } from "@/lib/deputy-lookup";
 import { useDeputyStore, persistDeputyStore } from "@/lib/deputy-store";
+import { track } from "@/lib/analytics";
 
 export function DeputyBanner() {
   const { selectedDeputy, codePostal, isLoading, error } = useDeputyStore();
@@ -32,8 +33,10 @@ export function DeputyBanner() {
       setDeputy(deputy, trimmed);
       setIsEditing(false);
       persistDeputyStore();
+      track({ name: "deputy_searched", data: { hasResult: true } });
     } else {
       setError("Aucun depute trouve pour ce code postal");
+      track({ name: "deputy_searched", data: { hasResult: false } });
     }
   }
 

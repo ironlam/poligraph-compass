@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuizStore } from "@/lib/store";
 import { getNextPhase, getPhaseLabel } from "@/lib/phases";
+import { track } from "@/lib/analytics";
 
 export default function RefineGate() {
   const router = useRouter();
@@ -17,11 +18,22 @@ export default function RefineGate() {
   const label = getPhaseLabel(nextPhase);
 
   function handleContinue() {
+    track({
+      name: "phase_continued",
+      data: { fromPhase: phase, toPhase: nextPhase! },
+    });
     setPhase(nextPhase!);
     router.push("/quiz");
   }
 
   function handleSkip() {
+    track({
+      name: "phase_stopped",
+      data: {
+        phase,
+        questionsAnswered: useQuizStore.getState().results?.answeredCount ?? 0,
+      },
+    });
     router.push("/share");
   }
 

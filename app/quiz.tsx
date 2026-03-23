@@ -8,6 +8,7 @@ import { QuizCard } from "@/components/QuizCard";
 import { ProgressBar } from "@/components/ProgressBar";
 import type { QuizPack, UserAnswer, CompassPosition } from "@/lib/types";
 import { computeCompassPosition } from "@/lib/compass";
+import { track } from "@/lib/analytics";
 import { computePoliticianConcordance, computePartyConcordance, computeMinOverlap, computeScrutinWeights } from "@/lib/concordance";
 
 export default function Quiz() {
@@ -59,6 +60,14 @@ export default function Quiz() {
   useEffect(() => {
     if (!quizComplete || !pack || hasNavigated.current) return;
     hasNavigated.current = true;
+
+    track({
+      name: "phase_completed",
+      data: {
+        phase,
+        questionsAnswered: Object.values(answers).filter((a) => a !== "SKIP").length,
+      },
+    });
 
     const position = computeCompassPosition(answers, pack.axes);
     const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;

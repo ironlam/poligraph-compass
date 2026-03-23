@@ -2,12 +2,14 @@ import { View, Text, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuizStore } from "@/lib/store";
+import { track } from "@/lib/analytics";
 
 export default function Home() {
   const router = useRouter();
   const reset = useQuizStore((s) => s.reset);
 
   function handleStart() {
+    track({ name: "quiz_started" });
     reset();
     router.push("/quiz");
   }
@@ -23,6 +25,18 @@ export default function Home() {
         <Text className="text-base text-indigo-300 text-center mt-4 leading-6">
           Découvrez quels élus votent comme vous
         </Text>
+
+        <View className="mt-6 gap-2">
+          <Text className="text-sm text-indigo-400 text-center">
+            Basé sur les votes réels au Parlement
+          </Text>
+          <Text className="text-sm text-indigo-400 text-center">
+            Comparez-vous à votre député
+          </Text>
+          <Text className="text-sm text-indigo-400 text-center">
+            Résultats instantanés
+          </Text>
+        </View>
 
         <Pressable
           onPress={handleStart}

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Head from "expo-router/head";
 import { useQuizStore } from "@/lib/store";
 import { Compass } from "@/components/Compass";
+import { track } from "@/lib/analytics";
 import type { ShareResult } from "@/lib/types";
 
 function getQuadrantLabel(x: number, y: number): string {
@@ -38,6 +39,7 @@ export default function ChallengePage() {
   function handleAcceptChallenge() {
     if (!data) return;
 
+    track({ name: "challenge_accepted" });
     reset();
     setChallengeContext({
       shareId: data.id,
