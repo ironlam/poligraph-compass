@@ -6,7 +6,15 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "ECONOMIE_BUDGET",
-    "question": "Faut-il nationaliser ArcelorMittal pour préserver la souveraineté industrielle ?"
+    "question": "Faut-il nationaliser ArcelorMittal pour préserver la souveraineté industrielle ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à la nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France (première lecture).",
+    "summary": "Les députés ont voté en faveur d'une proposition de loi visant à nationaliser l'entreprise ArcelorMittal France afin de préserver la capacité industrielle du pays.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 127,
+      "contre": 41,
+      "abstention": 42
+    }
   },
   {
     "scrutinId": "cml2g8dvyfklaijv5awba9t1e",
@@ -15,7 +23,15 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "SOCIAL_TRAVAIL",
-    "question": "Faut-il adopter le budget proposé pour renforcer la sécurité sociale ?"
+    "question": "Faut-il adopter le budget proposé pour renforcer la sécurité sociale ?",
+    "officialTitle": "Scrutin sur l'ensemble du projet de loi de financement de la sécurité sociale pour 2026 (lecture définitive).",
+    "summary": "Le projet de loi de financement de la sécurité sociale pour 2026 a été adopté par l'Assemblée nationale avec 247 voix pour, 232 voix contre et 90 abstentions.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 247,
+      "contre": 232,
+      "abstention": 90
+    }
   },
   {
     "scrutinId": "cml2g8c2xfisfijv5cqcoyfbo",
@@ -24,7 +40,15 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "LOGEMENT_URBANISME",
-    "question": "Faut-il renforcer l'encadrement des loyers ?"
+    "question": "Faut-il renforcer l'encadrement des loyers ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi pour retrouver la confiance et l'équilibre dans les rapports locatifs (première lecture).",
+    "summary": "Les députés ont adopté une proposition de loi visant à améliorer les relations entre propriétaires et locataires.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 105,
+      "contre": 56,
+      "abstention": 4
+    }
   },
   {
     "scrutinId": "cml2g0v6c67mqijv5qwwpbmsh",
@@ -33,7 +57,15 @@
     "axis": "economy",
     "polarity": 1,
     "theme": "AGRICULTURE_ALIMENTATION",
-    "question": "Faut-il lever les contraintes à l'exercice du métier d'agriculteur ?"
+    "question": "Faut-il lever les contraintes à l'exercice du métier d'agriculteur ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à lever les contraintes à l'exercice du métier d'agriculteur (texte de la commission mixte paritaire).",
+    "summary": "Les députés ont voté pour lever certaines contraintes liées à l'exercice du métier d'agriculteur. Le texte a été adopté avec le soutien de 316 députés.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 316,
+      "contre": 223,
+      "abstention": 25
+    }
   },
   {
     "scrutinId": "cml2g181g6jigijv55tbw369m",
@@ -42,7 +74,15 @@
     "axis": "economy",
     "polarity": 1,
     "theme": "LOGEMENT_URBANISME",
-    "question": "Faut-il simplifier les règles d'urbanisme et du logement ?"
+    "question": "Faut-il simplifier les règles d'urbanisme et du logement ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi de simplification du droit de l'urbanisme et du logement (texte de la commission mixte paritaire).",
+    "summary": "Les députés ont voté pour adopter une proposition de loi visant à simplifier les règles d'urbanisme et de logement.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 65,
+      "contre": 41,
+      "abstention": 52
+    }
   },
   {
     "scrutinId": "cmm2fg4fw02ju1o214v348cht",
@@ -51,7 +91,15 @@
     "axis": "society",
     "polarity": 1,
     "theme": "SANTE",
-    "question": "Faut-il légaliser l'aide à mourir ?"
+    "question": "Faut-il légaliser l'aide à mourir ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi relative au droit à l'aide à mourir (deuxième lecture).",
+    "summary": "L'Assemblée nationale a approuvé le 25 février 2026 une proposition de loi permettant l'aide à mourir pour les personnes en fin de vie. Le texte a été adopté avec 299 votes pour, marquant une étape importante dans ce débat sociétal majeur.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 299,
+      "contre": 226,
+      "abstention": 37
+    }
   },
   {
     "scrutinId": "cml2g0vbq681tijv5fx2s0p9i",
@@ -60,7 +108,15 @@
     "axis": "society",
     "polarity": -1,
     "theme": "SECURITE_JUSTICE",
-    "question": "Faut-il faciliter le maintien en rétention des condamnés dangereux présentant un risque de récidive ?"
+    "question": "Faut-il faciliter le maintien en rétention des condamnés dangereux présentant un risque de récidive ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à faciliter le maintien en rétention des personnes condamnées pour des faits d’une particulière gravité et présentant de forts risques de récidive (première lecture).",
+    "summary": "Les députés ont adopté une proposition de loi visant à permettre de maintenir plus longtemps en centre de rétention les personnes condamnées pour des faits graves et présentant un risque élevé de récidive.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 303,
+      "contre": 168,
+      "abstention": 1
+    }
   },
   {
     "scrutinId": "cml2g8dczfjxsijv5bim0dnc1",
@@ -69,7 +125,15 @@
     "axis": "society",
     "polarity": 1,
     "theme": "IMMIGRATION",
-    "question": "Faut-il garantir le renouvellement automatique des titres de séjour ?"
+    "question": "Faut-il garantir le renouvellement automatique des titres de séjour ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à garantir un renouvellement automatique des titres de séjour de longue durée (première lecture).",
+    "summary": "Les députés ont adopté une proposition de loi qui permettra le renouvellement automatique des titres de séjour de longue durée, afin de faciliter la situation des étrangers résidant en France depuis longtemps.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 98,
+      "contre": 37,
+      "abstention": 2
+    }
   },
   {
     "scrutinId": "cml2ga02uh0mmijv55qmm74po",
@@ -78,7 +142,15 @@
     "axis": "society",
     "polarity": -1,
     "theme": "NUMERIQUE_TECH",
-    "question": "Faut-il restreindre l'accès des mineurs aux réseaux sociaux ?"
+    "question": "Faut-il restreindre l'accès des mineurs aux réseaux sociaux ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à protéger les mineurs des risques auxquels les expose l'utilisation des réseaux sociaux (première lecture).",
+    "summary": "Les députés ont voté en faveur d'une proposition de loi visant à mieux protéger les mineurs contre les risques liés à l'utilisation des réseaux sociaux. Le texte a été adopté par une large majorité.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 130,
+      "contre": 21,
+      "abstention": 6
+    }
   },
   {
     "scrutinId": "cml2g88waffqmijv57h01qto4",
@@ -87,7 +159,15 @@
     "axis": "society",
     "polarity": 1,
     "theme": "SOCIAL_TRAVAIL",
-    "question": "Faut-il renforcer la protection des mineurs isolés et lutter contre le sans-abrisme ?"
+    "question": "Faut-il renforcer la protection des mineurs isolés et lutter contre le sans-abrisme ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à protéger les mineurs isolés et à lutter contre le sans-abrisme (première lecture).",
+    "summary": "Les députés ont adopté une proposition de loi visant à mieux protéger les mineurs isolés et à lutter contre le sans-abrisme, avec 144 voix pour, 100 contre et 2 abstentions.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 144,
+      "contre": 100,
+      "abstention": 2
+    }
   },
   {
     "scrutinId": "cml2g2j5v7vtjijv53jk3unha",
@@ -96,7 +176,15 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "AGRICULTURE_ALIMENTATION",
-    "question": "Faut-il imposer l'affichage de l'origine des denrées alimentaires ?"
+    "question": "Faut-il imposer l'affichage de l'origine des denrées alimentaires ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage (première lecture).",
+    "summary": "Les députés ont voté sur une proposition de loi visant à obliger l'étiquetage de l'origine des aliments. La proposition a été rejetée.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 149,
+      "contre": 174,
+      "abstention": 8
+    }
   },
   {
     "scrutinId": "cmldazds3hcxtri3z737rs0e1",
@@ -105,7 +193,15 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "ENVIRONNEMENT_ENERGIE",
-    "question": "Faut-il relancer les investissements publics dans l'hydroélectricité ?"
+    "question": "Faut-il relancer les investissements publics dans l'hydroélectricité ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à relancer les investissements dans le secteur de l’hydroélectricité pour contribuer à la transition énergétique (première lecture).",
+    "summary": "Les députés ont voté pour adopter une proposition de loi visant à relancer les investissements dans le secteur de l'hydroélectricité, afin de contribuer à la transition énergétique du pays.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 56,
+      "contre": 8,
+      "abstention": 12
+    }
   },
   {
     "scrutinId": "cml2g17wy6jdjijv5gw5pkgfe",
@@ -114,7 +210,15 @@
     "axis": "economy",
     "polarity": 1,
     "theme": "SOCIAL_TRAVAIL",
-    "question": "Faut-il assouplir le droit du travail pour favoriser l'emploi ?"
+    "question": "Faut-il assouplir le droit du travail pour favoriser l'emploi ?",
+    "officialTitle": "Scrutin sur l'ensemble du projet de loi portant transposition des accords nationaux interprofessionnels en faveur de l'emploi des salariés expérimentés et relatif à l'évolution du dialogue social (texte de la commission mixte paritaire).",
+    "summary": "Les députés ont adopté à la majorité un projet de loi visant à favoriser l'emploi des travailleurs expérimentés et à améliorer le dialogue social dans les entreprises.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 143,
+      "contre": 25,
+      "abstention": 8
+    }
   },
   {
     "scrutinId": "cml2g6ji8d6vtijv5vmksglla",
@@ -123,7 +227,15 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "ECONOMIE_BUDGET",
-    "question": "Faut-il garantir l'égalité d'accès au service public postal ?"
+    "question": "Faut-il garantir l'égalité d'accès au service public postal ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi relative à l’établissement de l’égalité d’accès au service public postal en outre-mer (première lecture).",
+    "summary": "Le Parlement français a adopté une loi visant à garantir l'accès égal aux services postaux dans les régions d'outre-mer.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 195,
+      "contre": 0,
+      "abstention": 51
+    }
   },
   {
     "scrutinId": "cml2ga7guh81kijv5ist7yyz2",
@@ -132,7 +244,15 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "SANTE",
-    "question": "Faut-il rendre gratuits les parkings des hôpitaux publics ?"
+    "question": "Faut-il rendre gratuits les parkings des hôpitaux publics ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à garantir la gratuité des parkings des hôpitaux publics pour les patients, les visiteurs et les personnels sur leur temps de travail (première lecture).",
+    "summary": "Les députés ont voté pour rendre gratuits les parkings des hôpitaux publics pour les patients, les visiteurs et le personnel soignant. Le texte a été adopté à la majorité.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 43,
+      "contre": 13,
+      "abstention": 17
+    }
   },
   {
     "scrutinId": "cml2g8olafu9xijv5he1w3x8m",
@@ -141,7 +261,15 @@
     "axis": "society",
     "polarity": 1,
     "theme": "INSTITUTIONS",
-    "question": "Faut-il réparer le préjudice des personnes condamnées pour homosexualité ?"
+    "question": "Faut-il réparer le préjudice des personnes condamnées pour homosexualité ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi portant réparation des personnes condamnées pour homosexualité entre 1945 et 1982 (deuxième lecture).",
+    "summary": "Cette proposition de loi vise à réparer les personnes condamnées pour homosexualité entre 1945 et 1982. Elle a été adoptée à l'unanimité par l'Assemblée nationale.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 114,
+      "contre": 0,
+      "abstention": 0
+    }
   },
   {
     "scrutinId": "cml2ga5udh70cijv5nnwofs2z",
@@ -150,7 +278,15 @@
     "axis": "society",
     "polarity": 1,
     "theme": "SECURITE_JUSTICE",
-    "question": "Faut-il mettre fin au devoir conjugal ?"
+    "question": "Faut-il mettre fin au devoir conjugal ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à mettre fin au devoir conjugal (première lecture).",
+    "summary": "Les députés ont voté à une large majorité pour mettre fin au devoir conjugal, qui obligeait les époux à avoir des relations sexuelles.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 106,
+      "contre": 0,
+      "abstention": 1
+    }
   },
   {
     "scrutinId": "cml2g18su6kgyijv54xpm5pmc",
@@ -159,7 +295,15 @@
     "axis": "society",
     "polarity": 1,
     "theme": "SECURITE_JUSTICE",
-    "question": "Faut-il élargir la définition pénale du viol et des agressions sexuelles ?"
+    "question": "Faut-il élargir la définition pénale du viol et des agressions sexuelles ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi modifiant la définition pénale du viol et des agressions sexuelles (texte de la commission mixte paritaire).",
+    "summary": "Les députés ont adopté à la majorité une proposition de loi modifiant la définition pénale du viol et des agressions sexuelles.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 155,
+      "contre": 31,
+      "abstention": 5
+    }
   },
   {
     "scrutinId": "cml2g8oy3fuhnijv54sag7xra",
@@ -168,7 +312,15 @@
     "axis": "society",
     "polarity": 1,
     "theme": "INSTITUTIONS",
-    "question": "Faut-il reconnaître le préjudice des personnes condamnées pour avortement ?"
+    "question": "Faut-il reconnaître le préjudice des personnes condamnées pour avortement ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à reconnaître le préjudice subi par les personnes condamnées sur le fondement de la législation pénalisant l'avortement, et par toutes les femmes, avant la loi n° 75-17 du 17 janvier 1975 relative à l'interruption volontaire de grossesse (première lecture).",
+    "summary": "Les députés ont adopté à l'unanimité une proposition de loi visant à reconnaître le préjudice subi par les femmes condamnées avant 1975 pour avoir avorté.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 93,
+      "contre": 0,
+      "abstention": 0
+    }
   },
   {
     "scrutinId": "cml2g8dhdfk1oijv5g1yco48y",
@@ -177,6 +329,14 @@
     "axis": "economy",
     "polarity": -1,
     "theme": "ECONOMIE_BUDGET",
-    "question": "Faut-il prendre des mesures d'urgence contre la vie chère en outre-mer ?"
+    "question": "Faut-il prendre des mesures d'urgence contre la vie chère en outre-mer ?",
+    "officialTitle": "Scrutin sur l'ensemble de la proposition de loi visant à prendre des mesures d'urgence contre la vie chère en outre-mer dans le secteur des services (première lecture).",
+    "summary": "Les députés ont adopté une proposition de loi visant à prendre des mesures d'urgence pour lutter contre la vie chère dans les territoires d'outre-mer, notamment dans le secteur des services.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 85,
+      "contre": 0,
+      "abstention": 13
+    }
   }
 ]

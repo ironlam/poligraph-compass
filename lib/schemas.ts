@@ -10,6 +10,14 @@ export const ScrutinConfigSchema = z.object({
   polarity: z.union([z.literal(1), z.literal(-1)]),
   theme: z.string(),
   question: z.string().min(1),
+  officialTitle: z.string().optional(),
+  summary: z.string().optional(),
+  result: z.enum(["adopte", "rejete"]).optional(),
+  voteCount: z.object({
+    pour: z.number(),
+    contre: z.number(),
+    abstention: z.number(),
+  }).optional(),
 });
 
 // --- User Input ---
@@ -51,6 +59,14 @@ export const QuizQuestionSchema = z.object({
   order: z.number(),
   votingDate: z.string(),
   chamber: z.string(),
+  officialTitle: z.string().optional(),
+  summary: z.string().optional(),
+  result: z.enum(["adopte", "rejete"]).optional(),
+  voteCount: z.object({
+    pour: z.number(),
+    contre: z.number(),
+    abstention: z.number(),
+  }).optional(),
 });
 
 export const QuizPackSchema = z.object({

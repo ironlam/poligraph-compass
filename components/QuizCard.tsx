@@ -12,6 +12,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { ThemeBadge } from "./ThemeBadge";
+import { ScrutinBottomSheet } from "./ScrutinBottomSheet";
 import type { QuizQuestion, UserAnswer } from "@/lib/types";
 
 interface Props {
@@ -37,6 +38,8 @@ export function QuizCard({ question, onAnswer }: Props) {
   const translateX = useSharedValue(0);
   const bgOpacity = useSharedValue(0);
   const [flashColor, setFlashColor] = useState("transparent");
+  const [showContext, setShowContext] = useState(false);
+  const hasContext = question.officialTitle || question.summary;
 
   function handleAnswer(answer: UserAnswer) {
     const color = ANSWER_COLORS[answer] || "transparent";
@@ -98,6 +101,20 @@ export function QuizCard({ question, onAnswer }: Props) {
           {question.chamber === "AN" ? "Voté à l'Assemblée nationale" : "Voté au Sénat"}
           {question.votingDate ? ` le ${question.votingDate}` : ""}
         </Text>
+
+        {hasContext && (
+          <Pressable onPress={() => setShowContext(true)} className="mt-3">
+            <Text className="text-sm text-indigo-500 font-semibold">
+              {"Comprendre ce vote \u2192"}
+            </Text>
+          </Pressable>
+        )}
+
+        <ScrutinBottomSheet
+          question={question}
+          visible={showContext}
+          onClose={() => setShowContext(false)}
+        />
 
         <View className="mt-auto gap-3">
           {BUTTONS.map(({ answer, label, className }) => (
