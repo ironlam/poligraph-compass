@@ -1,9 +1,46 @@
 import scrutinsConfig from "@/data/scrutins.json";
 import type { QuizPack } from "./types";
+import { existsSync, readFileSync } from "fs";
+import { join } from "path";
 
 let cachedQuizPack: QuizPack | null = null;
 let cacheTimestamp = 0;
 const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+
+const SYNCED_DATA_PATH = join(process.cwd(), "data", "synced-data.json");
+
+interface SyncedData {
+  voteMatrix: Record<string, Record<string, string>>;
+  politicians: Array<{
+    id: string;
+    fullName: string;
+    slug: string;
+    photoUrl: string | null;
+    partyShortName: string | null;
+    partyId: string | null;
+    mandateType: string;
+  }>;
+  parties: Array<{
+    id: string;
+    name: string;
+    shortName: string;
+    color: string | null;
+  }>;
+  partyMajorities: Record<string, Record<string, string>>;
+  syncedAt: string;
+}
+
+function loadSyncedData(): SyncedData | null {
+  try {
+    if (existsSync(SYNCED_DATA_PATH)) {
+      const raw = readFileSync(SYNCED_DATA_PATH, "utf-8");
+      return JSON.parse(raw);
+    }
+  } catch {
+    console.warn("Could not load synced data, using defaults");
+  }
+  return null;
+}
 
 export async function loadQuizPackData(): Promise<QuizPack> {
   const now = Date.now();
@@ -11,8 +48,8 @@ export async function loadQuizPackData(): Promise<QuizPack> {
     return cachedQuizPack;
   }
 
-  // Build quiz pack from config + synced data
-  // TODO: replace with actual synced data from Vercel KV once cron is implemented
+  const synced = loadSyncedData();
+
   const questions = scrutinsConfig
     .sort((a, b) => a.order - b.order)
     .map((s) => ({
@@ -21,8 +58,8 @@ export async function loadQuizPackData(): Promise<QuizPack> {
       theme: s.theme,
       tier: s.tier as "essential" | "refine",
       order: s.order,
-      votingDate: "", // filled by sync
-      chamber: "AN", // filled by sync
+      votingDate: "",
+      chamber: "AN",
     }));
 
   const axes = {
@@ -42,12 +79,12 @@ export async function loadQuizPackData(): Promise<QuizPack> {
 
   const quizPack: QuizPack = {
     questions,
-    voteMatrix: {}, // populated by sync cron
-    politicians: [], // populated by sync cron
-    parties: [], // populated by sync cron
-    partyMajorities: {}, // populated by sync cron
+    voteMatrix: synced?.voteMatrix ?? {},
+    politicians: synced?.politicians ?? [],
+    parties: synced?.parties ?? [],
+    partyMajorities: synced?.partyMajorities ?? {},
     axes,
-    generatedAt: new Date().toISOString(),
+    generatedAt: synced?.syncedAt ?? new Date().toISOString(),
   };
 
   cachedQuizPack = quizPack;

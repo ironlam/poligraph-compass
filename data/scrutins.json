@@ -1,182 +1,182 @@
 [
   {
-    "scrutinId": "PLACEHOLDER_1",
+    "scrutinId": "cml2g74m4dv2eijv5yeaef1ml",
     "order": 1,
     "tier": "essential",
-    "axis": "society",
-    "polarity": 1,
-    "theme": "INSTITUTIONS",
-    "question": "Faut-il passer au scrutin proportionnel pour les élections législatives ?"
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il nationaliser les usines sidérurgiques en France ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_2",
+    "scrutinId": "cml2g8dvyfklaijv5awba9t1e",
     "order": 2,
     "tier": "essential",
     "axis": "economy",
-    "polarity": 1,
-    "theme": "ECONOMIE_BUDGET",
-    "question": "Faut-il baisser les impôts sur les entreprises ?"
+    "polarity": -1,
+    "theme": "SOCIAL_TRAVAIL",
+    "question": "Faut-il augmenter le financement de la sécurité sociale ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_3",
+    "scrutinId": "cml2g8c2xfisfijv5cqcoyfbo",
     "order": 3,
+    "tier": "essential",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "LOGEMENT_URBANISME",
+    "question": "Faut-il renforcer l'encadrement des loyers ?"
+  },
+  {
+    "scrutinId": "cml2g0v6c67mqijv5qwwpbmsh",
+    "order": 4,
+    "tier": "essential",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "AGRICULTURE_ALIMENTATION",
+    "question": "Faut-il lever les contraintes à l'exercice du métier d'agriculteur ?"
+  },
+  {
+    "scrutinId": "cml2g181g6jigijv55tbw369m",
+    "order": 5,
+    "tier": "essential",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "LOGEMENT_URBANISME",
+    "question": "Faut-il simplifier les règles d'urbanisme et du logement ?"
+  },
+  {
+    "scrutinId": "cmm2fg4fw02ju1o214v348cht",
+    "order": 6,
+    "tier": "essential",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "SANTE",
+    "question": "Faut-il légaliser l'aide à mourir ?"
+  },
+  {
+    "scrutinId": "cml2g0vbq681tijv5fx2s0p9i",
+    "order": 7,
     "tier": "essential",
     "axis": "society",
     "polarity": -1,
     "theme": "SECURITE_JUSTICE",
-    "question": "Faut-il renforcer les peines pour les récidivistes ?"
+    "question": "Faut-il faciliter le maintien en rétention des personnes condamnées ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_4",
-    "order": 4,
-    "tier": "essential",
-    "axis": "economy",
-    "polarity": -1,
-    "theme": "SOCIAL_TRAVAIL",
-    "question": "Faut-il augmenter le salaire minimum ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_5",
-    "order": 5,
-    "tier": "essential",
-    "axis": "society",
-    "polarity": 1,
-    "theme": "IMMIGRATION",
-    "question": "Faut-il faciliter la régularisation des sans-papiers ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_6",
-    "order": 6,
-    "tier": "essential",
-    "axis": "economy",
-    "polarity": -1,
-    "theme": "ENVIRONNEMENT_ENERGIE",
-    "question": "Faut-il interdire les pesticides les plus dangereux, même si cela impacte la productivité agricole ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_7",
-    "order": 7,
-    "tier": "essential",
-    "axis": "economy",
-    "polarity": 1,
-    "theme": "ECONOMIE_BUDGET",
-    "question": "Faut-il réduire les dépenses publiques pour diminuer la dette ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_8",
+    "scrutinId": "cml2g8dczfjxsijv5bim0dnc1",
     "order": 8,
     "tier": "essential",
     "axis": "society",
     "polarity": 1,
-    "theme": "SANTE",
-    "question": "Faut-il légaliser le cannabis ?"
+    "theme": "IMMIGRATION",
+    "question": "Faut-il garantir le renouvellement automatique des titres de séjour ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_9",
+    "scrutinId": "cml2ga02uh0mmijv55qmm74po",
     "order": 9,
     "tier": "essential",
     "axis": "society",
     "polarity": -1,
-    "theme": "IMMIGRATION",
-    "question": "Faut-il renforcer les contrôles aux frontières ?"
+    "theme": "NUMERIQUE_TECH",
+    "question": "Faut-il restreindre l'accès des mineurs aux réseaux sociaux ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_10",
+    "scrutinId": "cml2g88waffqmijv57h01qto4",
     "order": 10,
     "tier": "essential",
-    "axis": "economy",
-    "polarity": -1,
-    "theme": "SANTE",
-    "question": "Faut-il rembourser intégralement les soins dentaires et optiques ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_11",
-    "order": 11,
-    "tier": "refine",
-    "axis": "economy",
-    "polarity": 1,
-    "theme": "TRANSPORTS",
-    "question": "Faut-il privatiser la gestion des autoroutes ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_12",
-    "order": 12,
-    "tier": "refine",
-    "axis": "economy",
-    "polarity": -1,
-    "theme": "ECONOMIE_BUDGET",
-    "question": "Faut-il créer un impôt sur la fortune climatique ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_13",
-    "order": 13,
-    "tier": "refine",
     "axis": "society",
-    "polarity": 1,
-    "theme": "EDUCATION_CULTURE",
-    "question": "Faut-il rendre l'éducation sexuelle obligatoire dès le collège ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_14",
-    "order": 14,
-    "tier": "refine",
-    "axis": "economy",
-    "polarity": -1,
-    "theme": "LOGEMENT_URBANISME",
-    "question": "Faut-il encadrer les loyers dans toutes les grandes villes ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_15",
-    "order": 15,
-    "tier": "refine",
-    "axis": "economy",
     "polarity": 1,
     "theme": "SOCIAL_TRAVAIL",
-    "question": "Faut-il faciliter les licenciements pour relancer l'emploi ?"
+    "question": "Faut-il renforcer la protection des mineurs isolés et lutter contre le sans-abrisme ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_16",
-    "order": 16,
-    "tier": "refine",
-    "axis": "society",
-    "polarity": -1,
-    "theme": "AFFAIRES_ETRANGERES_DEFENSE",
-    "question": "Faut-il rétablir un service militaire obligatoire ?"
-  },
-  {
-    "scrutinId": "PLACEHOLDER_17",
-    "order": 17,
+    "scrutinId": "cml2g2j5v7vtjijv53jk3unha",
+    "order": 11,
     "tier": "refine",
     "axis": "economy",
     "polarity": -1,
     "theme": "AGRICULTURE_ALIMENTATION",
-    "question": "Faut-il subventionner massivement l'agriculture biologique ?"
+    "question": "Faut-il imposer l'affichage de l'origine des denrées alimentaires ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_18",
+    "scrutinId": "cmldazds3hcxtri3z737rs0e1",
+    "order": 12,
+    "tier": "refine",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ENVIRONNEMENT_ENERGIE",
+    "question": "Faut-il relancer les investissements publics dans l'hydroélectricité ?"
+  },
+  {
+    "scrutinId": "cml2g17wy6jdjijv5gw5pkgfe",
+    "order": 13,
+    "tier": "refine",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "SOCIAL_TRAVAIL",
+    "question": "Faut-il assouplir le droit du travail pour favoriser l'emploi ?"
+  },
+  {
+    "scrutinId": "cml2g6ji8d6vtijv5vmksglla",
+    "order": 14,
+    "tier": "refine",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il garantir l'égalité d'accès au service public postal ?"
+  },
+  {
+    "scrutinId": "cml2ga7guh81kijv5ist7yyz2",
+    "order": 15,
+    "tier": "refine",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "SANTE",
+    "question": "Faut-il rendre gratuits les parkings des hôpitaux publics ?"
+  },
+  {
+    "scrutinId": "cml2g8olafu9xijv5he1w3x8m",
+    "order": 16,
+    "tier": "refine",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "INSTITUTIONS",
+    "question": "Faut-il réparer le préjudice des personnes condamnées pour homosexualité ?"
+  },
+  {
+    "scrutinId": "cml2ga5udh70cijv5nnwofs2z",
+    "order": 17,
+    "tier": "refine",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "SECURITE_JUSTICE",
+    "question": "Faut-il mettre fin au devoir conjugal ?"
+  },
+  {
+    "scrutinId": "cml2g18su6kgyijv54xpm5pmc",
     "order": 18,
     "tier": "refine",
     "axis": "society",
-    "polarity": -1,
-    "theme": "EDUCATION_CULTURE",
-    "question": "Faut-il renforcer la laïcité dans les établissements scolaires ?"
+    "polarity": 1,
+    "theme": "SECURITE_JUSTICE",
+    "question": "Faut-il élargir la définition pénale du viol et des agressions sexuelles ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_19",
+    "scrutinId": "cml2g8oy3fuhnijv54sag7xra",
     "order": 19,
     "tier": "refine",
     "axis": "society",
     "polarity": 1,
-    "theme": "NUMERIQUE_TECH",
-    "question": "Faut-il imposer la transparence des algorithmes des réseaux sociaux ?"
+    "theme": "INSTITUTIONS",
+    "question": "Faut-il reconnaître le préjudice des personnes condamnées pour avortement ?"
   },
   {
-    "scrutinId": "PLACEHOLDER_20",
+    "scrutinId": "cml2g8dhdfk1oijv5g1yco48y",
     "order": 20,
     "tier": "refine",
     "axis": "economy",
     "polarity": -1,
-    "theme": "TRANSPORTS",
-    "question": "Faut-il nationaliser les concessions autoroutières ?"
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il prendre des mesures d'urgence contre la vie chère en outre-mer ?"
   }
 ]

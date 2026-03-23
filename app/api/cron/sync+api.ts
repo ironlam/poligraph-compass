@@ -1,7 +1,10 @@
 import scrutinsConfig from "@/data/scrutins.json";
 import { invalidateCache } from "@/lib/quiz-pack-loader";
+import { writeFileSync } from "fs";
+import { join } from "path";
 
 const POLIGRAPH_API = process.env.POLIGRAPH_API_URL || "https://poligraph.fr/api";
+const SYNCED_DATA_PATH = join(process.cwd(), "data", "synced-data.json");
 
 async function fetchAllPages<T>(baseUrl: string): Promise<T[]> {
   const items: T[] = [];
@@ -41,6 +44,7 @@ export async function GET(request: Request) {
   }
 
   const scrutinIds = new Set(scrutinsConfig.map((s) => s.scrutinId));
+  let processedPolCount = 0;
   let failedPolCount = 0;
 
   try {
@@ -56,16 +60,22 @@ export async function GET(request: Request) {
       voteMatrix[scrutinId] = {};
     }
 
-    // Fetch votes per politician (expensive: see spec for /api/export/votes optimization)
+    // Fetch votes per politician
     for (const pol of politicians) {
       try {
         const votes = await fetchAllPages<any>(
           `${POLIGRAPH_API}/politiques/${pol.slug}/votes`
         );
         for (const vote of votes) {
-          if (scrutinIds.has(vote.scrutinId)) {
-            voteMatrix[vote.scrutinId][pol.id] = vote.position;
+          // API returns vote.scrutin.id (nested), not vote.scrutinId
+          const voteScrutinId = vote.scrutin?.id || vote.scrutinId;
+          if (voteScrutinId && scrutinIds.has(voteScrutinId)) {
+            voteMatrix[voteScrutinId][pol.id] = vote.position;
           }
+        }
+        processedPolCount++;
+        if (processedPolCount % 50 === 0) {
+          console.log(`Sync: processed ${processedPolCount}/${politicians.length} politicians`);
         }
       } catch (err) {
         console.error(`Sync: failed to fetch votes for ${pol.slug}:`, err);
@@ -112,8 +122,28 @@ export async function GET(request: Request) {
       }
     }
 
-    // 5. Store in KV for quiz-pack and compute endpoints to use
-    // TODO: await kv.set("quiz-pack-data", JSON.stringify({ voteMatrix, politicians: politicianData, parties, partyMajorities }));
+    // 5. Build politician data for quiz pack
+    const politicianData = politicians.map((pol: any) => ({
+      id: pol.id,
+      fullName: pol.fullName,
+      slug: pol.slug,
+      photoUrl: pol.photoUrl || pol.blobPhotoUrl || null,
+      partyShortName: pol.partyShortName || null,
+      partyId: pol.partyId || null,
+      mandateType: "DEPUTE",
+    }));
+
+    // 6. Write synced data to local file
+    const syncedData = {
+      voteMatrix,
+      politicians: politicianData,
+      parties,
+      partyMajorities,
+      syncedAt: new Date().toISOString(),
+    };
+
+    writeFileSync(SYNCED_DATA_PATH, JSON.stringify(syncedData, null, 2), "utf-8");
+    console.log(`Sync: wrote data to ${SYNCED_DATA_PATH}`);
 
     invalidateCache();
 
@@ -121,6 +151,7 @@ export async function GET(request: Request) {
       success: true,
       politiciansCount: politicians.length,
       partiesCount: parties.length,
+      processedPolCount,
       failedPolCount,
       scrutinsCount: scrutinIds.size,
       syncedAt: new Date().toISOString(),
