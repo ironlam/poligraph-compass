@@ -41,7 +41,7 @@ export function RankingItem({ entry, rank }: Props) {
           {entry.score}%
         </Text>
         <Text className="text-xs text-gray-400">
-          {entry.concordance}% sur {entry.overlap} votes
+          sur {entry.overlap} votes
         </Text>
       </View>
     </Pressable>
