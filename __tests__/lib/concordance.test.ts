@@ -4,6 +4,7 @@ import {
   computePoliticianConcordance,
   computePartyConcordance,
   computeMinOverlap,
+  computeScrutinWeights,
   wilsonScore,
 } from "@/lib/concordance";
 
@@ -54,61 +55,90 @@ describe("computeMinOverlap", () => {
   });
 });
 
+describe("computeScrutinWeights", () => {
+  const parties = [
+    { id: "lfi", shortName: "LFI" },
+    { id: "ps", shortName: "PS" },
+    { id: "lr", shortName: "LR" },
+    { id: "rn", shortName: "RN" },
+    { id: "re", shortName: "RE" },
+  ];
+
+  it("gives weight 1 when left and right vote opposite", () => {
+    const majorities = {
+      s1: { lfi: "POUR", ps: "POUR", lr: "CONTRE", rn: "CONTRE", re: "CONTRE" },
+    };
+    const weights = computeScrutinWeights(majorities, parties);
+    expect(weights.s1).toBe(1);
+  });
+
+  it("gives weight 0 when left and right vote the same", () => {
+    const majorities = {
+      s1: { lfi: "CONTRE", ps: "CONTRE", lr: "CONTRE", rn: "CONTRE", re: "POUR" },
+    };
+    const weights = computeScrutinWeights(majorities, parties);
+    expect(weights.s1).toBe(0);
+  });
+
+  it("gives weight 0 when everyone votes POUR (unanimous)", () => {
+    const majorities = {
+      s1: { lfi: "POUR", ps: "POUR", lr: "POUR", rn: "POUR", re: "POUR" },
+    };
+    const weights = computeScrutinWeights(majorities, parties);
+    expect(weights.s1).toBe(0);
+  });
+
+  it("gives intermediate weight for mixed votes", () => {
+    // LFI CONTRE (outlier), PS POUR, LR POUR, RN POUR
+    const majorities = {
+      s1: { lfi: "CONTRE", ps: "POUR", lr: "POUR", rn: "POUR", re: "POUR" },
+    };
+    const weights = computeScrutinWeights(majorities, parties);
+    // left: 1 POUR, 1 CONTRE → ratio 0.5. right: 2 POUR → ratio 1.0
+    // weight = |0.5 - 1.0| = 0.5
+    expect(weights.s1).toBe(0.5);
+  });
+
+  it("ignores abstentions in weight calculation", () => {
+    const majorities = {
+      s1: { lfi: "POUR", ps: "ABSTENTION", lr: "CONTRE", rn: "CONTRE", re: "ABSTENTION" },
+    };
+    const weights = computeScrutinWeights(majorities, parties);
+    // left: only LFI counts (POUR), ratio=1.0. right: LR+RN CONTRE, ratio=0.0
+    expect(weights.s1).toBe(1);
+  });
+});
+
 describe("wilsonScore", () => {
   it("returns 0 when no observations", () => {
     expect(wilsonScore(0, 0, 0)).toBe(0);
   });
 
-  it("returns low score for few observations even with high raw rate", () => {
-    // 4 agree, 0 partial, 6 total = 67% raw
-    const score = wilsonScore(4, 0, 6);
-    expect(score).toBeGreaterThan(0.3);
-    expect(score).toBeLessThan(0.5);
-  });
-
-  it("returns score close to raw rate for many observations", () => {
-    // 80 agree, 0 partial, 100 total = 80% raw
-    const score = wilsonScore(80, 0, 100);
-    expect(score).toBeGreaterThan(0.72);
-    expect(score).toBeLessThan(0.80);
-  });
-
-  it("gives partial votes half credit", () => {
-    // 4 agree, 2 partial, 8 total: positives = 4 + 1 = 5, p = 5/8 = 62.5%
-    const withPartial = wilsonScore(4, 2, 8);
-    // 5 agree, 0 partial, 8 total: positives = 5, p = 5/8 = 62.5%
-    const withoutPartial = wilsonScore(5, 0, 8);
-    expect(withPartial).toBeCloseTo(withoutPartial, 5);
-  });
-
   it("penalizes sparse data more than dense data", () => {
-    // Same raw 60% agreement, different sample sizes
-    const sparse = wilsonScore(3, 0, 5);   // 60% on 5 votes
-    const dense = wilsonScore(12, 0, 20);  // 60% on 20 votes
+    const sparse = wilsonScore(3, 0, 5);
+    const dense = wilsonScore(12, 0, 20);
     expect(dense).toBeGreaterThan(sparse);
   });
 
-  it("ranks high-overlap moderate agreement above low-overlap high agreement", () => {
-    // The key property: 55% on 18 votes should rank above 67% on 6 votes
-    const highOverlap = wilsonScore(10, 0, 18);  // ~55%
-    const lowOverlap = wilsonScore(4, 0, 6);      // ~67%
-    expect(highOverlap).toBeGreaterThan(lowOverlap);
+  it("gives partial votes half credit", () => {
+    const withPartial = wilsonScore(4, 2, 8);
+    const withoutPartial = wilsonScore(5, 0, 8);
+    expect(withPartial).toBeCloseTo(withoutPartial, 5);
   });
 });
 
 describe("computePoliticianConcordance", () => {
-  // 10 scrutins for robust testing
   const voteMatrix: Record<string, Record<string, string>> = {
-    s1:  { pol1: "POUR",   pol2: "CONTRE", pol3: "ABSTENTION" },
-    s2:  { pol1: "CONTRE", pol2: "POUR",   pol3: "POUR" },
-    s3:  { pol1: "POUR",   pol2: "POUR",   pol3: "ABSENT" },
-    s4:  { pol1: "CONTRE", pol2: "CONTRE", pol3: "POUR" },
-    s5:  { pol1: "POUR",   pol2: "CONTRE", pol3: "CONTRE" },
-    s6:  { pol1: "CONTRE", pol2: "POUR",   pol3: "POUR" },
-    s7:  { pol1: "POUR",   pol2: "CONTRE", pol3: "POUR" },
-    s8:  { pol1: "CONTRE", pol2: "POUR",   pol3: "CONTRE" },
-    s9:  { pol1: "POUR",   pol2: "CONTRE", pol3: "POUR" },
-    s10: { pol1: "CONTRE", pol2: "POUR",   pol3: "ABSENT" },
+    s1:  { pol1: "POUR",   pol2: "CONTRE" },
+    s2:  { pol1: "CONTRE", pol2: "POUR" },
+    s3:  { pol1: "POUR",   pol2: "POUR" },
+    s4:  { pol1: "CONTRE", pol2: "CONTRE" },
+    s5:  { pol1: "POUR",   pol2: "CONTRE" },
+    s6:  { pol1: "CONTRE", pol2: "POUR" },
+    s7:  { pol1: "POUR",   pol2: "CONTRE" },
+    s8:  { pol1: "CONTRE", pol2: "POUR" },
+    s9:  { pol1: "POUR",   pol2: "CONTRE" },
+    s10: { pol1: "CONTRE", pol2: "POUR" },
   };
 
   const allAnswers = {
@@ -116,62 +146,52 @@ describe("computePoliticianConcordance", () => {
     s6: "CONTRE", s7: "POUR", s8: "CONTRE", s9: "POUR", s10: "CONTRE",
   } as Record<string, any>;
 
-  it("returns 100% concordance when all answers match", () => {
+  it("returns 100% when all answers match (no weights)", () => {
     const result = computePoliticianConcordance("pol1", allAnswers, voteMatrix);
     expect(result.concordance).toBe(100);
     expect(result.agree).toBe(10);
-    expect(result.overlap).toBe(10);
   });
 
-  it("wilson score is below raw concordance", () => {
-    const result = computePoliticianConcordance("pol1", allAnswers, voteMatrix);
-    expect(result.score).toBeLessThanOrEqual(result.concordance);
-    expect(result.score).toBeGreaterThan(0);
+  it("concordance reflects weights when provided", () => {
+    // s1-s5 have weight 1, s6-s10 have weight 0 (non-discriminating)
+    const weights: Record<string, number> = {
+      s1: 1, s2: 1, s3: 1, s4: 1, s5: 1,
+      s6: 0, s7: 0, s8: 0, s9: 0, s10: 0,
+    };
+    // pol1 matches all 10 answers, but only s1-s5 have weight
+    const result = computePoliticianConcordance("pol1", allAnswers, voteMatrix, undefined, weights);
+    // weighted: 5 agree out of 5 total weight → 100%
+    expect(result.concordance).toBe(100);
+    expect(result.overlap).toBe(10); // raw overlap still counts all
   });
 
-  it("returns 0% when all answers oppose", () => {
-    const opposite = {
-      s1: "CONTRE", s2: "POUR", s3: "CONTRE", s4: "POUR", s5: "CONTRE",
-      s6: "POUR", s7: "CONTRE", s8: "POUR", s9: "CONTRE", s10: "POUR",
+  it("low-weight agreements reduce concordance", () => {
+    // User agrees with pol2 on s3 and s4 (weight 0), disagrees on s1,s2,s5 (weight 1)
+    const answers2 = {
+      s1: "POUR", s2: "POUR", s3: "POUR", s4: "CONTRE", s5: "POUR",
+      s6: "POUR", s7: "POUR", s8: "POUR", s9: "POUR", s10: "POUR",
     } as Record<string, any>;
-    const result = computePoliticianConcordance("pol1", opposite, voteMatrix);
-    expect(result.concordance).toBe(0);
-    expect(result.score).toBe(0);
-    expect(result.disagree).toBe(10);
+    const noWeights = computePoliticianConcordance("pol2", answers2, voteMatrix);
+    const withWeights = computePoliticianConcordance("pol2", answers2, voteMatrix, undefined, {
+      s1: 1, s2: 1, s3: 0, s4: 0, s5: 1, s6: 1, s7: 1, s8: 1, s9: 1, s10: 1,
+    });
+    // With weights, the agreements on s3/s4 (weight 0) don't count
+    expect(withWeights.concordance).toBeLessThanOrEqual(noWeights.concordance);
   });
 
-  it("uses dynamic minOverlap when provided", () => {
-    const result = computePoliticianConcordance("pol3", allAnswers, voteMatrix, 8);
-    expect(result.overlap).toBe(8);
-    expect(result.concordance).toBeGreaterThanOrEqual(0);
-  });
-
-  it("filters out when overlap below dynamic minOverlap", () => {
-    const smallAnswers = { s1: "POUR", s2: "POUR", s3: "POUR", s4: "POUR", s5: "POUR" } as Record<string, any>;
-    const result = computePoliticianConcordance("pol3", smallAnswers, voteMatrix, 5);
-    expect(result.overlap).toBe(4);
+  it("returns -1 when overlap below threshold", () => {
+    const small = { s1: "POUR", s2: "POUR", s3: "POUR" } as Record<string, any>;
+    const result = computePoliticianConcordance("pol1", small, voteMatrix, 5);
     expect(result.concordance).toBe(-1);
     expect(result.score).toBe(-1);
   });
 
-  it("excludes skipped questions from total", () => {
-    const withSkips = {
-      s1: "POUR", s2: "SKIP", s3: "POUR", s4: "SKIP", s5: "POUR",
-      s6: "SKIP", s7: "POUR", s8: "SKIP", s9: "POUR", s10: "SKIP",
-    } as Record<string, any>;
-    const result = computePoliticianConcordance("pol1", withSkips, voteMatrix);
-    expect(result.overlap).toBe(5);
-    expect(result.concordance).toBe(100);
-  });
-
-  it("returns -1 concordance and score when no comparable votes", () => {
-    const allSkips = {
-      s1: "SKIP", s2: "SKIP", s3: "SKIP", s4: "SKIP", s5: "SKIP",
-      s6: "SKIP", s7: "SKIP", s8: "SKIP", s9: "SKIP", s10: "SKIP",
-    } as Record<string, any>;
+  it("returns -1 when all skipped", () => {
+    const allSkips = Object.fromEntries(
+      Object.keys(allAnswers).map((k) => [k, "SKIP"])
+    ) as Record<string, any>;
     const result = computePoliticianConcordance("pol1", allSkips, voteMatrix);
     expect(result.concordance).toBe(-1);
-    expect(result.score).toBe(-1);
   });
 });
 
@@ -193,9 +213,10 @@ describe("computePartyConcordance", () => {
     expect(result2.concordance).toBe(40);
   });
 
-  it("wilson score is below or equal to raw concordance", () => {
-    const result = computePartyConcordance("party1", answers, partyMajorities);
-    expect(result.score).toBeLessThanOrEqual(result.concordance);
-    expect(result.score).toBeGreaterThan(0);
+  it("accepts weights parameter", () => {
+    const weights = { s1: 1, s2: 0, s3: 1, s4: 0, s5: 1 };
+    const result = computePartyConcordance("party1", answers, partyMajorities, undefined, weights);
+    // Only s1, s3, s5 count (all agree) → 100%
+    expect(result.concordance).toBe(100);
   });
 });

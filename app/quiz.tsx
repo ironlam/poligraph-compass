@@ -8,7 +8,7 @@ import { QuizCard } from "@/components/QuizCard";
 import { ProgressBar } from "@/components/ProgressBar";
 import type { QuizPack, UserAnswer, CompassPosition } from "@/lib/types";
 import { computeCompassPosition } from "@/lib/compass";
-import { computePoliticianConcordance, computePartyConcordance, computeMinOverlap } from "@/lib/concordance";
+import { computePoliticianConcordance, computePartyConcordance, computeMinOverlap, computeScrutinWeights } from "@/lib/concordance";
 
 export default function Quiz() {
   const router = useRouter();
@@ -65,10 +65,11 @@ export default function Quiz() {
     const position = computeCompassPosition(answers, pack.axes);
     const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;
     const minOverlap = computeMinOverlap(answeredCount);
+    const weights = computeScrutinWeights(pack.partyMajorities, pack.parties);
 
     const politicians = pack.politicians
       .map((pol) => {
-        const r = computePoliticianConcordance(pol.id, answers, pack.voteMatrix, minOverlap);
+        const r = computePoliticianConcordance(pol.id, answers, pack.voteMatrix, minOverlap, weights);
         return { id: pol.id, name: pol.fullName, slug: pol.slug, photoUrl: pol.photoUrl, partyShortName: pol.partyShortName, ...r };
       })
       .filter((r) => r.concordance >= 0)
@@ -76,7 +77,7 @@ export default function Quiz() {
 
     const parties = pack.parties
       .map((party) => {
-        const r = computePartyConcordance(party.id, answers, pack.partyMajorities, minOverlap);
+        const r = computePartyConcordance(party.id, answers, pack.partyMajorities, minOverlap, weights);
         return { id: party.id, name: party.name, partyShortName: party.shortName, photoUrl: null, ...r };
       })
       .filter((r) => r.concordance >= 0)

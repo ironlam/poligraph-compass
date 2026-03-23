@@ -1,5 +1,5 @@
 import { ComputeRequestSchema } from "@/lib/schemas";
-import { computePoliticianConcordance, computePartyConcordance, computeMinOverlap } from "@/lib/concordance";
+import { computePoliticianConcordance, computePartyConcordance, computeMinOverlap, computeScrutinWeights } from "@/lib/concordance";
 import { computeCompassPosition } from "@/lib/compass";
 import { loadQuizPackData } from "@/lib/quiz-pack-loader";
 import type { ComputeResult, ConcordanceEntry } from "@/lib/types";
@@ -26,11 +26,12 @@ export async function POST(request: Request) {
 
   // Load quiz pack data directly (shared loader, no self-fetch)
   const quizPack = await loadQuizPackData();
+  const weights = computeScrutinWeights(quizPack.partyMajorities, quizPack.parties);
 
   // Compute politician concordances (sorted by confidence score, not raw %)
   const politicianResults: ConcordanceEntry[] = quizPack.politicians
     .map((pol) => {
-      const r = computePoliticianConcordance(pol.id, answers, quizPack.voteMatrix, minOverlap);
+      const r = computePoliticianConcordance(pol.id, answers, quizPack.voteMatrix, minOverlap, weights);
       return {
         id: pol.id,
         name: pol.fullName,
@@ -46,7 +47,7 @@ export async function POST(request: Request) {
   // Compute party concordances (sorted by confidence score)
   const partyResults: ConcordanceEntry[] = quizPack.parties
     .map((party) => {
-      const r = computePartyConcordance(party.id, answers, quizPack.partyMajorities, minOverlap);
+      const r = computePartyConcordance(party.id, answers, quizPack.partyMajorities, minOverlap, weights);
       return {
         id: party.id,
         name: party.name,
