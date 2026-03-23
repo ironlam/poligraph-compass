@@ -5,8 +5,8 @@ import Animated, { FadeIn, useSharedValue, useAnimatedProps, withSpring } from "
 import { AXIS_LABELS } from "@/lib/theme-labels";
 import type { CompassPosition, ConcordanceEntry } from "@/lib/types";
 
-const SIZE = 300;
-const PADDING = 40;
+const SIZE = 280;
+const PADDING = 10;
 const CENTER = SIZE / 2;
 const RADIUS = (SIZE - PADDING * 2) / 2;
 
@@ -50,72 +50,81 @@ export function Compass({ userPosition, parties, partyPositions }: Props) {
       accessible
       accessibilityLabel={`Boussole politique. Votre position : économie ${userPosition.x.toFixed(1)}, société ${userPosition.y.toFixed(1)}`}
     >
-      <Svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`}>
-        {/* Grid lines */}
-        <Line x1={PADDING} y1={CENTER} x2={SIZE - PADDING} y2={CENTER} stroke="#e2e8f0" strokeWidth={1} />
-        <Line x1={CENTER} y1={PADDING} x2={CENTER} y2={SIZE - PADDING} stroke="#e2e8f0" strokeWidth={1} />
-
-        {/* Axis labels */}
-        <SvgText x={CENTER} y={PADDING - 8} textAnchor="middle" fontSize={10} fill="#94a3b8">
-          {AXIS_LABELS.society.positive}
-        </SvgText>
-        <SvgText x={CENTER} y={SIZE - PADDING + 16} textAnchor="middle" fontSize={10} fill="#94a3b8">
-          {AXIS_LABELS.society.negative}
-        </SvgText>
-        <SvgText x={PADDING - 4} y={CENTER + 4} textAnchor="end" fontSize={10} fill="#94a3b8">
+      <View className="flex-row items-center">
+        {/* Left label */}
+        <Text className="text-xs text-slate-400 mr-2 w-24 text-right">
           {AXIS_LABELS.economy.negative}
-        </SvgText>
-        <SvgText x={SIZE - PADDING + 4} y={CENTER + 4} textAnchor="start" fontSize={10} fill="#94a3b8">
-          {AXIS_LABELS.economy.positive}
-        </SvgText>
+        </Text>
 
-        {/* Party dots */}
-        {partyPositions &&
-          parties.map((party) => {
-            const pos = partyPositions[party.id];
-            if (!pos) return null;
-            return (
-              <Circle
-                key={party.id}
-                cx={toPixel(pos.x, "x")}
-                cy={toPixel(pos.y, "y")}
-                r={12}
+        {/* Center column: top label + SVG + bottom label */}
+        <View className="items-center">
+          <Text className="text-xs text-slate-400 mb-1">
+            {AXIS_LABELS.society.positive}
+          </Text>
+
+          <Svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`}>
+            {/* Grid lines */}
+            <Line x1={PADDING} y1={CENTER} x2={SIZE - PADDING} y2={CENTER} stroke="#e2e8f0" strokeWidth={1} />
+            <Line x1={CENTER} y1={PADDING} x2={CENTER} y2={SIZE - PADDING} stroke="#e2e8f0" strokeWidth={1} />
+
+            {/* Party dots */}
+            {partyPositions &&
+              parties.map((party) => {
+                const pos = partyPositions[party.id];
+                if (!pos) return null;
+                return (
+                  <Circle
+                    key={party.id}
+                    cx={toPixel(pos.x, "x")}
+                    cy={toPixel(pos.y, "y")}
+                    r={12}
+                    fill="#6366f1"
+                    opacity={0.2}
+                  />
+                );
+              })}
+
+            {/* Party labels */}
+            {partyPositions &&
+              parties.slice(0, 8).map((party) => {
+                const pos = partyPositions[party.id];
+                if (!pos) return null;
+                return (
+                  <SvgText
+                    key={`label-${party.id}`}
+                    x={toPixel(pos.x, "x")}
+                    y={toPixel(pos.y, "y") + 4}
+                    textAnchor="middle"
+                    fontSize={8}
+                    fill="#6366f1"
+                    opacity={0.6}
+                  >
+                    {party.partyShortName}
+                  </SvgText>
+                );
+              })}
+
+            {/* User dot (spring animated) */}
+            {userPosition.xValid && userPosition.yValid && (
+              <AnimatedCircle
+                animatedProps={animatedUserDot}
                 fill="#6366f1"
-                opacity={0.2}
+                stroke="white"
+                strokeWidth={3}
               />
-            );
-          })}
+            )}
+          </Svg>
 
-        {/* Party labels */}
-        {partyPositions &&
-          parties.slice(0, 8).map((party) => {
-            const pos = partyPositions[party.id];
-            if (!pos) return null;
-            return (
-              <SvgText
-                key={`label-${party.id}`}
-                x={toPixel(pos.x, "x")}
-                y={toPixel(pos.y, "y") + 4}
-                textAnchor="middle"
-                fontSize={8}
-                fill="#6366f1"
-                opacity={0.6}
-              >
-                {party.partyShortName}
-              </SvgText>
-            );
-          })}
+          <Text className="text-xs text-slate-400 mt-1">
+            {AXIS_LABELS.society.negative}
+          </Text>
+        </View>
 
-        {/* User dot (spring animated) */}
-        {userPosition.xValid && userPosition.yValid && (
-          <AnimatedCircle
-            animatedProps={animatedUserDot}
-            fill="#6366f1"
-            stroke="white"
-            strokeWidth={3}
-          />
-        )}
-      </Svg>
+        {/* Right label */}
+        <Text className="text-xs text-slate-400 ml-2 w-24">
+          {AXIS_LABELS.economy.positive}
+        </Text>
+      </View>
     </Animated.View>
   );
 }

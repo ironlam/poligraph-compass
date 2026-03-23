@@ -27,8 +27,17 @@ export const AXIS_LABELS = {
   },
 };
 
+const CENTER_THRESHOLD = 0.15;
+
 export function getQuadrantLabel(x: number, y: number): string {
-  const xLabel = x >= 0 ? AXIS_LABELS.economy.positive : AXIS_LABELS.economy.negative;
-  const yLabel = y >= 0 ? AXIS_LABELS.society.positive : AXIS_LABELS.society.negative;
-  return `${yLabel}, ${xLabel.toLowerCase()}`;
+  const xCenter = Math.abs(x) < CENTER_THRESHOLD;
+  const yCenter = Math.abs(y) < CENTER_THRESHOLD;
+
+  if (xCenter && yCenter) return "Au centre";
+
+  const xLabel = xCenter ? null : x > 0 ? AXIS_LABELS.economy.positive : AXIS_LABELS.economy.negative;
+  const yLabel = yCenter ? null : y > 0 ? AXIS_LABELS.society.positive : AXIS_LABELS.society.negative;
+
+  if (xLabel && yLabel) return `${yLabel}, ${xLabel.toLowerCase()}`;
+  return xLabel ?? yLabel!;
 }

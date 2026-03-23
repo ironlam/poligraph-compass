@@ -24,7 +24,7 @@ export default function Refine() {
           Affiner votre position
         </Text>
         <Text className="text-base text-gray-500 text-center mt-4 leading-6">
-          15 questions supplémentaires pour un résultat plus précis
+          10 questions supplémentaires pour un résultat plus précis
         </Text>
         <Text className="text-sm text-gray-400 mt-2">
           Environ 4 minutes

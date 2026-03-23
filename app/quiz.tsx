@@ -46,8 +46,16 @@ export default function Quiz() {
     phase === "essential" ? q.tier === "essential" : q.tier === "refine"
   ) ?? [];
   const currentQuestion = questions[currentIndex];
+  const noQuestionsForPhase = !!pack && questions.length === 0;
   const quizComplete = pack && !currentQuestion && questions.length > 0;
   const hasNavigated = useRef(false);
+
+  // If no questions for current phase (e.g., no refine questions in seed data), redirect
+  useEffect(() => {
+    if (noQuestionsForPhase) {
+      router.replace("/results");
+    }
+  }, [noQuestionsForPhase, router]);
 
   // Handle quiz completion in useEffect (not during render)
   useEffect(() => {
@@ -110,6 +118,15 @@ export default function Quiz() {
   }, [quizComplete, pack, answers, phase, setResults, setPartyPositions, router]);
 
   if (isLoading || !pack) {
+    return (
+      <SafeAreaView className="flex-1 bg-white items-center justify-center">
+        <View className="animate-spin h-8 w-8 border-2 border-indigo-500 border-t-transparent rounded-full" />
+      </SafeAreaView>
+    );
+  }
+
+  if (noQuestionsForPhase) {
+    // Waiting for useEffect to redirect
     return (
       <SafeAreaView className="flex-1 bg-white items-center justify-center">
         <View className="animate-spin h-8 w-8 border-2 border-indigo-500 border-t-transparent rounded-full" />

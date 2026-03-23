@@ -38,9 +38,18 @@ export function RankingList({ politicians, parties }: Props) {
       </View>
 
       <View className="px-6 gap-2">
-        {data.slice(0, 20).map((entry, index) => (
-          <RankingItem key={entry.id} entry={entry} rank={index + 1} />
-        ))}
+        {data.length === 0 ? (
+          <View className="py-8 items-center">
+            <Text className="text-gray-400 text-sm text-center">
+              Données non disponibles.{"\n"}
+              Les résultats apparaîtront après synchronisation avec les votes réels.
+            </Text>
+          </View>
+        ) : (
+          data.slice(0, 20).map((entry, index) => (
+            <RankingItem key={entry.id} entry={entry} rank={index + 1} />
+          ))
+        )}
       </View>
     </View>
   );
