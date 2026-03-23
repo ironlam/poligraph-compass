@@ -10,7 +10,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "generate:questions": "npx tsx scripts/generate-questions.ts",
-    "sync": "npx tsx scripts/sync-data.ts"
+    "sync": "npx tsx scripts/sync-data.ts",
+    "pipeline:fetch": "npx tsx scripts/pipeline/fetch-candidates.ts",
+    "pipeline:draft": "npx tsx scripts/pipeline/draft-questions.ts",
+    "pipeline:validate": "npx tsx scripts/pipeline/validate.ts",
+    "pipeline:merge": "npx tsx scripts/pipeline/review-merge.ts",
+    "pipeline:audit": "npx tsx scripts/audit-scrutins.ts"
   },
   "dependencies": {
     "@expo/metro-runtime": "^55.0.6",

@@ -10,9 +10,16 @@
 import fs from "fs";
 import path from "path";
 
-const SCRUTINS_PATH = path.join(__dirname, "..", "data", "scrutins.json");
+const defaultScrutinsPath = path.join(__dirname, "..", "data", "scrutins.json");
+const SCRUTINS_PATH =
+  process.argv[2] && !process.argv[2].startsWith("-")
+    ? path.resolve(process.argv[2])
+    : defaultScrutinsPath;
 const DETAILS_PATH = path.join(__dirname, "..", "data", "scrutin-details.json");
-const REPORT_PATH = path.join(__dirname, "..", "data", "audit-report.json");
+const REPORT_PATH =
+  SCRUTINS_PATH === defaultScrutinsPath
+    ? path.join(__dirname, "..", "data", "audit-report.json")
+    : SCRUTINS_PATH.replace(/\.json$/, "-audit-report.json");
 const MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions";
 
 // Load .env manually (no dependency needed)
@@ -177,6 +184,8 @@ Analyse en JSON strict (pas de markdown, pas de backticks) :
 
 async function main() {
   console.log("=== Audit des scrutins ===\n");
+  console.log(`Input: ${SCRUTINS_PATH}`);
+  console.log(`Report: ${REPORT_PATH}\n`);
 
   const scrutins: ScrutinConfig[] = JSON.parse(fs.readFileSync(SCRUTINS_PATH, "utf-8"));
   const results: AuditResult[] = [];
