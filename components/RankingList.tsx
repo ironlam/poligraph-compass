@@ -2,14 +2,16 @@ import { useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { HeroCard } from "./HeroCard";
 import { RankingItem } from "./RankingItem";
+import { DeputyPinnedCard } from "./DeputyPinnedCard";
 import type { ConcordanceEntry } from "@/lib/types";
 
 interface Props {
   politicians: ConcordanceEntry[];
   parties: ConcordanceEntry[];
+  pinnedDeputy?: ConcordanceEntry | null;
 }
 
-export function RankingList({ politicians, parties }: Props) {
+export function RankingList({ politicians, parties, pinnedDeputy }: Props) {
   const [tab, setTab] = useState<"politicians" | "parties">("politicians");
   const data = tab === "politicians" ? politicians : parties;
   const [first, ...rest] = data;
@@ -55,6 +57,11 @@ export function RankingList({ politicians, parties }: Props) {
         </View>
       ) : (
         <View className="px-6 gap-2">
+          {pinnedDeputy && tab === "politicians" && (
+            <View className="mb-2">
+              <DeputyPinnedCard entry={pinnedDeputy} />
+            </View>
+          )}
           {first && <HeroCard entry={first} />}
           {rest.slice(0, 19).map((entry, index) => (
             <RankingItem key={entry.id} entry={entry} rank={index + 2} />
