@@ -70,7 +70,8 @@ export default function Quiz() {
     const politicians = pack.politicians
       .map((pol) => {
         const r = computePoliticianConcordance(pol.id, answers, pack.voteMatrix, minOverlap, weights);
-        return { id: pol.id, name: pol.fullName, slug: pol.slug, photoUrl: pol.photoUrl, partyShortName: pol.partyShortName, ...r };
+        const party = pack.parties.find((p) => p.id === pol.partyId);
+        return { id: pol.id, name: pol.fullName, slug: pol.slug, photoUrl: pol.photoUrl, partyShortName: pol.partyShortName, partyColor: party?.color ?? null, ...r };
       })
       .filter((r) => r.concordance >= 0)
       .sort((a, b) => b.score - a.score);
@@ -78,7 +79,7 @@ export default function Quiz() {
     const parties = pack.parties
       .map((party) => {
         const r = computePartyConcordance(party.id, answers, pack.partyMajorities, minOverlap, weights);
-        return { id: party.id, name: party.name, partyShortName: party.shortName, photoUrl: null, ...r };
+        return { id: party.id, name: party.name, partyShortName: party.shortName, photoUrl: null, partyColor: party.color ?? null, ...r };
       })
       .filter((r) => r.concordance >= 0)
       .sort((a, b) => b.score - a.score);

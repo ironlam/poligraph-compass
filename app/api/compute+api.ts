@@ -32,12 +32,14 @@ export async function POST(request: Request) {
   const politicianResults: ConcordanceEntry[] = quizPack.politicians
     .map((pol) => {
       const r = computePoliticianConcordance(pol.id, answers, quizPack.voteMatrix, minOverlap, weights);
+      const party = quizPack.parties.find((p) => p.id === pol.partyId);
       return {
         id: pol.id,
         name: pol.fullName,
         slug: pol.slug,
         photoUrl: pol.photoUrl,
         partyShortName: pol.partyShortName,
+        partyColor: party?.color ?? null,
         ...r,
       };
     })
@@ -54,6 +56,7 @@ export async function POST(request: Request) {
         slug: undefined,
         photoUrl: null,
         partyShortName: party.shortName,
+        partyColor: party.color ?? null,
         ...r,
       };
     })
