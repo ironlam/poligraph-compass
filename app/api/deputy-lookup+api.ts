@@ -2,6 +2,14 @@ import { loadQuizPackData } from "@/lib/quiz-pack-loader";
 
 const POLIGRAPH_API =
   process.env.POLIGRAPH_API_URL || "https://poligraph.fr/api";
+const GEO_API = "https://geo.api.gouv.fr";
+
+interface Commune {
+  nom: string;
+  code: string;
+  codeDepartement: string;
+  population: number;
+}
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -15,26 +23,45 @@ export async function GET(request: Request) {
   }
 
   try {
-    // Query Poligraph API for deputies matching this postal code
-    const res = await fetch(
-      `${POLIGRAPH_API}/politiques?mandateType=DEPUTE&codePostal=${codePostal}&limit=1`
+    // 1. Resolve postal code to INSEE commune code via geo.api.gouv.fr
+    const geoRes = await fetch(
+      `${GEO_API}/communes?codePostal=${codePostal}&fields=nom,code,codeDepartement,population`
     );
 
-    if (!res.ok) {
+    if (!geoRes.ok) {
+      return Response.json(
+        { error: "Geo API error", deputy: null },
+        { status: 502 }
+      );
+    }
+
+    const communes: Commune[] = await geoRes.json();
+    if (!Array.isArray(communes) || communes.length === 0) {
+      return Response.json({ deputy: null });
+    }
+
+    // Pick the most populous commune for this postal code
+    const commune = communes.sort((a, b) => b.population - a.population)[0];
+
+    // 2. Look up deputy via Poligraph by-commune endpoint
+    const deputyRes = await fetch(
+      `${POLIGRAPH_API}/deputies/by-commune?inseeCode=${commune.code}`
+    );
+
+    if (!deputyRes.ok) {
       return Response.json(
         { error: "Upstream API error", deputy: null },
         { status: 502 }
       );
     }
 
-    const json = await res.json();
-    const results = json.data || json.results || json;
+    const data = await deputyRes.json();
 
-    if (!Array.isArray(results) || results.length === 0) {
+    if (!data.deputy) {
       return Response.json({ deputy: null });
     }
 
-    const pol = results[0];
+    const pol = data.deputy;
 
     // Verify this politician exists in our synced vote data
     const quizPack = await loadQuizPackData();
@@ -44,10 +71,10 @@ export async function GET(request: Request) {
       id: pol.id,
       fullName: pol.fullName,
       slug: pol.slug,
-      photoUrl: pol.blobPhotoUrl || pol.photoUrl || null,
-      partyShortName: pol.partyShortName || null,
-      partyId: pol.partyId || null,
-      circonscription: pol.circonscription || null,
+      photoUrl: pol.photoUrl || null,
+      partyShortName: pol.party?.shortName || null,
+      partyId: null as string | null,
+      circonscription: pol.constituency || null,
       hasVoteData: !!knownPol,
     };
 
