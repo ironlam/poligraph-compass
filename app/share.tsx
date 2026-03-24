@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { View, Text, Pressable, Alert, Share, ScrollView } from "react-native";
+import { View, Text, Pressable, Alert, Share, ScrollView, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { captureRef } from "react-native-view-shot";
@@ -52,6 +52,10 @@ export default function ShareScreen() {
   }
 
   function handleRestart() {
+    if (Platform.OS === "web") {
+      window.location.href = "/";
+      return;
+    }
     reset();
     router.replace("/");
   }
