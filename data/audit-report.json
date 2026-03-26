@@ -1,0 +1,400 @@
+[
+  {
+    "scrutinId": "cml2g74m4dv2eijv5yeaef1ml",
+    "order": 1,
+    "currentQuestion": "Faut-il nationaliser les usines sidérurgiques en France ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à la nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France (première lecture).",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "needs_improvement",
+      "issues": [
+        "La question citoyenne ('Faut-il nationaliser les usines sidérurgiques en France ?') est trop large par rapport au texte spécifique (ArcelorMittal France), ce qui peut créer un décalage entre l'idée générale et le vote concret.",
+        "Le lien entre 'nationalisation' et 'souveraineté industrielle' n'est pas explicitement établi dans la question, alors que c'est le cœur du texte.",
+        "La polarité (-1 = POUR = interventionniste) est correcte, mais la question pourrait mieux refléter le débat réel (ex : 'Faut-il nationaliser ArcelorMittal France pour sauver l'industrie sidérurgique française ?')."
+      ],
+      "suggestedQuestion": "Faut-il nationaliser ArcelorMittal France pour préserver la souveraineté industrielle de la France ?",
+      "reasoning": "Le vote des députés est clairement aligné sur une logique interventionniste (majorité pour la nationalisation), mais la question citoyenne est trop générique. Le risque de biais vient du fait que certains députés pourraient voter contre non par opposition à l'idée, mais par désaccord sur la méthode ou l'ampleur. La reformulation recentre le débat sur l'enjeu concret du texte."
+    }
+  },
+  {
+    "scrutinId": "cml2g8dvyfklaijv5awba9t1e",
+    "order": 2,
+    "currentQuestion": "Faut-il augmenter le financement de la sécurité sociale ?",
+    "scrutinTitle": "l'ensemble du projet de loi de financement de la sécurité sociale pour 2026 (lecture définitive).",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "SOCIAL_TRAVAIL",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "needs_improvement",
+      "issues": [
+        "La question citoyenne ('Faut-il augmenter le financement de la sécurité sociale ?') est trop binaire et ne capture pas les nuances du vote parlementaire, notamment les divergences internes aux groupes politiques sur le niveau d'intervention ou les modalités de financement.",
+        "Le projet de loi de financement de la sécurité sociale (PLFSS) est un texte technique et budgétaire, où les votes peuvent refléter des désaccords sur des mesures spécifiques (ex : hausse des cotisations, baisse des dépenses) plutôt que sur le principe général d'intervention de l'État.",
+        "La polarité (-1 = POUR = conservateur/interventionniste) peut être trompeuse : une position 'pour' l'augmentation du financement peut aussi être portée par des libéraux (ex : pour éviter une crise sociale) ou des progressistes (ex : pour renforcer les protections sociales)."
+      ],
+      "suggestedQuestion": "Faut-il renforcer le financement public de la sécurité sociale (via hausse des impôts, cotisations, ou réduction des dépenses) pour garantir son équilibre et son pérennité ?",
+      "reasoning": "Le vote reflète une majorité relative fragile, avec des abstentions importantes (90), suggérant des divisions au sein des groupes. La question citoyenne simplifie trop le débat, car le PLFSS combine des enjeux économiques (libéralisme vs interventionnisme) et sociaux (progressisme vs conservatisme). Une reformulation plus précise permettrait de mieux distinguer les motivations des députés."
+    }
+  },
+  {
+    "scrutinId": "cml2g8c2xfisfijv5cqcoyfbo",
+    "order": 3,
+    "currentQuestion": "Faut-il renforcer l'encadrement des loyers ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi pour retrouver la confiance et l'équilibre dans les rapports locatifs (première lecture).",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "LOGEMENT_URBANISME",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "Le vote des députés pourrait refléter des désaccords sur des détails techniques plutôt que sur l'idée générale d'encadrement des loyers, introduisant un biais potentiel dans la comparaison citoyen/député."
+      ],
+      "suggestedQuestion": "Faut-il renforcer l'encadrement des loyers pour protéger les locataires ?",
+      "reasoning": "La question actuelle est bien alignée avec l'axe économique et la polarité définis. Cependant, le risque de biais existe car certains députés pourraient voter contre le texte non pas par opposition à l'encadrement, mais par désaccord sur des mesures spécifiques. La reformulation met davantage l'accent sur la protection des locataires, ce qui correspond mieux à l'esprit progressiste/interventionniste."
+    }
+  },
+  {
+    "scrutinId": "cml2g0v6c67mqijv5qwwpbmsh",
+    "order": 4,
+    "currentQuestion": "Faut-il lever les contraintes à l'exercice du métier d'agriculteur ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à lever les contraintes à l'exercice du métier d'agriculteur (texte de la commission mixte paritaire).",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "AGRICULTURE_ALIMENTATION",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "Le libellé de la question citoyenne ('Faut-il lever les contraintes...') est plus large que le texte voté, qui cible des contraintes spécifiques. Certains députés pourraient voter contre pour des raisons de forme (ex. : manque de moyens) plutôt que par opposition au principe général."
+      ],
+      "suggestedQuestion": "Faut-il réduire les contraintes réglementaires pesant sur l'activité agricole pour favoriser la compétitivité des exploitations ?",
+      "reasoning": "La question est idéologiquement claire (liberté économique vs interventionnisme), mais le risque de biais existe car le vote dépend des détails du texte. La reformulation recentre sur l'objectif économique, évitant les interprétations trop larges. Le texte est bien ciblé sur l'économie, aligné avec l'axe proposé."
+    }
+  },
+  {
+    "scrutinId": "cml2g181g6jigijv55tbw369m",
+    "order": 5,
+    "currentQuestion": "Faut-il simplifier les règles d'urbanisme et du logement ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi de simplification du droit de l'urbanisme et du logement (texte de la commission mixte paritaire).",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "LOGEMENT_URBANISME",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "Risque de biais dans l'interprétation de la polarité : la simplification des règles d'urbanisme et de logement peut être perçue comme libérale (moins de contraintes pour les acteurs économiques) ou comme progressiste (faciliter l'accès au logement), selon le contexte. La polarité attribuée (+1 = progressiste/libéral) peut donc être contestée."
+      ],
+      "suggestedQuestion": "Faut-il réduire les contraintes administratives pour faciliter la construction de logements et les projets urbains ?",
+      "reasoning": "La question est claire et directement liée au texte voté, mais la polarité attribuée est ambiguë : la simplification peut être perçue comme libérale (moins d'État) ou progressiste (accès au logement). Le risque de biais est moyen car les députés peuvent voter contre pour des raisons techniques ou idéologiques, tandis que le citoyen répond sur l'idée générale."
+    }
+  },
+  {
+    "scrutinId": "cmm2fg4fw02ju1o214v348cht",
+    "order": 6,
+    "currentQuestion": "Faut-il légaliser l'aide à mourir ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi relative au droit à l'aide à mourir (deuxième lecture).",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "SANTE",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "Le vote des députés peut refléter des motivations variées (positionnement politique, convictions personnelles, pression partisane) et non uniquement leur position sur l'idée générale de légalisation de l'aide à mourir.",
+        "La polarité proposée (1 = POUR = progressiste, -1 = POUR = conservateur) peut être réductrice : certains conservateurs pourraient soutenir l'aide à mourir pour des raisons de liberté individuelle, tandis que certains progressistes pourraient s'y opposer par crainte de dérives sociales.",
+        "Le contexte de 'deuxième lecture' introduit une complexité : les députés votent sur une version modifiée du texte, ce qui peut biaiser leur vote par rapport à leur position initiale sur le principe."
+      ],
+      "suggestedQuestion": "Faut-il autoriser légalement l'aide active à mourir pour les personnes en fin de vie, sous conditions médicales strictes ?",
+      "reasoning": "La question actuelle est claire et alignée avec l'axe society, mais le risque de biais oppositionnel est moyen car les votes des députés peuvent être influencés par des considérations procédurales ou partisanes plutôt que par leur position idéologique pure. La polarité proposée simplifie une réalité nuancée."
+    }
+  },
+  {
+    "scrutinId": "cml2g0vbq681tijv5fx2s0p9i",
+    "order": 7,
+    "currentQuestion": "Faut-il faciliter le maintien en rétention des personnes condamnées ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à faciliter le maintien en rétention des personnes condamnées pour des faits d’une particulière gravité et présentant de forts risques de récidive (première lecture).",
+    "axis": "society",
+    "polarity": -1,
+    "theme": "SECURITE_JUSTICE",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "needs_improvement",
+      "issues": [
+        "La question citoyenne est trop générique ('Faut-il faciliter le maintien en rétention ?') et ne précise pas les critères de gravité ou de risque de récidive, ce qui peut biaiser les réponses.",
+        "Le lien entre 'faciliter le maintien en rétention' et les axes progressiste/libéral vs conservateur/interventionniste n'est pas explicitement établi dans la question, bien que l'axe society le suggère.",
+        "Le risque de vote stratégique (contre un texte jugé insuffisant) est élevé pour cette proposition, ce qui peut fausser la correspondance entre l'opinion citoyenne et le vote des députés."
+      ],
+      "suggestedQuestion": "Faut-il faciliter le maintien en rétention des personnes condamnées pour des faits d'une particulière gravité et présentant un risque élevé de récidive, même si cela implique une restriction supplémentaire des libertés individuelles ?",
+      "reasoning": "La question actuelle est claire sur l'axe society, mais trop vague pour éviter des interprétations divergentes. La reformulation précise les critères (faits graves, risque de récidive) et introduit explicitement le dilemme libertés individuelles vs sécurité, ce qui affine l'alignement idéologique. Le risque de biais stratégique dans les votes des députés reste moyen, car ce type de texte mobilise souvent des clivages partisans ou idéologiques forts."
+    }
+  },
+  {
+    "scrutinId": "cml2g8dczfjxsijv5bim0dnc1",
+    "order": 8,
+    "currentQuestion": "Faut-il garantir le renouvellement automatique des titres de séjour ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à garantir un renouvellement automatique des titres de séjour de longue durée (première lecture).",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "IMMIGRATION",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "low",
+      "questionQuality": "good",
+      "issues": [],
+      "suggestedQuestion": "Faut-il garantir le renouvellement automatique des titres de séjour pour les étrangers résidant durablement en France ?",
+      "reasoning": "La question est bien alignée sur l'axe society (progressiste vs conservateur) et la polarité est cohérente. Le vote des députés reflète clairement une division idéologique entre progressistes (pour) et conservateurs (contre), sans ambiguïté majeure. Le risque de biais d'opposition est faible car le texte est une proposition de loi (pas un amendement ou un texte technique)."
+    }
+  },
+  {
+    "scrutinId": "cml2ga02uh0mmijv55qmm74po",
+    "order": 9,
+    "currentQuestion": "Faut-il restreindre l'accès des mineurs aux réseaux sociaux ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à protéger les mineurs des risques auxquels les expose l'utilisation des réseaux sociaux (première lecture).",
+    "axis": "society",
+    "polarity": -1,
+    "theme": "NUMERIQUE_TECH",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "La question posée au citoyen ('Faut-il restreindre l'accès des mineurs aux réseaux sociaux ?') est binaire et ne reflète pas la complexité des mesures proposées (obligations pour les plateformes, outils parentaux, etc.).",
+        "Le vote des députés pourrait être influencé par des considérations techniques ou sectorielles (charge administrative pour les petites plateformes) plutôt que par une opposition idéologique claire à l'idée de protection des mineurs.",
+        "La polarité (-1 = POUR = conservateur/interventionniste) est cohérente avec le texte, mais le citoyen pourrait interpréter 'restriction d'accès' comme une mesure liberticide, alors que le texte vise surtout un encadrement des plateformes."
+      ],
+      "suggestedQuestion": "Faut-il renforcer l'encadrement des réseaux sociaux pour protéger les mineurs, notamment via des obligations pour les plateformes et des outils de contrôle parental ?",
+      "reasoning": "Le texte est clairement interventionniste (obligations légales, sanctions), ce qui correspond à une position conservatrice/interventionniste (-1). Cependant, la question initiale est trop simpliste et pourrait biaiser les réponses des citoyens en assimilant 'restriction' à une mesure répressive, alors que le texte vise un équilibre entre protection et liberté."
+    }
+  },
+  {
+    "scrutinId": "cml2g88waffqmijv57h01qto4",
+    "order": 10,
+    "currentQuestion": "Faut-il renforcer la protection des mineurs isolés et lutter contre le sans-abrisme ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à protéger les mineurs isolés et à lutter contre le sans-abrisme (première lecture).",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "SOCIAL_TRAVAIL",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "low",
+      "questionQuality": "good",
+      "issues": [],
+      "suggestedQuestion": "Faut-il renforcer la protection des mineurs isolés et lutter contre le sans-abrisme ?",
+      "reasoning": "La question est directement alignée sur l'axe society (progressiste vs conservateur) et la polarité est cohérente avec l'interprétation standard. Le vote des députés reflète une division claire entre une majorité progressiste (pour) et une opposition conservatrice/interventionniste (contre), sans ambiguïté majeure sur l'idéologie sous-jacente."
+    }
+  },
+  {
+    "scrutinId": "cml2g2j5v7vtjijv53jk3unha",
+    "order": 11,
+    "currentQuestion": "Faut-il imposer l'affichage de l'origine des denrées alimentaires ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage (première lecture).",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "AGRICULTURE_ALIMENTATION",
+    "voteResult": "REJECTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "Risque de biais dans l'interprétation de la polarité : l'axe economy (interventionnisme vs libéralisme) peut être mal compris par les citoyens, car l'étiquetage obligatoire peut être perçu comme une mesure à la fois interventionniste (État) et progressiste (transparence pour le consommateur).",
+        "La polarité -1 (POUR = conservateur/interventionniste) peut prêter à confusion, car une partie de la gauche (progressiste) pourrait soutenir cette mesure pour des raisons de transparence, tandis qu'une partie de la droite (libérale) pourrait s'y opposer pour des raisons de coût pour les entreprises."
+      ],
+      "suggestedQuestion": "Faut-il imposer par la loi l'affichage systématique de l'origine des denrées alimentaires pour garantir une meilleure transparence aux consommateurs ?",
+      "reasoning": "Le vote reflète une division classique entre progressistes (pour la transparence) et libéraux/conservateurs (contre une mesure perçue comme coûteuse ou bureaucratique). Cependant, l'axe economy peut brouiller la lecture, car l'interventionnisme n'est pas toujours aligné avec le progressisme sur ce sujet. La question actuelle reste pertinente, mais une reformulation pourrait clarifier l'enjeu de transparence."
+    }
+  },
+  {
+    "scrutinId": "cmldazds3hcxtri3z737rs0e1",
+    "order": 12,
+    "currentQuestion": "Faut-il relancer les investissements publics dans l'hydroélectricité ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à relancer les investissements dans le secteur de l’hydroélectricité pour contribuer à la transition énergétique (première lecture).",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ENVIRONNEMENT_ENERGIE",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "Le lien entre 'relancer les investissements publics' et la polarité (-1 = conservateur/interventionniste) peut prêter à confusion : l'hydroélectricité est souvent soutenue par des progressistes écologistes (pour la transition énergétique) et des conservateurs locaux (pour l'indépendance énergétique et les emplois régionaux).",
+        "La question ne précise pas si les investissements sont publics ou privés, ce qui influence l'axe economy (interventionniste vs libéral).",
+        "Le risque de biais d'opposition existe car certains députés pourraient voter contre non pas par opposition à l'idée, mais par désaccord sur des détails techniques ou des mesures spécifiques (ex : simplification administrative jugée insuffisante)."
+      ],
+      "suggestedQuestion": "Faut-il renforcer le soutien public (financier, réglementaire ou fiscal) à l'hydroélectricité pour accélérer la transition énergétique, en privilégiant les infrastructures locales et durables ?",
+      "reasoning": "La question actuelle est globalement claire mais son positionnement sur l'axe economy est ambigu car l'hydroélectricité peut être défendue par des courants idéologiques opposés. Le risque de biais d'opposition est moyen car les votes contre pourraient refléter des désaccords de fond ou de forme. La reformulation proposée affine le cadre idéologique et précise le type de soutien public."
+    }
+  },
+  {
+    "scrutinId": "cml2g17wy6jdjijv5gw5pkgfe",
+    "order": 13,
+    "currentQuestion": "Faut-il assouplir le droit du travail pour favoriser l'emploi ?",
+    "scrutinTitle": "l'ensemble du projet de loi portant transposition des accords nationaux interprofessionnels en faveur de l'emploi des salariés expérimentés et relatif à l'évolution du dialogue social (texte de la commission mixte paritaire).",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "SOCIAL_TRAVAIL",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "Le vote des députés pourrait refléter des désaccords sur des détails législatifs plutôt que sur l'idée générale d'assouplir le droit du travail, ce qui introduit un biais potentiel dans la comparaison avec la réponse citoyenne."
+      ],
+      "suggestedQuestion": "Faut-il faciliter l'emploi des travailleurs expérimentés en assouplissant le droit du travail ?",
+      "reasoning": "Le texte est clairement lié à une mesure libérale (assouplissement du droit du travail pour favoriser l'emploi), mais le vote des députés pourrait être influencé par des considérations techniques ou des désaccords partiels. La question actuelle est pertinente, mais une reformulation plus précise sur les travailleurs expérimentés améliore la correspondance avec le texte voté."
+    }
+  },
+  {
+    "scrutinId": "cml2g6ji8d6vtijv5vmksglla",
+    "order": 14,
+    "currentQuestion": "Faut-il garantir l'égalité d'accès au service public postal ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi relative à l’établissement de l’égalité d’accès au service public postal en outre-mer (première lecture).",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "low",
+      "questionQuality": "good",
+      "issues": [],
+      "suggestedQuestion": "Faut-il garantir l'égalité d'accès au service public postal en outre-mer ?",
+      "reasoning": "Le scrutin est univoque (195 pour, 0 contre) avec des abstentions limitées (51), ce qui suggère un consensus large sur l'idée générale. La question citoyenne correspond directement au contenu du texte, sans biais idéologique marqué. Le risque de biais d'opposition est faible car l'absence de votes contre indique une adhésion majoritaire à l'objectif."
+    }
+  },
+  {
+    "scrutinId": "cml2ga7guh81kijv5ist7yyz2",
+    "order": 15,
+    "currentQuestion": "Faut-il rendre gratuits les parkings des hôpitaux publics ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à garantir la gratuité des parkings des hôpitaux publics pour les patients, les visiteurs et les personnels sur leur temps de travail (première lecture).",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "SANTE",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "medium",
+      "questionQuality": "good",
+      "issues": [
+        "Le vote des députés pourrait être influencé par des considérations budgétaires locales plutôt que par une opposition idéologique claire à la gratuité.",
+        "L'axe 'economy' est pertinent, mais la polarité (-1 = POUR = interventionniste) pourrait être contre-intuitive pour certains citoyens, car la gratuité des parkings est souvent perçue comme une mesure sociale (progressiste) plutôt qu'interventionniste au sens économique strict."
+      ],
+      "suggestedQuestion": "Faut-il financer la gratuité des parkings des hôpitaux publics par des fonds publics, au détriment d'autres dépenses hospitalières ?",
+      "reasoning": "La question est claire et alignée sur l'axe proposé, mais le risque de biais existe car certains députés pourraient voter contre pour des raisons budgétaires locales plutôt qu'idéologiques. La polarité est cohérente avec l'axe 'economy', mais la mesure est aussi sociale, ce qui pourrait brouiller la perception citoyenne."
+    }
+  },
+  {
+    "scrutinId": "cml2g8olafu9xijv5he1w3x8m",
+    "order": 16,
+    "currentQuestion": "Faut-il réparer le préjudice des personnes condamnées pour homosexualité ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi portant réparation des personnes condamnées pour homosexualité entre 1945 et 1982 (deuxième lecture).",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "INSTITUTIONS",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "low",
+      "questionQuality": "good",
+      "issues": [],
+      "suggestedQuestion": "Faut-il réparer les injustices subies par les personnes condamnées pour homosexualité entre 1945 et 1982 ?",
+      "reasoning": "La question actuelle est bien formulée et couvre l'idée générale sans biais idéologique marqué. L'unanimité du vote réduit le risque de biais d'opposition. La polarité proposée (1 = progressiste) est cohérente avec le consensus sociétal sur ce sujet."
+    }
+  },
+  {
+    "scrutinId": "cml2ga5udh70cijv5nnwofs2z",
+    "order": 17,
+    "currentQuestion": "Faut-il mettre fin au devoir conjugal ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à mettre fin au devoir conjugal (première lecture).",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "SECURITE_JUSTICE",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "low",
+      "questionQuality": "good",
+      "issues": [],
+      "suggestedQuestion": "Faut-il supprimer l'obligation légale pour les époux d'avoir des relations sexuelles (devoir conjugal) ?",
+      "reasoning": "La question est bien formulée et correspond à l'enjeu législatif réel. L'absence de vote contre et la seule abstention suggèrent un consensus large, limitant les biais d'opposition. L'axe society/progressiste-conservateur est parfaitement adapté à ce sujet."
+    }
+  },
+  {
+    "scrutinId": "cml2g18su6kgyijv54xpm5pmc",
+    "order": 18,
+    "currentQuestion": "Faut-il élargir la définition pénale du viol et des agressions sexuelles ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi modifiant la définition pénale du viol et des agressions sexuelles (texte de la commission mixte paritaire).",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "SECURITE_JUSTICE",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "low",
+      "questionQuality": "good",
+      "issues": [],
+      "suggestedQuestion": "Faut-il élargir la définition pénale du viol et des agressions sexuelles pour mieux protéger les victimes ?",
+      "reasoning": "La question actuelle est précise et alignée sur l'axe society (progressiste vs conservateur). Le risque de biais d'opposition est faible car le texte est clairement progressiste (élargissement des définitions pénales). La formulation est adaptée à une boussole politique."
+    }
+  },
+  {
+    "scrutinId": "cml2g8oy3fuhnijv54sag7xra",
+    "order": 19,
+    "currentQuestion": "Faut-il reconnaître le préjudice des personnes condamnées pour avortement ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à reconnaître le préjudice subi par les personnes condamnées sur le fondement de la législation pénalisant l'avortement, et par toutes les femmes, avant la loi n° 75-17 du 17 janvier 1975 relative à l'interruption volontaire de grossesse (première lecture).",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "INSTITUTIONS",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "low",
+      "questionQuality": "good",
+      "issues": [],
+      "suggestedQuestion": "Faut-il reconnaître le préjudice des personnes condamnées pour avortement avant 1975 ?",
+      "reasoning": "La question est précise et alignée sur l'axe society (progressiste vs conservateur). L'unanimité des députés réduit le risque de biais d'opposition. Le contexte historique et symbolique est bien intégré, sans ambiguïté idéologique."
+    }
+  },
+  {
+    "scrutinId": "cml2g8dhdfk1oijv5g1yco48y",
+    "order": 20,
+    "currentQuestion": "Faut-il prendre des mesures d'urgence contre la vie chère en outre-mer ?",
+    "scrutinTitle": "l'ensemble de la proposition de loi visant à prendre des mesures d'urgence contre la vie chère en outre-mer dans le secteur des services (première lecture).",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "voteResult": "ADOPTED",
+    "analysis": {
+      "ideologicalClarity": "clear",
+      "oppositionBiasRisk": "low",
+      "questionQuality": "good",
+      "issues": [],
+      "suggestedQuestion": "Faut-il prendre des mesures d'urgence contre la vie chère en outre-mer, notamment dans le secteur des services ?",
+      "reasoning": "Le vote est unanime (85 pour, 0 contre) avec des abstentions, ce qui suggère un consensus large sur l'idée générale. L'axe economy est bien aligné avec une polarité interventionniste (-1), reflétant une mesure étatique. La question actuelle est précise et évite les biais."
+    }
+  }
+]
