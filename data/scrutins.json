@@ -338,5 +338,515 @@
       "contre": 0,
       "abstention": 13
     }
+  },
+  {
+    "scrutinId": "cml2fuk8s0uvmijv5quhpa9ce",
+    "order": 21,
+    "tier": "core",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il taxer les superprofits des entreprises énergétiques ?",
+    "officialTitle": "l'amendement de n° 2520 de M. Coquerel et les amendements identiques suivants à l'article 15 (examen prioritaire) du projet de loi de finances pour 2025 (première lecture).",
+    "summary": "En 2024, les entreprises énergétiques ont réalisé des profits exceptionnels en raison de la crise énergétique. Cet amendement propose d'instaurer une taxe temporaire sur ces superprofits pour financer des mesures sociales. Voter POUR signifie soutenir une redistribution des richesses vers les ménages et une régulation accrue des secteurs en crise. Voter CONTRE signifie privilégier la liberté économique des entreprises et éviter une intervention fiscale ciblée.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 118,
+      "contre": 115,
+      "abstention": 0
+    }
+  },
+  {
+    "scrutinId": "cml2funr10zw7ijv5rsegcmi0",
+    "order": 22,
+    "tier": "core",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "INSTITUTIONS",
+    "question": "Faut-il supprimer la prime majoritaire aux élections municipales ?",
+    "officialTitle": "l'amendement n° 4 de M. Fabrice Brun et les amendements identiques suivants à l'article 5 de la proposition de loi visant à harmoniser le mode de scrutin aux élections municipales afin de garantir la vitalité démocratique, la cohésion municipale et la parité (deuxième lecture).",
+    "summary": "Actuellement, les listes arrivées en tête aux municipales obtiennent 50 % des sièges au conseil municipal. Cet amendement propose de supprimer cette prime pour un scrutin proportionnel intégral. Voter POUR signifie soutenir une représentation plus équitable des forces politiques, tandis que voter CONTRE craint une fragmentation des conseils municipaux et une difficulté à gouverner.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 142,
+      "contre": 141,
+      "abstention": 1
+    }
+  },
+  {
+    "scrutinId": "cml2g7cu7e6obijv5ak5mcptn",
+    "order": 23,
+    "tier": "core",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "SANTE",
+    "question": "Faut-il rétablir la prise en charge intégrale des lunettes par l'Assurance maladie ?",
+    "officialTitle": "l'amendement de rétablissement n° 36 de M. Le Gac à l'article 9 septies (supprimé) du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+    "summary": "En 2025, les lunettes ne sont pas remboursées à 100% par l'Assurance maladie, laissant les patients payer une partie importante du coût. Cet amendement propose de rétablir un remboursement intégral pour les lunettes, comme c'était le cas avant 2015. Voter POUR signifie soutenir un accès facilité aux soins optiques pour tous, notamment les plus modestes. Voter CONTRE signifie privilégier la maîtrise des dépenses de santé ou une approche ciblée des aides.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 110,
+      "contre": 110,
+      "abstention": 3
+    }
+  },
+  {
+    "scrutinId": "cml2gbz8fiup4ijv5cqbwaym7",
+    "order": 24,
+    "tier": "core",
+    "axis": "society",
+    "polarity": 1,
+    "theme": "AFFAIRES_ETRANGERES_DEFENSE",
+    "question": "Faut-il augmenter l'aide militaire et financière à l'Ukraine ?",
+    "officialTitle": "l'amendement n° 33 de M. Ciotti et les amendements identiques suivants à l'article unique de la proposition de résolution européenne appelant au renforcement du soutien à l'Ukraine.",
+    "summary": "L'Ukraine reçoit déjà une aide militaire et financière de l'UE et de ses États membres pour faire face à l'invasion russe. Cet amendement proposait d'accroître cette aide. Voter POUR signifie soutenir un engagement accru de la France pour aider l'Ukraine. Voter CONTRE signifie privilégier une approche plus prudente ou une réduction de cet engagement.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 119,
+      "contre": 122,
+      "abstention": 4
+    }
+  },
+  {
+    "scrutinId": "cml2fu8jo0judijv5t7xrmlly",
+    "order": 25,
+    "tier": "core",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "LOGEMENT_URBANISME",
+    "question": "L'Etat doit-il augmenter les dépenses publiques pour financer des logements sociaux ?",
+    "officialTitle": "l'amendement n° 1791 de M. Philippe Brun à l'article 11 (examen prioritaire) du projet de loi de finances pour 2025 (première lecture).",
+    "summary": "En 2024, la France compte environ 300 000 personnes sans abri selon la Fondation Abbé Pierre. Cet amendement proposait d'augmenter le budget de l'État pour construire davantage de logements sociaux. Voter POUR signifie soutenir une politique publique plus interventionniste pour répondre à la crise du logement. Voter CONTRE signifie privilégier une approche moins coûteuse pour l'État, en laissant davantage le marché répondre aux besoins.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 114,
+      "contre": 122,
+      "abstention": 0
+    }
+  },
+  {
+    "scrutinId": "cml2g0cm45vxrijv5bqg2n2lq",
+    "order": 26,
+    "tier": "core",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "ENVIRONNEMENT_ENERGIE",
+    "question": "Faut-il supprimer l'avantage fiscal pour les véhicules de société polluants ?",
+    "officialTitle": "l'amendement n° 3465 de M. Henriet et l'amendement identique suivant après l'article 13 du projet de loi de finances pour 2025 (première lecture).",
+    "summary": "En 2024, les entreprises bénéficient d'avantages fiscaux pour l'achat de véhicules polluants. Cet amendement propose de supprimer ces avantages pour les véhicules émettant plus de 130g de CO2/km. Voter POUR signifie soutenir une politique environnementale plus stricte, tandis que voter CONTRE signifie préserver les aides aux entreprises pour ces véhicules.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 122,
+      "contre": 120,
+      "abstention": 6
+    }
+  },
+  {
+    "scrutinId": "cml2g7f3teb5mijv5xiiinpod",
+    "order": 27,
+    "tier": "core",
+    "axis": "society",
+    "polarity": -1,
+    "theme": "SANTE",
+    "question": "Faut-il limiter les remboursements de soins aux étrangers en situation irrégulière ?",
+    "officialTitle": "l'amendement n° 235 de Mme Runel et l'amendement identique suivant à l'article 11 ter (supprimé) du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+    "summary": "En France, les étrangers en situation irrégulière bénéficient actuellement de l'accès aux soins remboursés par l'Assurance maladie. Cet amendement proposait de restreindre ces remboursements pour certains soins. Voter POUR signifie soutenir une réduction des dépenses publiques de santé pour cette population, souvent pour des raisons budgétaires ou de contrôle de l'immigration. Voter CONTRE signifie défendre l'accès universel aux soins, même pour les sans-papiers, par principe de solidarité ou de santé publique.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 117,
+      "contre": 120,
+      "abstention": 6
+    }
+  },
+  {
+    "scrutinId": "cml2fxucr3weyijv51pozp3ds",
+    "order": 28,
+    "tier": "core",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il simplifier les démarches administratives pour les entreprises ?",
+    "officialTitle": "l’article 15 (examen prioritaire) du projet de loi de simplification de la vie économique (première lecture).",
+    "summary": "En 2025, 30% des entreprises déclarent perdre du temps avec des formalités administratives complexes. Ce texte propose de réduire les étapes et documents obligatoires pour créer ou gérer une entreprise. Voter POUR signifie soutenir une économie plus fluide, mais certains craignent une baisse des contrôles. Voter CONTRE craint une perte de protection pour les salariés ou les consommateurs.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 105,
+      "contre": 97,
+      "abstention": 0
+    }
+  },
+  {
+    "scrutinId": "cml2g1e8g6tioijv51scm7mm8",
+    "order": 29,
+    "tier": "core",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il réduire de 10% les subventions aux associations ?",
+    "officialTitle": "l'amendement n° 2169 de Mme Lejeune après l'article 2 du projet de loi de finances pour 2026 (première lecture).",
+    "summary": "En 2025, l'État finance des associations à hauteur de plusieurs milliards d'euros par an. Cet amendement propose de diminuer de 10% ces subventions. Voter POUR signifie soutenir une baisse des dépenses publiques et une réduction du soutien aux associations. Voter CONTRE signifie défendre le maintien du financement public des associations.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 164,
+      "contre": 153,
+      "abstention": 3
+    }
+  },
+  {
+    "scrutinId": "cml2g5aygbmo6ijv5p0cpyknj",
+    "order": 30,
+    "tier": "core",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "LOGEMENT_URBANISME",
+    "question": "Faut-il supprimer l'avantage fiscal pour les résidences secondaires ?",
+    "officialTitle": "l'amendement n° 576 de Mme D'Intorni après l'article 21 du projet de loi de finances pour 2026 (première lecture).",
+    "summary": "En 2025, environ 3,5 millions de logements en France sont des résidences secondaires, souvent concentrées dans des zones touristiques où les prix de l'immobilier sont élevés. Cet amendement proposait de retirer l'exonération de taxe d'habitation pour ces logements. Voter POUR signifie soutenir une réduction des inégalités territoriales et fiscales, tandis que voter CONTRE signifie préserver le pouvoir d'achat des propriétaires de résidences secondaires.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 111,
+      "contre": 120,
+      "abstention": 2
+    }
+  },
+  {
+    "scrutinId": "cml2fu76w0ixuijv5krana3wv",
+    "order": 31,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il supprimer une niche fiscale pour les entreprises ?",
+    "officialTitle": "l'amendement n° 3250 de Mme Simonnet à l'article 11 (examen prioritaire) du projet de loi de finances pour 2025 (première lecture).",
+    "summary": "En 2024, certaines entreprises bénéficient d'avantages fiscaux spécifiques. Cet amendement propose de retirer une de ces niches pour augmenter les recettes de l'État. Voter POUR signifie soutenir une réduction des dépenses fiscales pour l'État, ce que certains jugent nécessaire pour équilibrer le budget. Voter CONTRE signifie maintenir ces avantages pour les entreprises, ce que certains défendent pour soutenir l'économie.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 113,
+      "contre": 113,
+      "abstention": 0
+    }
+  },
+  {
+    "scrutinId": "cml2g79kne2cqijv5hxpm93ug",
+    "order": 32,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "SANTE",
+    "question": "Faut-il plafonner les remboursements de soins par l'Assurance maladie ?",
+    "officialTitle": "l'amendement n° 452 de Mme Leboucher à l'article 5 du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+    "summary": "En 2025, l'Assurance maladie rembourse une partie des soins selon des tarifs fixés. Cet amendement proposait de limiter le montant maximal remboursé pour certains soins. Voter POUR signifie limiter les dépenses publiques de santé, ce qui peut réduire les inégalités de remboursement mais aussi limiter l'accès aux soins pour les plus malades. Voter CONTRE signifie maintenir le système actuel de remboursement intégral, garantissant un accès universel aux soins.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 122,
+      "contre": 123,
+      "abstention": 1
+    }
+  },
+  {
+    "scrutinId": "cml2g78hie10aijv5zqhl37oy",
+    "order": 33,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il augmenter les cotisations sociales des entreprises ?",
+    "officialTitle": "l'amendement n° 77 de M. Davi et l'amendement identique suivant à l'article 5 du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+    "summary": "En 2025, les entreprises françaises financent une partie de la protection sociale via des cotisations. Cet amendement proposait d'augmenter ces cotisations pour les entreprises. Voter POUR signifie soutenir un financement accru de la sécurité sociale par les entreprises, ce qui pourrait améliorer les prestations sociales. Voter CONTRE signifie refuser cette hausse, pour éviter d'alourdir les charges des entreprises.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 106,
+      "contre": 107,
+      "abstention": 2
+    }
+  },
+  {
+    "scrutinId": "cml2g7kytejf7ijv5zyvp5zx1",
+    "order": 34,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il supprimer la hausse des cotisations sociales pour les indépendants ?",
+    "officialTitle": "l'amendement n° 177 de M. Monnet et les amendements identiques suivants de suppression de l'article 7 du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+    "summary": "En 2025, les cotisations sociales des indépendants devaient augmenter pour financer la sécurité sociale. Cet amendement proposait de supprimer cette hausse. Voter POUR signifie soutenir une baisse des charges pour les indépendants, ce qui peut les aider économiquement. Voter CONTRE signifie maintenir le financement de la sécurité sociale, mais alourdir les charges des indépendants.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 139,
+      "contre": 145,
+      "abstention": 0
+    }
+  },
+  {
+    "scrutinId": "cml2g5atmbmhkijv5saxfmz09",
+    "order": 35,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "L'État doit-il supprimer des niches fiscales pour les entreprises ?",
+    "officialTitle": "l'amendement n° 584 (rect.) de M. Mathiasin et les amendements identiques suivants après l'article 21 du projet de loi de finances pour 2026 (première lecture).",
+    "summary": "En 2025, l'État français accorde des milliards d'euros de réductions d'impôts aux entreprises via des dispositifs fiscaux spécifiques. Cet amendement proposait de supprimer certaines de ces niches pour augmenter les recettes publiques. Voter POUR signifie soutenir une baisse des avantages fiscaux pour les entreprises au nom de l'équilibre budgétaire. Voter CONTRE signifie défendre le maintien de ces dispositifs pour soutenir l'activité économique.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 115,
+      "contre": 117,
+      "abstention": 3
+    }
+  },
+  {
+    "scrutinId": "cml2fzh3j597oijv5yoqluw5g",
+    "order": 36,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il supprimer l'exonération de cotisations patronales pour les heures supplémentaires ?",
+    "officialTitle": "l'amendement n° 1728 de M. Gernigon après l'article 18 du projet de loi de financement de la sécurité sociale pour 2025 (première lecture).",
+    "summary": "Les heures supplémentaires bénéficient actuellement d'une exonération de cotisations patronales en France. Cet amendement propose de supprimer cette exonération pour augmenter les recettes de la Sécurité sociale. Voter POUR signifie soutenir une mesure visant à financer davantage la protection sociale, souvent soutenue par ceux qui veulent réduire les avantages fiscaux aux entreprises. Voter CONTRE signifie préserver les incitations financières pour les employeurs à recourir aux heures supplémentaires, souvent défendu par les partisans de la flexibilité du travail.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 150,
+      "contre": 147,
+      "abstention": 4
+    }
+  },
+  {
+    "scrutinId": "cml2g3rqr9kphijv5lyin1pzm",
+    "order": 37,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "SANTE",
+    "question": "Faut-il limiter à 30% la part des dépenses de santé remboursées par les mutuelles ?",
+    "officialTitle": "le sous-amendement n° 2669 de M. Christophe à l'amendement n° 1685 de M. Gernigon après l'article 12 du projet de loi de financement de la sécurité sociale pour 2026 (première lecture).",
+    "summary": "En 2025, les mutuelles remboursent en moyenne 20% des dépenses de santé non couvertes par l'Assurance maladie. Ce sous-amendement propose de plafonner leur remboursement à 30% du reste à charge. Voter POUR signifie soutenir un meilleur contrôle des dépenses privées pour équilibrer le système de santé. Voter CONTRE signifie craindre une augmentation des frais pour les patients ou une baisse de qualité des soins.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 127,
+      "contre": 125,
+      "abstention": 4
+    }
+  },
+  {
+    "scrutinId": "cml2g43bia17qijv55qpec7u8",
+    "order": 38,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il supprimer les exonérations de cotisations sociales pour les hauts revenus ?",
+    "officialTitle": "l'amendement n° 757 de M. Viry et les amendements identiques suivants après l'article 28 du projet de loi de financement de la sécurité sociale pour 2026 (première lecture).",
+    "summary": "En 2025, les exonérations de cotisations sociales pour les hauts revenus représentent un coût estimé à plusieurs milliards d'euros pour les finances publiques. Cet amendement proposait de les supprimer pour les revenus dépassant un certain seuil. Voter POUR signifie soutenir une réduction des inégalités fiscales et un renforcement des recettes de la Sécurité sociale. Voter CONTRE signifie défendre le maintien des avantages fiscaux pour les hauts revenus et éviter une baisse des revenus disponibles.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 97,
+      "contre": 97,
+      "abstention": 5
+    }
+  },
+  {
+    "scrutinId": "cml2g1bwg6polijv5d8n0jpw9",
+    "order": 39,
+    "tier": "refine-2",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il supprimer l'exonération de cotisations sociales pour les heures supplémentaires ?",
+    "officialTitle": "l'amendement n° 258 de Mme Thiébault-Martinez après l'article 2 du projet de loi de finances pour 2026 (première lecture).",
+    "summary": "En 2025, les heures supplémentaires bénéficient d'une exonération de cotisations sociales en France. Cet amendement propose de supprimer cette exonération. Voter POUR signifie soutenir une baisse des dépenses publiques pour l'État, tandis que voter CONTRE signifie maintenir un avantage pour les salariés et les entreprises.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 152,
+      "contre": 156,
+      "abstention": 4
+    }
+  },
+  {
+    "scrutinId": "cml2g2hx37tsvijv59t3qqpif",
+    "order": 40,
+    "tier": "refine-2",
+    "axis": "society",
+    "polarity": -1,
+    "theme": "AGRICULTURE_ALIMENTATION",
+    "question": "Faut-il imposer l'étiquetage systématique de l'origine des denrées alimentaires ?",
+    "officialTitle": "l'amendement n° 9 de Mme Laporte à l'article 1er bis de la proposition de loi visant à rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage (première lecture).",
+    "summary": "En 2025, les consommateurs ne sont pas toujours informés de l'origine des produits alimentaires achetés. Cet amendement propose d'obliger les producteurs à indiquer systématiquement cette origine sur les étiquettes. Voter POUR signifie soutenir une transparence accrue pour les consommateurs, tandis que voter CONTRE peut refléter des craintes sur les coûts supplémentaires pour les entreprises ou la complexité administrative.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 151,
+      "contre": 153,
+      "abstention": 6
+    }
+  },
+  {
+    "scrutinId": "cml2fx9bq3dfuijv583eb98gw",
+    "order": 41,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "SANTE",
+    "question": "Faut-il supprimer la prise en charge de certains soins par l'Assurance maladie ?",
+    "officialTitle": "l'amendement de supression n° 249 de Mme Bonnet et les amendements identiques suivants à l'article 6 du projet de loi de financement de la sécurité sociale pour 2025 (première lecture).",
+    "summary": "En 2025, l'Assurance maladie rembourse certains soins de santé. Cet amendement propose de retirer cette prise en charge pour certains d'entre eux. Voter POUR signifie soutenir une réduction des dépenses publiques de santé, arguant d'un besoin de maîtrise des coûts. Voter CONTRE signifie défendre le maintien du système actuel, pour garantir l'accès aux soins.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 170,
+      "contre": 162,
+      "abstention": 1
+    }
+  },
+  {
+    "scrutinId": "cml2g5zw0cgqzijv5auufgdqn",
+    "order": 42,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il augmenter les taxes sur les bénéfices des grandes entreprises ?",
+    "officialTitle": "l'amendement n° 3417 de M. Sansu et les amendements identiques suivants à l'article 31 du projet de loi de finances pour 2026 (première lecture).",
+    "summary": "Les grandes entreprises réalisent des profits records en France. Cet amendement propose de majorer leur impôt sur les sociétés. Voter POUR signifie soutenir une fiscalité plus lourde pour les grands groupes, souvent pour financer d'autres dépenses. Voter CONTRE signifie privilégier une fiscalité stable pour les entreprises, afin de préserver leur compétitivité.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 105,
+      "contre": 102,
+      "abstention": 3
+    }
+  },
+  {
+    "scrutinId": "cml2g2iqb7v2tijv54h9y4f9u",
+    "order": 43,
+    "tier": "refine-3",
+    "axis": "society",
+    "polarity": -1,
+    "theme": "AGRICULTURE_ALIMENTATION",
+    "question": "Faut-il imposer l'étiquetage systématique de l'origine des denrées alimentaires ?",
+    "officialTitle": "l'article 2 de la proposition de loi visant à rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage (première lecture).",
+    "summary": "En France, les produits alimentaires transformés ne précisent pas toujours leur origine géographique. Cette proposition de loi vise à rendre obligatoire l'affichage clair de l'origine sur tous les emballages. Voter POUR signifie soutenir une transparence accrue pour les consommateurs, souvent défendue par les défenseurs de la souveraineté alimentaire et des circuits courts. Voter CONTRE peut refléter des craintes sur les coûts pour les producteurs ou des difficultés pratiques d'application.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 149,
+      "contre": 151,
+      "abstention": 7
+    }
+  },
+  {
+    "scrutinId": "cml2g61sockj9ijv575uc91z7",
+    "order": 44,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il supprimer l'avantage fiscal pour les entreprises installées en zones franches urbaines ?",
+    "officialTitle": "l'amendement n° 1128 de M. Raux à l'article 36 du projet de loi de finances pour 2026 (première lecture).",
+    "summary": "Les zones franches urbaines (ZFU) offrent depuis 20 ans des exonérations fiscales aux entreprises s'y installant pour relancer l'emploi local. Cet amendement propose de retirer cet avantage fiscal pour les nouvelles entreprises à partir de 2026. Voter POUR signifie soutenir une réduction des dépenses publiques pour les entreprises, arguant que ces zones n'ont plus besoin d'aides. Voter CONTRE signifie maintenir l'incitation fiscale pour soutenir l'emploi dans ces territoires.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 113,
+      "contre": 109,
+      "abstention": 3
+    }
+  },
+  {
+    "scrutinId": "cml2g59n1bkz9ijv5fremha82",
+    "order": 45,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "Faut-il augmenter les taxes sur les grandes surfaces alimentaires ?",
+    "officialTitle": "l'amendement n° 1436 de Mme Blin après l'article 21 du projet de loi de finances pour 2026 (première lecture).",
+    "summary": "Les grandes surfaces alimentaires réalisent des marges élevées sur certains produits. Cet amendement propose de majorer leurs taxes de 2% pour financer des aides aux petits commerces. Voter POUR signifie soutenir une redistribution vers les petits commerces au détriment des grandes enseignes. Voter CONTRE signifie refuser cette taxation supplémentaire pour préserver la compétitivité des grandes surfaces.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 118,
+      "contre": 113,
+      "abstention": 4
+    }
+  },
+  {
+    "scrutinId": "cml2g3ix09aazijv5z17p4yd2",
+    "order": 46,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "SANTE",
+    "question": "Faut-il étendre la prise en charge des soins dentaires par l'Assurance maladie ?",
+    "officialTitle": "l'amendement n° 388 de M. Le Gac après l'article 9 du projet de loi de financement de la sécurité sociale pour 2026 (première lecture).",
+    "summary": "En 2025, une partie des soins dentaires n'est pas remboursée par l'Assurance maladie. Cet amendement propose d'élargir cette prise en charge pour certains soins. Voter POUR signifie soutenir un meilleur accès aux soins dentaires pour les patients. Voter CONTRE signifie privilégier le maintien des remboursements actuels.",
+    "result": "adopte",
+    "voteCount": {
+      "pour": 100,
+      "contre": 95,
+      "abstention": 3
+    }
+  },
+  {
+    "scrutinId": "cml2g33l68p5gijv5fnykogmd",
+    "order": 47,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "SANTE",
+    "question": "Faut-il limiter le remboursement des médicaments non génériques ?",
+    "officialTitle": "le sous-amendement n° 2569 de M. Bazin à l'amendement n° 2563 de Mme Galliard-Minier à l'article 5 du projet de loi de financement de la sécurité sociale pour 2026 (première lecture).",
+    "summary": "En 2025, l'Assurance maladie rembourse encore une partie des médicaments non génériques. Ce sous-amendement proposait de réduire ce remboursement pour encourager l'usage des génériques, moins chers. Voter POUR signifie soutenir une baisse des dépenses de santé pour réduire le déficit, tandis que voter CONTRE signifie privilégier l'accès aux médicaments innovants, même plus coûteux.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 125,
+      "contre": 132,
+      "abstention": 4
+    }
+  },
+  {
+    "scrutinId": "cml2fueuk0qmtijv5w9137ld2",
+    "order": 48,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": -1,
+    "theme": "ECONOMIE_BUDGET",
+    "question": "L'Etat doit-il augmenter les impôts sur les grandes entreprises ?",
+    "officialTitle": "l'article 11 (examen prioritaire) du projet de loi de finances pour 2025 (première lecture).",
+    "summary": "En 2024, les grandes entreprises françaises réalisent des bénéfices élevés. Le projet de loi propose de majorer leur impôt pour financer des services publics. Voter POUR signifie soutenir une fiscalité plus redistributive, mais certains craignent un frein à l'investissement. Voter CONTRE vise à éviter une hausse des coûts pour les entreprises et les consommateurs.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 113,
+      "contre": 122,
+      "abstention": 1
+    }
+  },
+  {
+    "scrutinId": "cml2g45upa5l4ijv5numa59fa",
+    "order": 49,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "SANTE",
+    "question": "Faut-il exclure les remboursements des médicaments homéopathiques de la Sécurité sociale ?",
+    "officialTitle": "l'amendement n° 697 de Mme Thiébault-Martinez et l'amendement identique suivant à l'article 42 (examen prioritaire) du projet de loi de financement de la sécurité sociale pour 2026 (première lecture).",
+    "summary": "En 2025, la Sécurité sociale rembourse partiellement certains médicaments homéopathiques. Cet amendement propose de supprimer ces remboursements pour économiser des fonds publics. Voter POUR signifie soutenir une réduction des dépenses de santé publiques, souvent pour recentrer les fonds sur des soins plus conventionnels. Voter CONTRE signifie défendre le maintien de ces remboursements, perçus comme un droit pour les patients ou une liberté thérapeutique.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 123,
+      "contre": 128,
+      "abstention": 6
+    }
+  },
+  {
+    "scrutinId": "cml2g7ledek3kijv53h0yqx2x",
+    "order": 50,
+    "tier": "refine-3",
+    "axis": "economy",
+    "polarity": 1,
+    "theme": "SANTE",
+    "question": "Faut-il supprimer la prise en charge des dépassements d'honoraires médicaux par l'assurance maladie ?",
+    "officialTitle": "l'amendement n° 469 de M. Maudet à l'article 7 du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+    "summary": "En 2025, les dépassements d'honoraires des médecins libéraux représentent environ 30% de leurs revenus, partiellement remboursés par l'assurance maladie. Cet amendement propose de supprimer ce remboursement partiel pour réduire les dépenses publiques. Voter POUR signifie réduire les dépenses de santé mais augmenter le reste à charge pour les patients. Voter CONTRE signifie maintenir l'accès aux soins pour les assurés mais maintenir un coût pour la collectivité.",
+    "result": "rejete",
+    "voteCount": {
+      "pour": 141,
+      "contre": 155,
+      "abstention": 0
+    }
   }
 ]
