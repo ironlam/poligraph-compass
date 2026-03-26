@@ -19,18 +19,31 @@ export default function ShareScreen() {
   async function handleShare() {
     try {
       const uri = await captureRef(previewRef, { format: "png", quality: 1 });
-      await Sharing.shareAsync(uri, {
-        mimeType: "image/png",
-        dialogTitle: "Partager ma boussole politique",
-      });
+
+      if (Platform.OS === "web") {
+        // On web, use Web Share API with file if supported, otherwise download
+        const res = await fetch(uri);
+        const blob = await res.blob();
+        const file = new File([blob], "ma-boussole-politique.png", { type: "image/png" });
+
+        if (navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ files: [file] });
+        } else {
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "ma-boussole-politique.png";
+          a.click();
+          URL.revokeObjectURL(a.href);
+        }
+      } else {
+        await Sharing.shareAsync(uri, {
+          mimeType: "image/png",
+          dialogTitle: "Partager ma boussole politique",
+        });
+      }
       track({ name: "result_shared", data: { method: "image" } });
-    } catch (error) {
-      await Share.share({
-        message: shareUrl
-          ? `Découvre ma position politique ! ${shareUrl}`
-          : "Découvre ta position politique sur Ma Boussole Politique !",
-      });
-      track({ name: "result_shared", data: { method: "link" } });
+    } catch {
+      Alert.alert("Erreur", "Impossible de générer l'image.");
     }
   }
 
