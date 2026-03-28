@@ -20,14 +20,16 @@ export default function ShareScreen() {
     try {
       if (Platform.OS === "web") {
         // react-native-view-shot's captureRef calls findNodeHandle which
-        // is unsupported on web. Use html2canvas directly instead.
-        const html2canvas = (await import("html2canvas")).default;
+        // is unsupported on web. Use html-to-image which handles inline
+        // SVGs (the Compass component) natively.
+        const { toBlob } = await import("html-to-image");
         const node = (previewRef.current as unknown as HTMLElement);
         if (!node) throw new Error("Preview ref not ready");
-        const canvas = await html2canvas(node, { useCORS: true, scale: 2 });
-        const blob = await new Promise<Blob>((resolve, reject) =>
-          canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), "image/png")
-        );
+        const blob = await toBlob(node, {
+          pixelRatio: 2,
+          cacheBust: true,
+        });
+        if (!blob) throw new Error("toBlob returned null");
         const file = new File([blob], "ma-boussole-parlementaire.png", { type: "image/png" });
 
         if (navigator.canShare?.({ files: [file] })) {
