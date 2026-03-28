@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuizStore } from "@/lib/store";
 import { track } from "@/lib/analytics";
+import { Logo } from "@/components/Logo";
 
 export default function Home() {
   const router = useRouter();
@@ -17,8 +18,8 @@ export default function Home() {
   return (
     <SafeAreaView className="flex-1 bg-indigo-950">
       <View className="flex-1 items-center justify-center px-8">
-        <Text className="text-5xl mb-4">🧭</Text>
-        <Text className="text-3xl font-bold text-white text-center">
+        <Logo size={120} transparent />
+        <Text className="text-3xl font-bold text-white text-center mt-4">
           Ma Boussole{"\n"}Parlementaire
         </Text>
         <Text className="text-sm text-indigo-400 mt-1">par Poligraph</Text>

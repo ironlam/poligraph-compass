@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="1024" height="1024">
+  <circle cx="100" cy="100" r="97" fill="#0c0820" />
+  <circle cx="100" cy="100" r="89" fill="none" stroke="#312e81" stroke-width="1.5" />
+  <line x1="14" y1="100" x2="186" y2="100" stroke="#312e81" stroke-width="0.7" />
+  <line x1="100" y1="14" x2="100" y2="186" stroke="#312e81" stroke-width="0.7" />
+  <line x1="11" y1="100" x2="20" y2="100" stroke="#4338ca" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="189" y1="100" x2="180" y2="100" stroke="#4338ca" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="100" y1="189" x2="100" y2="180" stroke="#4338ca" stroke-width="2.5" stroke-linecap="round" />
+  <circle cx="64.40" cy="94.62" r="5" fill="#dc2626" opacity="0.85" />
+  <circle cx="70.78" cy="78.98" r="5" fill="#f87171" opacity="0.85" />
+  <circle cx="83.58" cy="67.96" r="5" fill="#e879f9" opacity="0.85" />
+  <circle cx="100.00" cy="64.00" r="5" fill="#a78bfa" opacity="0.85" />
+  <circle cx="116.42" cy="67.96" r="5" fill="#818cf8" opacity="0.85" />
+  <circle cx="129.22" cy="78.98" r="5" fill="#3b82f6" opacity="0.85" />
+  <circle cx="135.60" cy="94.62" r="5" fill="#1d4ed8" opacity="0.85" />
+  <circle cx="48.58" cy="92.23" r="4.5" fill="#dc2626" opacity="0.85" />
+  <circle cx="54.50" cy="74.83" r="4.5" fill="#ef4444" opacity="0.85" />
+  <circle cx="66.09" cy="60.58" r="4.5" fill="#fb7185" opacity="0.85" />
+  <circle cx="81.92" cy="51.25" r="4.5" fill="#e879f9" opacity="0.85" />
+  <circle cx="100.00" cy="48.00" r="4.5" fill="#a78bfa" opacity="0.85" />
+  <circle cx="118.08" cy="51.25" r="4.5" fill="#818cf8" opacity="0.85" />
+  <circle cx="133.91" cy="60.58" r="4.5" fill="#60a5fa" opacity="0.85" />
+  <circle cx="145.50" cy="74.83" r="4.5" fill="#2563eb" opacity="0.85" />
+  <circle cx="151.42" cy="92.23" r="4.5" fill="#1d4ed8" opacity="0.85" />
+  <circle cx="32.76" cy="89.84" r="4" fill="#dc2626" opacity="0.85" />
+  <circle cx="38.31" cy="71.40" r="4" fill="#ef4444" opacity="0.85" />
+  <circle cx="48.80" cy="55.25" r="4" fill="#f87171" opacity="0.85" />
+  <circle cx="63.40" cy="42.69" r="4" fill="#fb7185" opacity="0.85" />
+  <circle cx="80.94" cy="34.73" r="4" fill="#e879f9" opacity="0.85" />
+  <circle cx="100.00" cy="32.00" r="4" fill="#a78bfa" opacity="0.85" />
+  <circle cx="119.06" cy="34.73" r="4" fill="#818cf8" opacity="0.85" />
+  <circle cx="136.60" cy="42.69" r="4" fill="#60a5fa" opacity="0.85" />
+  <circle cx="151.20" cy="55.25" r="4" fill="#3b82f6" opacity="0.85" />
+  <circle cx="161.69" cy="71.40" r="4" fill="#2563eb" opacity="0.85" />
+  <circle cx="167.24" cy="89.84" r="4" fill="#1d4ed8" opacity="0.85" />
+  <polygon points="100,172 93,104 107,104" fill="#6366f1" opacity="0.3" />
+  <polygon points="100,72 93,96 107,96" fill="#f59e0b" />
+  <circle cx="100" cy="100" r="3.5" fill="white" opacity="0.9" />
+</svg>

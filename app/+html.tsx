@@ -14,6 +14,9 @@ export default function Root({ children }: PropsWithChildren) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <link rel="icon" href="/assets/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/assets/icon.png" />
+        <meta name="theme-color" content="#1e1b4b" />
         <ScrollViewStyleReset />
         {umamiUrl && umamiSiteId && (
           <script

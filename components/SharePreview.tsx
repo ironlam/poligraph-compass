@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Switch } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Compass } from "./Compass";
+import { Logo } from "./Logo";
 import { useQuizStore } from "@/lib/store";
 import { getQuadrantLabel } from "@/lib/theme-labels";
 
@@ -26,9 +27,12 @@ export function SharePreview({ captureRef }: Props) {
           colors={["#1e1b4b", "#0f0a2e", "#000000"]}
           style={{ padding: 24, alignItems: "center" }}
         >
-          <Text className="text-sm text-indigo-400 font-semibold mb-4">
-            Ma Boussole Parlementaire
-          </Text>
+          <View className="flex-row items-center gap-2 mb-4">
+            <Logo size={28} />
+            <Text className="text-sm text-indigo-400 font-semibold">
+              Ma Boussole Parlementaire
+            </Text>
+          </View>
 
           <Compass
             userPosition={position}

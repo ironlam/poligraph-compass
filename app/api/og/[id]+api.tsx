@@ -58,8 +58,14 @@ export async function GET(request: Request, { id }: Record<string, string>) {
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 18, color: "#818cf8", fontWeight: 600, marginBottom: 16 }}>
-          Ma Boussole Parlementaire
+        <div style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+          {/* Mini hemicycle dots */}
+          {["#ef4444", "#f472b6", "#c084fc", "#a78bfa", "#818cf8", "#60a5fa", "#2563eb"].map((c) => (
+            <div key={c} style={{ display: "flex", width: 8, height: 8, borderRadius: 4, background: c, marginRight: 3, opacity: 0.9 }} />
+          ))}
+          <div style={{ display: "flex", fontSize: 18, color: "#818cf8", fontWeight: 600, marginLeft: 6 }}>
+            Ma Boussole Parlementaire
+          </div>
         </div>
 
         {/* Compass grid */}
