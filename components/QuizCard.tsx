@@ -1,76 +1,30 @@
 import { useState } from "react";
-import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
-import Animated, {
-  FadeIn,
-  FadeOut,
-  useSharedValue,
-  useAnimatedStyle,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
+import { View, Text, Pressable, ScrollView } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { ThemeBadge } from "./ThemeBadge";
 import { ScrutinBottomSheet } from "./ScrutinBottomSheet";
 import { THEME_LABELS } from "@/lib/theme-labels";
-import type { QuizQuestion, UserAnswer } from "@/lib/types";
+import type { QuizQuestion } from "@/lib/types";
 
 interface Props {
   question: QuizQuestion;
-  onAnswer: (answer: UserAnswer) => void;
 }
 
-const FLASH_COLORS: Record<string, string> = {
-  POUR: "rgba(16, 185, 129, 0.12)",
-  CONTRE: "rgba(239, 68, 68, 0.12)",
-  ABSTENTION: "rgba(156, 163, 175, 0.12)",
-};
-
-export function QuizCard({ question, onAnswer }: Props) {
-  const bgOpacity = useSharedValue(0);
-  const [flashColor, setFlashColor] = useState("transparent");
+export function QuizCard({ question }: Props) {
   const [showContext, setShowContext] = useState(false);
 
   const themeConfig = THEME_LABELS[question.theme] || { label: question.theme, color: "#6366f1" };
   const hasFullContext = question.officialTitle || question.voteCount;
-  // Card shows only the first sentence (context hook), bottom sheet shows the full explanation
   const shortSummary = question.summary?.split(/(?<=[.!?])\s/)[0] || null;
-
-  function handleAnswer(answer: UserAnswer) {
-    const color = FLASH_COLORS[answer] || "transparent";
-    setFlashColor(color);
-    bgOpacity.value = withSequence(
-      withTiming(1, { duration: 150 }),
-      withTiming(0, { duration: 200 })
-    );
-    setTimeout(() => onAnswer(answer), 200);
-  }
-
-  const animatedFlashStyle = useAnimatedStyle(() => ({
-    opacity: bgOpacity.value,
-  }));
 
   return (
     <>
-      {/* Scrollable question card — animates on question change */}
       <Animated.View
         entering={FadeIn.duration(250)}
         exiting={FadeOut.duration(150)}
-        className="flex-1 px-5 pt-4"
+        style={{ flex: 1 }}
       >
-        <View className="flex-1 rounded-2xl shadow-sm overflow-hidden" style={{ backgroundColor: "#FAFAF8" }}>
-          {/* Flash overlay */}
-          <Animated.View
-            style={[
-              animatedFlashStyle,
-              {
-                ...StyleSheet.absoluteFillObject,
-                backgroundColor: flashColor,
-                zIndex: 10,
-              },
-            ]}
-            pointerEvents="none"
-          />
-
-          {/* Scrollable content area */}
+        <View className="flex-1 mx-5 mt-4 rounded-2xl shadow-sm overflow-hidden" style={{ backgroundColor: "#FAFAF8" }}>
           <ScrollView className="flex-1" bounces={false} showsVerticalScrollIndicator={false}>
             {/* Themed header area */}
             <View style={{ backgroundColor: themeConfig.color + "12" }} className="px-5 pt-5 pb-4">
@@ -84,7 +38,7 @@ export function QuizCard({ question, onAnswer }: Props) {
               </Text>
             </View>
 
-            {/* Context area: short hook on card, full explanation in bottom sheet */}
+            {/* Context area */}
             {shortSummary ? (
               <Pressable
                 onPress={() => setShowContext(true)}
@@ -115,52 +69,6 @@ export function QuizCard({ question, onAnswer }: Props) {
         </View>
       </Animated.View>
 
-      {/* Answer buttons — pinned at bottom, outside the animated card */}
-      <View className="px-5 pb-4 pt-3 gap-2">
-        <View className="flex-row gap-2">
-          <Pressable
-            onPress={() => handleAnswer("POUR")}
-            accessibilityRole="button"
-            accessibilityLabel="Pour"
-            className="flex-1 py-3.5 rounded-2xl items-center bg-emerald-600 active:bg-emerald-700"
-            style={{ minHeight: 48 }}
-          >
-            <Text className="text-base font-bold text-white tracking-wide">Pour</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => handleAnswer("CONTRE")}
-            accessibilityRole="button"
-            accessibilityLabel="Contre"
-            className="flex-1 py-3.5 rounded-2xl items-center bg-red-600 active:bg-red-700"
-            style={{ minHeight: 48 }}
-          >
-            <Text className="text-base font-bold text-white tracking-wide">Contre</Text>
-          </Pressable>
-        </View>
-        <View className="flex-row gap-2">
-          <Pressable
-            onPress={() => handleAnswer("ABSTENTION")}
-            accessibilityRole="button"
-            accessibilityLabel="Sans avis"
-            className="flex-1 py-3 rounded-2xl items-center border border-indigo-400/30 active:bg-indigo-900/50"
-            style={{ minHeight: 44 }}
-          >
-            <Text className="text-sm font-semibold text-indigo-300 tracking-wide">Sans avis</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => handleAnswer("SKIP")}
-            accessibilityRole="button"
-            accessibilityLabel="Passer cette question"
-            className="flex-1 py-3 rounded-2xl items-center active:bg-indigo-900/50"
-            style={{ minHeight: 44 }}
-          >
-            <Text className="text-sm text-indigo-400">Passer</Text>
-          </Pressable>
-        </View>
-      </View>
-
-      {/* Bottom sheet — must be outside the card's overflow-hidden container
-          so Modal portals correctly on web */}
       <ScrutinBottomSheet
         question={question}
         visible={showContext}

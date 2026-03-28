@@ -7,6 +7,7 @@ import { useQuizStore } from "@/lib/store";
 import { QuizCard } from "@/components/QuizCard";
 import { ProgressBar } from "@/components/ProgressBar";
 import type { QuizPack, UserAnswer, CompassPosition } from "@/lib/types";
+import { QuizButtons } from "@/components/QuizButtons";
 import { computeCompassPosition } from "@/lib/compass";
 import { track } from "@/lib/analytics";
 import { computePoliticianConcordance, computePartyConcordance, computeMinOverlap, computeScrutinWeights } from "@/lib/concordance";
@@ -183,11 +184,16 @@ export default function Quiz() {
           <ProgressBar current={currentIndex + 1} total={questions.length} light />
         </View>
       </View>
-      <QuizCard
-        key={currentQuestion.scrutinId}
-        question={currentQuestion}
-        onAnswer={handleAnswer}
-      />
+      {/* Card area — fixed container so card animates without shifting buttons */}
+      <View className="flex-1">
+        <QuizCard
+          key={currentQuestion.scrutinId}
+          question={currentQuestion}
+        />
+      </View>
+
+      {/* Buttons — outside QuizCard, never remount on question change */}
+      <QuizButtons onAnswer={handleAnswer} />
     </SafeAreaView>
   );
 }
