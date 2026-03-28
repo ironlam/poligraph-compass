@@ -120,7 +120,10 @@ export function ScrutinBottomSheet({ question, visible, onClose }: Props) {
 
           <Pressable
             onPress={onClose}
+            accessibilityRole="button"
+            accessibilityLabel="Fermer le détail du vote"
             className="mt-4 py-3 bg-gray-100 rounded-2xl items-center active:bg-gray-200"
+            style={{ minHeight: 48 }}
           >
             <Text className="text-sm font-bold text-gray-700">Fermer</Text>
           </Pressable>

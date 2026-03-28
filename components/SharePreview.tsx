@@ -71,6 +71,7 @@ export function SharePreview({ captureRef }: Props) {
         <Switch
           value={showPartiesOnShare}
           onValueChange={toggleShowPartiesOnShare}
+          accessibilityLabel="Afficher les partis proches"
           trackColor={{ false: "#e2e8f0", true: "#818cf8" }}
           thumbColor={showPartiesOnShare ? "#6366f1" : "#f4f4f5"}
         />

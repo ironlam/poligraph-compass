@@ -86,7 +86,12 @@ export function QuizCard({ question, onAnswer }: Props) {
 
             {/* Context area: short hook on card, full explanation in bottom sheet */}
             {shortSummary ? (
-              <Pressable onPress={() => setShowContext(true)} className="mx-4 mt-3 mb-3 bg-white rounded-xl p-3 border border-slate-100">
+              <Pressable
+                onPress={() => setShowContext(true)}
+                accessibilityRole="button"
+                accessibilityLabel="En savoir plus sur ce vote"
+                className="mx-4 mt-3 mb-3 bg-white rounded-xl p-3 border border-slate-100"
+              >
                 <Text className="text-xs text-slate-500 leading-4">
                   {shortSummary}
                 </Text>
@@ -95,7 +100,12 @@ export function QuizCard({ question, onAnswer }: Props) {
                 </Text>
               </Pressable>
             ) : hasFullContext ? (
-              <Pressable onPress={() => setShowContext(true)} className="mx-4 mt-3 mb-3">
+              <Pressable
+                onPress={() => setShowContext(true)}
+                accessibilityRole="button"
+                accessibilityLabel="Comprendre ce vote"
+                className="mx-4 mt-3 mb-3"
+              >
                 <Text className="text-xs text-indigo-500 font-semibold">
                   {"Comprendre ce vote \u2192"}
                 </Text>

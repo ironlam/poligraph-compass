@@ -33,7 +33,12 @@ function Reference({ authors, title, year, onPress }: {
   onPress?: () => void;
 }) {
   return (
-    <Pressable onPress={onPress} className="mb-3">
+    <Pressable
+      onPress={onPress}
+      accessibilityRole={onPress ? "link" : "none"}
+      accessibilityLabel={`${authors}, ${title}, ${year}`}
+      className="mb-3"
+    >
       <Text className="text-xs text-gray-500 leading-4">
         <Text className="font-bold">{authors}</Text>
         {" "}({year}). <Text className={onPress ? "text-indigo-600 underline" : ""}>{title}</Text>
