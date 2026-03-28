@@ -15,7 +15,7 @@ function getQuadrantLabel(x: number, y: number): string {
 
   if (xCenter && yCenter) return "Au centre";
 
-  const xLabel = xCenter ? null : x > 0 ? "Liberalisme economique" : "Intervention de l'Etat";
+  const xLabel = xCenter ? null : x > 0 ? "Libéralisme économique" : "Intervention de l'État";
   const yLabel = yCenter ? null : y > 0 ? "Progressiste" : "Conservateur";
 
   if (xLabel && yLabel) return `${yLabel}, ${xLabel.toLowerCase()}`;
@@ -62,10 +62,10 @@ export default function ChallengePage() {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center px-8">
         <Text className="text-white text-xl font-bold text-center">
-          Ce defi n'existe plus
+          Ce défi n'existe plus
         </Text>
         <Text className="text-indigo-400 text-center mt-3">
-          Le lien a peut-etre expire ou est invalide.
+          Le lien a peut-être expiré ou est invalide.
         </Text>
         <Pressable
           onPress={() => router.replace("/")}
@@ -84,8 +84,8 @@ export default function ChallengePage() {
   return (
     <>
       <Head>
-        <title>On t'a defie ! | Ma Boussole Parlementaire</title>
-        <meta property="og:title" content="On t'a defie ! Decouvre ta position politique" />
+        <title>On t'a défié ! | Ma Boussole Parlementaire</title>
+        <meta property="og:title" content="On t'a défié ! Découvre ta position politique" />
         <meta property="og:description" content="Compare ta boussole parlementaire avec celle de ton ami. Base sur les votes reels au Parlement." />
         <meta property="og:image" content={`https://boussole.poligraph.fr/api/og/${id}`} />
         <meta property="og:type" content="website" />
@@ -94,11 +94,11 @@ export default function ChallengePage() {
       <SafeAreaView className="flex-1 bg-indigo-950">
         <View className="flex-1 items-center justify-center px-8">
           <Text className="text-2xl font-extrabold text-white text-center">
-            On t'a defie !
+            On t'a défié !
           </Text>
           <Text className="text-base text-indigo-300 text-center mt-3 leading-6">
             Quelqu'un veut comparer sa position parlementaire avec la tienne.
-            Fais le quiz et decouvre si vous etes d'accord !
+            Fais le quiz et découvre si vous êtes d'accord !
           </Text>
 
           {/* Challenger's compass (preview) */}
@@ -117,12 +117,12 @@ export default function ChallengePage() {
           <Pressable
             onPress={handleAcceptChallenge}
             accessibilityRole="button"
-            accessibilityLabel="Relever le defi"
+            accessibilityLabel="Relever le défi"
             className="mt-8 bg-amber-500 px-10 py-4 rounded-full active:bg-amber-600"
             style={{ minHeight: 48 }}
           >
             <Text className="text-lg font-bold text-indigo-950">
-              Relever le defi
+              Relever le défi
             </Text>
           </Pressable>
 

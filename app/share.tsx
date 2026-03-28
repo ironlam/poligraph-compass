@@ -63,7 +63,7 @@ export default function ShareScreen() {
   async function handleChallenge() {
     if (challengeUrl) {
       await Share.share({
-        message: `Je te defie de faire le quiz parlementaire ! Compare ta position avec la mienne : ${challengeUrl}`,
+        message: `Je te défie de faire le quiz parlementaire ! Compare ta position avec la mienne : ${challengeUrl}`,
       });
       track({ name: "challenge_created" });
     }
@@ -105,7 +105,7 @@ export default function ShareScreen() {
               onPress={handleChallenge}
               className="py-4 bg-indigo-500 rounded-xl items-center active:bg-indigo-600"
             >
-              <Text className="text-white font-bold">Defier un ami</Text>
+              <Text className="text-white font-bold">Défier un ami</Text>
             </Pressable>
           )}
 

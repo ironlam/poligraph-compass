@@ -95,7 +95,7 @@ export default function DeputyComparisonScreen() {
         {/* Back button */}
         <Pressable onPress={() => router.back()} className="px-6 pt-4 mb-2">
           <Text className="text-sm text-indigo-500 font-semibold">
-            {"<-"} Resultats
+            {"<-"} Résultats
           </Text>
         </Pressable>
 
@@ -103,7 +103,7 @@ export default function DeputyComparisonScreen() {
         <View className="px-6">
           <View className="bg-indigo-500 self-start px-3 py-1 rounded-full mb-3">
             <Text className="text-xs font-bold text-white">
-              Votre depute(e)
+              Votre député(e)
             </Text>
           </View>
         </View>
@@ -166,7 +166,7 @@ export default function DeputyComparisonScreen() {
           </Text>
           {disagreeCount > 0 && (
             <Text className="text-sm text-gray-500 mt-1">
-              En desaccord sur{" "}
+              En désaccord sur{" "}
               <Text className="font-bold">{disagreeCount} votes</Text>.
             </Text>
           )}
@@ -189,7 +189,7 @@ export default function DeputyComparisonScreen() {
         {/* Theme breakdown */}
         <View className="px-6 mt-6">
           <Text className="text-lg font-extrabold text-gray-900 mb-4">
-            Par theme
+            Par thème
           </Text>
           <ThemeBreakdown themes={themes} />
         </View>

@@ -38,7 +38,7 @@ export function DeputyPinnedCard({ entry }: Props) {
     >
       {/* Badge */}
       <View className="bg-indigo-500 self-start px-2.5 py-0.5 rounded-full mb-3">
-        <Text className="text-xs font-bold text-white">Votre depute(e)</Text>
+        <Text className="text-xs font-bold text-white">Votre député(e)</Text>
       </View>
 
       <View className="flex-row items-center gap-4">
@@ -88,7 +88,7 @@ export function DeputyPinnedCard({ entry }: Props) {
       </View>
 
       <Text className="text-xs text-indigo-400 text-center mt-3 font-semibold">
-        Voir la comparaison detaillee
+        Voir la comparaison détaillée
       </Text>
     </Pressable>
   );

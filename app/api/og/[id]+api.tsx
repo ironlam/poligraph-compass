@@ -19,7 +19,7 @@ function getQuadrantLabel(x: number, y: number): string {
 
   if (xCenter && yCenter) return "Au centre";
 
-  const xLabel = xCenter ? null : x > 0 ? "Liberalisme economique" : "Intervention de l'Etat";
+  const xLabel = xCenter ? null : x > 0 ? "Libéralisme économique" : "Intervention de l'État";
   const yLabel = yCenter ? null : y > 0 ? "Progressiste" : "Conservateur";
 
   if (xLabel && yLabel) return `${yLabel}, ${xLabel.toLowerCase()}`;
@@ -102,8 +102,8 @@ export async function GET(request: Request, { id }: Record<string, string>) {
 
         {/* Axis labels */}
         <div style={{ display: "flex", gap: 40, marginTop: 8 }}>
-          <div style={{ display: "flex", fontSize: 11, color: "#94a3b8" }}>{"← Etat"}</div>
-          <div style={{ display: "flex", fontSize: 11, color: "#94a3b8" }}>{"Liberalisme →"}</div>
+          <div style={{ display: "flex", fontSize: 11, color: "#94a3b8" }}>{"← État"}</div>
+          <div style={{ display: "flex", fontSize: 11, color: "#94a3b8" }}>{"Libéralisme →"}</div>
         </div>
 
         {/* Quadrant label */}
@@ -122,7 +122,7 @@ export async function GET(request: Request, { id }: Record<string, string>) {
 
         {/* CTA */}
         <div style={{ display: "flex", fontSize: 22, color: "#c7d2fe", fontWeight: 700, marginTop: 28 }}>
-          Et toi, tu es ou ?
+          Et toi, tu es où ?
         </div>
         <div style={{ display: "flex", fontSize: 13, color: "#6366f1", marginTop: 6 }}>
           boussole.poligraph.fr

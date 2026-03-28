@@ -34,7 +34,7 @@ export default function SharedResult() {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center px-8">
         <Text className="text-white text-xl font-bold text-center">
-          Ce resultat n'existe plus
+          Ce résultat n'existe plus
         </Text>
         <Pressable
           onPress={handleStartQuiz}
@@ -51,7 +51,7 @@ export default function SharedResult() {
       <Head>
         <title>Ma Boussole Parlementaire</title>
         <meta property="og:title" content="Ma Boussole Parlementaire" />
-        <meta property="og:description" content={`Decouvre ma position politique, d'apres ${data.answeredCount} votes reels au Parlement.`} />
+        <meta property="og:description" content={`Découvre ma position politique, d'après ${data.answeredCount} votes réels au Parlement.`} />
         <meta property="og:image" content={`https://boussole.poligraph.fr/api/og/${id}`} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -59,7 +59,7 @@ export default function SharedResult() {
       <SafeAreaView className="flex-1 bg-white">
         <View className="flex-1 items-center justify-center px-8">
           <Text className="text-xl font-bold text-gray-900 mb-6">
-            Resultat partage
+            Résultat partagé
           </Text>
           <Compass
             userPosition={data.position}
@@ -78,14 +78,14 @@ export default function SharedResult() {
             })) : []}
           />
           <Text className="text-gray-500 mt-4 text-center">
-            D'apres {data.answeredCount} votes reels au Parlement
+            D'après {data.answeredCount} votes réels au Parlement
           </Text>
           <Pressable
             onPress={handleStartQuiz}
             className="mt-8 bg-indigo-500 px-8 py-4 rounded-full active:bg-indigo-600"
           >
             <Text className="text-white font-bold text-base">
-              Et toi, tu es ou ? Fais le test
+              Et toi, tu es où ? Fais le test
             </Text>
           </Pressable>
         </View>

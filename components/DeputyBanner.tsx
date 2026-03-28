@@ -35,7 +35,7 @@ export function DeputyBanner() {
       persistDeputyStore();
       track({ name: "deputy_searched", data: { hasResult: true } });
     } else {
-      setError("Aucun depute trouve pour ce code postal");
+      setError("Aucun député trouvé pour ce code postal");
       track({ name: "deputy_searched", data: { hasResult: false } });
     }
   }
@@ -58,7 +58,7 @@ export function DeputyBanner() {
         <View className="flex-row items-center justify-between">
           <View className="flex-1">
             <Text className="text-xs text-indigo-400 font-semibold uppercase tracking-wide">
-              Votre depute(e)
+              Votre député(e)
             </Text>
             <Text className="text-base font-bold text-gray-900 mt-1">
               {selectedDeputy.fullName}
@@ -83,7 +83,7 @@ export function DeputyBanner() {
   return (
     <View className="mx-6 mt-6 p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
       <Text className="text-sm font-bold text-gray-900">
-        Decouvrez comment votre depute a vote
+        Découvrez comment votre député a voté
       </Text>
       <Text className="text-xs text-gray-400 mt-1 mb-3">
         Entrez votre code postal pour le trouver
@@ -119,7 +119,7 @@ export function DeputyBanner() {
       {selectedDeputy && isEditing && (
         <Pressable onPress={handleClear} className="mt-2">
           <Text className="text-xs text-gray-400 underline">
-            Supprimer la selection
+            Supprimer la sélection
           </Text>
         </Pressable>
       )}
