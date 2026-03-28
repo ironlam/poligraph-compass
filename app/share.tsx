@@ -88,7 +88,10 @@ export default function ShareScreen() {
         <View className="mx-6 mt-8 gap-3">
           <Pressable
             onPress={handleShare}
+            accessibilityRole="button"
+            accessibilityLabel="Partager l'image de mes résultats"
             className="py-4 bg-gray-900 rounded-xl items-center active:bg-gray-800"
+            style={{ minHeight: 48 }}
           >
             <Text className="text-white font-bold">Partager l'image</Text>
           </Pressable>
@@ -96,7 +99,10 @@ export default function ShareScreen() {
           {shareUrl && (
             <Pressable
               onPress={handleCopyLink}
+              accessibilityRole="button"
+              accessibilityLabel="Copier le lien de partage"
               className="py-4 bg-gray-100 rounded-xl items-center active:bg-gray-200"
+              style={{ minHeight: 48 }}
             >
               <Text className="text-gray-700 font-bold">Copier le lien</Text>
             </Pressable>
@@ -105,7 +111,10 @@ export default function ShareScreen() {
           {challengeUrl && (
             <Pressable
               onPress={handleChallenge}
+              accessibilityRole="button"
+              accessibilityLabel="Défier un ami à comparer ses résultats"
               className="py-4 bg-indigo-500 rounded-xl items-center active:bg-indigo-600"
+              style={{ minHeight: 48 }}
             >
               <Text className="text-white font-bold">Défier un ami</Text>
             </Pressable>
@@ -113,7 +122,10 @@ export default function ShareScreen() {
 
           <Pressable
             onPress={handleRestart}
+            accessibilityRole="button"
+            accessibilityLabel="Recommencer le quiz"
             className="py-3 items-center"
+            style={{ minHeight: 44 }}
           >
             <Text className="text-gray-400">Recommencer</Text>
           </Pressable>

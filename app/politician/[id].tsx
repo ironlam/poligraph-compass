@@ -66,7 +66,13 @@ export default function PoliticianDetail() {
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView contentContainerClassName="pb-16">
         {/* Back button */}
-        <Pressable onPress={() => router.back()} className="px-6 pt-4 mb-2">
+        <Pressable
+          onPress={() => router.back()}
+          accessibilityRole="button"
+          accessibilityLabel="Retour aux résultats"
+          className="px-6 pt-4 mb-2"
+          style={{ minHeight: 44, justifyContent: "center" }}
+        >
           <Text className="text-sm text-indigo-500 font-semibold">← Résultats</Text>
         </Pressable>
 
@@ -75,6 +81,7 @@ export default function PoliticianDetail() {
           {politician.photoUrl ? (
             <Image
               source={{ uri: politician.photoUrl }}
+              accessibilityLabel={`Photo de ${politician.name}`}
               className="w-20 h-20 rounded-full"
               style={{ borderWidth: 3, borderColor: partyColor }}
             />
@@ -146,7 +153,10 @@ export default function PoliticianDetail() {
         {polData?.slug && (
           <Pressable
             onPress={() => Linking.openURL(`https://poligraph.fr/politiques/${polData.slug}`)}
+            accessibilityRole="link"
+            accessibilityLabel={`Voir le profil complet de ${politician.name} sur Poligraph`}
             className="mx-6 mt-8 py-3 bg-indigo-500 rounded-2xl items-center active:bg-indigo-600"
+            style={{ minHeight: 48 }}
           >
             <Text className="text-white font-bold">
               Voir son profil complet sur Poligraph

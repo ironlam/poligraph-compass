@@ -26,16 +26,19 @@ export function RankingItem({ entry, rank }: Props) {
   return (
     <Pressable
       onPress={handlePress}
+      accessibilityRole="button"
+      accessibilityLabel={`${rank}e, ${entry.name}, ${entry.partyShortName ?? ""}, ${entry.score}%`}
       className="flex-row items-center gap-3 px-4 py-3 rounded-2xl bg-gray-50 active:bg-gray-100"
-      style={{ borderLeftWidth: 3, borderLeftColor: partyColor }}
+      style={{ borderLeftWidth: 3, borderLeftColor: partyColor, minHeight: 48 }}
     >
-      <Text className="text-sm font-extrabold text-gray-300 w-6 text-center">
+      <Text className="text-sm font-extrabold text-gray-300 w-6 text-center" aria-hidden>
         {rank}
       </Text>
 
       {entry.photoUrl ? (
         <Image
           source={{ uri: entry.photoUrl }}
+          accessibilityLabel={`Photo de ${entry.name}`}
           className="w-10 h-10 rounded-full"
           style={{ borderWidth: 2, borderColor: partyColor }}
         />
@@ -44,7 +47,7 @@ export function RankingItem({ entry, rank }: Props) {
           className="w-10 h-10 rounded-full bg-gray-200 items-center justify-center"
           style={{ borderWidth: 2, borderColor: partyColor }}
         >
-          <Text className="text-xs text-gray-400">
+          <Text className="text-xs text-gray-400" aria-hidden>
             {entry.name.charAt(0)}
           </Text>
         </View>

@@ -25,6 +25,8 @@ export function HeroCard({ entry }: Props) {
   return (
     <Pressable
       onPress={handlePress}
+      accessibilityRole="button"
+      accessibilityLabel={`${entry.name}, ${entry.partyShortName ?? ""}, ${entry.score}% de concordance`}
       className="rounded-2xl bg-gray-50 p-5 active:bg-gray-100"
       style={{
         borderLeftWidth: 4,
@@ -40,6 +42,7 @@ export function HeroCard({ entry }: Props) {
         {entry.photoUrl ? (
           <Image
             source={{ uri: entry.photoUrl }}
+            accessibilityLabel={`Photo de ${entry.name}`}
             className="w-16 h-16 rounded-full"
             style={{ borderWidth: 3, borderColor: partyColor }}
           />

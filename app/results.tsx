@@ -148,14 +148,20 @@ export default function Results() {
         <View className="flex-row gap-3 mx-6 mt-6">
           <Pressable
             onPress={() => router.push("/share")}
+            accessibilityRole="button"
+            accessibilityLabel="Partager mes résultats"
             className="flex-1 py-3 bg-indigo-500 rounded-xl items-center active:bg-indigo-600"
+            style={{ minHeight: 48 }}
           >
             <Text className="text-white font-bold">Partager</Text>
           </Pressable>
           {getNextPhase(phase) && (
             <Pressable
               onPress={handleRefine}
+              accessibilityRole="button"
+              accessibilityLabel="Répondre à plus de questions pour affiner les résultats"
               className="flex-1 py-3 bg-gray-100 rounded-xl items-center border border-gray-200 active:bg-gray-200"
+              style={{ minHeight: 48 }}
             >
               <Text className="text-gray-700 font-bold">Plus de questions ↓</Text>
             </Pressable>
@@ -168,7 +174,10 @@ export default function Results() {
         {/* Methodology link */}
         <Pressable
           onPress={() => router.push("/methodology")}
+          accessibilityRole="link"
+          accessibilityLabel="Comment ça marche ? Voir la méthodologie"
           className="mx-6 mt-6 py-3 items-center"
+          style={{ minHeight: 44 }}
         >
           <Text className="text-sm text-gray-400 underline">
             Comment ça marche ?

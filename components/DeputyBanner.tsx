@@ -69,7 +69,13 @@ export function DeputyBanner() {
               </Text>
             )}
           </View>
-          <Pressable onPress={handleChange} className="px-3 py-1.5">
+          <Pressable
+            onPress={handleChange}
+            accessibilityRole="button"
+            accessibilityLabel="Changer de député"
+            className="px-3 py-1.5"
+            style={{ minHeight: 44, justifyContent: "center" }}
+          >
             <Text className="text-xs text-indigo-500 font-semibold">
               Changer
             </Text>
@@ -94,6 +100,8 @@ export function DeputyBanner() {
           value={input}
           onChangeText={setInput}
           placeholder="Ex: 75001"
+          accessibilityLabel="Code postal"
+          accessibilityHint="Entre ton code postal pour trouver ton député"
           keyboardType="number-pad"
           maxLength={5}
           className="flex-1 bg-white rounded-xl px-4 py-2.5 text-sm text-gray-900 border border-gray-200"
@@ -104,7 +112,10 @@ export function DeputyBanner() {
         <Pressable
           onPress={handleSearch}
           disabled={isLoading}
+          accessibilityRole="button"
+          accessibilityLabel="Rechercher le député"
           className="bg-indigo-500 rounded-xl px-5 items-center justify-center active:bg-indigo-600"
+          style={{ minHeight: 44 }}
         >
           {isLoading ? (
             <ActivityIndicator size="small" color="#fff" />
@@ -117,7 +128,13 @@ export function DeputyBanner() {
       {error && <Text className="text-xs text-red-500 mt-2">{error}</Text>}
 
       {selectedDeputy && isEditing && (
-        <Pressable onPress={handleClear} className="mt-2">
+        <Pressable
+          onPress={handleClear}
+          accessibilityRole="button"
+          accessibilityLabel="Supprimer la sélection du député"
+          className="mt-2"
+          style={{ minHeight: 44, justifyContent: "center" }}
+        >
           <Text className="text-xs text-gray-400 underline">
             Supprimer la sélection
           </Text>

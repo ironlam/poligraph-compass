@@ -129,7 +129,7 @@ export default function Quiz() {
   if (isLoading || !pack) {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
-        <View className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
+        <View accessibilityLabel="Chargement" className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
       </SafeAreaView>
     );
   }
@@ -138,7 +138,7 @@ export default function Quiz() {
     // Waiting for useEffect to redirect
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
-        <View className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
+        <View accessibilityLabel="Chargement" className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
       </SafeAreaView>
     );
   }
@@ -147,7 +147,7 @@ export default function Quiz() {
     // Waiting for useEffect to navigate
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
-        <View className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
+        <View accessibilityLabel="Chargement" className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
       </SafeAreaView>
     );
   }

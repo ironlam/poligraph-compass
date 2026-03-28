@@ -51,7 +51,10 @@ export default function Home() {
 
         <Pressable
           onPress={() => router.push("/methodology")}
+          accessibilityRole="link"
+          accessibilityLabel="Voir notre méthodologie"
           className="mt-16"
+          style={{ minHeight: 44, justifyContent: "center" }}
         >
           <Text className="text-xs text-indigo-600 text-center">
             Basé sur les votes réels au Parlement{"\n"}

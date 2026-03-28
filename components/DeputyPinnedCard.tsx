@@ -25,6 +25,8 @@ export function DeputyPinnedCard({ entry }: Props) {
   return (
     <Pressable
       onPress={handlePress}
+      accessibilityRole="button"
+      accessibilityLabel={`Ton député ${entry.name}, ${entry.partyShortName ?? ""}, ${entry.score}% de concordance. Voir la comparaison détaillée`}
       className="rounded-2xl bg-indigo-50 p-5 active:bg-indigo-100"
       style={{
         borderWidth: 2,
@@ -45,6 +47,7 @@ export function DeputyPinnedCard({ entry }: Props) {
         {entry.photoUrl ? (
           <Image
             source={{ uri: entry.photoUrl }}
+            accessibilityLabel={`Photo de ${entry.name}`}
             className="w-16 h-16 rounded-full"
             style={{ borderWidth: 3, borderColor: partyColor }}
           />

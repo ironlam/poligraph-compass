@@ -23,8 +23,14 @@ export function RankingList({ politicians, parties, pinnedDeputy }: Props) {
       </Text>
 
       {/* Tabs */}
-      <View className="flex-row mx-6 mb-5 gap-4">
-        <Pressable onPress={() => setTab("politicians")}>
+      <View className="flex-row mx-6 mb-5 gap-4" accessibilityRole="tablist">
+        <Pressable
+          onPress={() => setTab("politicians")}
+          accessibilityRole="tab"
+          accessibilityState={{ selected: tab === "politicians" }}
+          accessibilityLabel="Classement des élus"
+          style={{ minHeight: 44 }}
+        >
           <Text
             className={`text-sm font-bold pb-2 ${
               tab === "politicians"
@@ -35,7 +41,13 @@ export function RankingList({ politicians, parties, pinnedDeputy }: Props) {
             Élus
           </Text>
         </Pressable>
-        <Pressable onPress={() => setTab("parties")}>
+        <Pressable
+          onPress={() => setTab("parties")}
+          accessibilityRole="tab"
+          accessibilityState={{ selected: tab === "parties" }}
+          accessibilityLabel="Classement des partis"
+          style={{ minHeight: 44 }}
+        >
           <Text
             className={`text-sm font-bold pb-2 ${
               tab === "parties"

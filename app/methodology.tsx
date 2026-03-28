@@ -50,7 +50,13 @@ export default function Methodology() {
       <ScrollView contentContainerClassName="pb-16">
         {/* Header */}
         <View className="px-6 pt-6">
-          <Pressable onPress={() => router.back()} className="mb-4">
+          <Pressable
+            onPress={() => router.back()}
+            accessibilityRole="button"
+            accessibilityLabel="Retour"
+            className="mb-4"
+            style={{ minHeight: 44, justifyContent: "center" }}
+          >
             <Text className="text-sm text-indigo-500">← Retour</Text>
           </Pressable>
           <Text className="text-2xl font-bold text-gray-900">
