@@ -50,7 +50,19 @@ export function ScrutinBottomSheet({ question, visible, onClose }: Props) {
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Pressable className="flex-1 bg-black/40" onPress={onClose} />
-        <Animated.View style={sheetStyle} className="bg-white rounded-t-3xl px-6 pb-10 max-h-[75%]">
+        <Animated.View
+          style={[
+            sheetStyle,
+            {
+              backgroundColor: "white",
+              borderTopLeftRadius: 24,
+              borderTopRightRadius: 24,
+              paddingHorizontal: 24,
+              paddingBottom: 40,
+              maxHeight: "75%",
+            },
+          ]}
+        >
           {/* Drag handle — swipe down to dismiss */}
           <GestureDetector gesture={panGesture}>
             <Animated.View className="items-center pt-4 pb-2">
