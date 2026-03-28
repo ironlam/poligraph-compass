@@ -3,7 +3,8 @@
 # dependencies
 node_modules/
 
-# Claude Code local config
+# Claude Code config
+CLAUDE.md
 CLAUDE.local.md
 
 # Expo
