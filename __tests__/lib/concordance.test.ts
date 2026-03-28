@@ -5,6 +5,7 @@ import {
   computePartyConcordance,
   computeMinOverlap,
   computeScrutinWeights,
+  computeGroupDiscordance,
   wilsonScore,
 } from "@/lib/concordance";
 
@@ -275,5 +276,53 @@ describe("computePartyConcordance", () => {
     const result = computePartyConcordance("party1", answers, partyMajorities, undefined, weights);
     // Only s1, s3, s5 count (all agree) → 100%
     expect(result.concordance).toBe(100);
+  });
+});
+
+describe("computeGroupDiscordance", () => {
+  const voteMatrix: Record<string, Record<string, string>> = {
+    s1: { dep1: "POUR", dep2: "POUR" },
+    s2: { dep1: "CONTRE", dep2: "POUR" },
+    s3: { dep1: "POUR", dep2: "POUR" },
+    s4: { dep1: "CONTRE", dep2: "CONTRE" },
+    s5: { dep1: "ABSENT", dep2: "POUR" },
+  };
+  const partyMajorities: Record<string, Record<string, string>> = {
+    s1: { groupA: "POUR" },
+    s2: { groupA: "POUR" },
+    s3: { groupA: "POUR" },
+    s4: { groupA: "CONTRE" },
+    s5: { groupA: "POUR" },
+  };
+
+  it("computes discordance correctly", () => {
+    // dep1: s1=POUR vs POUR (agree), s2=CONTRE vs POUR (diverge),
+    //        s3=POUR vs POUR (agree), s4=CONTRE vs CONTRE (agree),
+    //        s5=ABSENT (skip)
+    const result = computeGroupDiscordance("dep1", "groupA", voteMatrix, partyMajorities);
+    expect(result.comparable).toBe(4);
+    expect(result.divergent).toBe(1);
+    expect(result.discordance).toBe(25);
+  });
+
+  it("returns 0% for a fully loyal deputy", () => {
+    const result = computeGroupDiscordance("dep2", "groupA", voteMatrix, partyMajorities);
+    expect(result.divergent).toBe(0);
+    expect(result.discordance).toBe(0);
+  });
+
+  it("returns -1 when fewer than 3 comparable votes", () => {
+    const sparse: Record<string, Record<string, string>> = {
+      s1: { dep3: "POUR" },
+      s2: { dep3: "ABSENT" },
+    };
+    const result = computeGroupDiscordance("dep3", "groupA", sparse, partyMajorities);
+    expect(result.discordance).toBe(-1);
+  });
+
+  it("skips scrutins where group has no data", () => {
+    const result = computeGroupDiscordance("dep1", "unknownGroup", voteMatrix, partyMajorities);
+    expect(result.comparable).toBe(0);
+    expect(result.discordance).toBe(-1);
   });
 });

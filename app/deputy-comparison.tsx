@@ -8,6 +8,7 @@ import {
   classifyVotePair,
   computePoliticianConcordance,
   computeScrutinWeights,
+  computeGroupDiscordance,
 } from "@/lib/concordance";
 import { computeThemeConcordances } from "@/lib/theme-concordance";
 import { ThemeBreakdown } from "@/components/ThemeBreakdown";
@@ -51,6 +52,16 @@ export default function DeputyComparisonScreen() {
   const party = quizPack.parties.find((p) => p.id === selectedDeputy.partyId);
   const partyColor = party?.color || "#9ca3af";
   const scoreColor = getConcordanceColor(concordanceResult.score);
+
+  // Group discordance: how often this deputy breaks from their group
+  const groupDiscordance = selectedDeputy.partyId
+    ? computeGroupDiscordance(
+        id,
+        selectedDeputy.partyId,
+        quizPack.voteMatrix as Record<string, Record<string, string>>,
+        quizPack.partyMajorities as Record<string, Record<string, string>>
+      )
+    : null;
 
   // Per-theme breakdown
   const themes = computeThemeConcordances(
@@ -171,6 +182,31 @@ export default function DeputyComparisonScreen() {
             </Text>
           )}
         </View>
+
+        {/* Group discordance */}
+        {groupDiscordance && groupDiscordance.discordance >= 0 && party && (
+          <View className="mx-6 mt-3 p-4 bg-amber-50 rounded-2xl flex-row items-center gap-3">
+            <Text className="text-2xl">
+              {groupDiscordance.discordance >= 20 ? "🔥" : "📊"}
+            </Text>
+            <View className="flex-1">
+              <Text className="text-sm text-gray-800">
+                Vote différemment de{" "}
+                <Text className="font-bold" style={{ color: partyColor }}>
+                  {party.shortName}
+                </Text>
+                {" "}sur{" "}
+                <Text className="font-bold">
+                  {groupDiscordance.discordance}%
+                </Text>
+                {" "}des scrutins
+              </Text>
+              <Text className="text-xs text-gray-400 mt-0.5">
+                {groupDiscordance.divergent} divergences sur {groupDiscordance.comparable} votes
+              </Text>
+            </View>
+          </View>
+        )}
 
         {/* Compass overlay */}
         {results.position.xValid && results.position.yValid && (

@@ -164,6 +164,48 @@ export function computePoliticianConcordance(
   return { concordance, score, agree, disagree, partial, overlap: total };
 }
 
+// --- Group Discordance ---
+//
+// Measures how often a deputy votes differently from their parliamentary
+// group's majority position. A high discordance indicates a "rebel" deputy
+// who breaks from the party line.
+
+export interface GroupDiscordanceResult {
+  /** Percentage of votes where the deputy diverged from their group (0–100), or -1 if insufficient data */
+  discordance: number;
+  /** Number of votes where deputy and group both voted (POUR/CONTRE/ABSTENTION) */
+  comparable: number;
+  /** Number of votes where deputy diverged */
+  divergent: number;
+}
+
+export function computeGroupDiscordance(
+  politicianId: string,
+  partyId: string,
+  voteMatrix: Record<string, Record<string, string>>,
+  partyMajorities: Record<string, Record<string, string>>
+): GroupDiscordanceResult {
+  let comparable = 0;
+  let divergent = 0;
+  const skip = new Set(["ABSENT", "NON_VOTANT"]);
+
+  for (const [scrutinId, partyPositions] of Object.entries(partyMajorities)) {
+    const groupVote = partyPositions[partyId];
+    const deputyVote = voteMatrix[scrutinId]?.[politicianId];
+    if (!groupVote || !deputyVote) continue;
+    if (skip.has(groupVote) || skip.has(deputyVote)) continue;
+
+    comparable++;
+    if (deputyVote !== groupVote) divergent++;
+  }
+
+  return {
+    discordance: comparable >= 3 ? Math.round((divergent / comparable) * 100) : -1,
+    comparable,
+    divergent,
+  };
+}
+
 export function computePartyConcordance(
   partyId: string,
   answers: Record<string, string>,
