@@ -57,7 +57,7 @@ export default function Methodology() {
             Notre méthodologie
           </Text>
           <Text className="text-sm text-gray-400 mt-1">
-            Comment fonctionne Ma Boussole Politique
+            Comment fonctionne Ma Boussole Parlementaire
           </Text>
         </View>
 
@@ -65,13 +65,13 @@ export default function Methodology() {
           {/* Intro */}
           <Section title="Le principe">
             <Paragraph>
-              Ma Boussole Politique compare vos opinions avec les votes réels
+              Ma Boussole Parlementaire compare vos opinions avec les votes réels
               des députés à l'Assemblée nationale. Chaque question du quiz
               correspond à un scrutin public dont le résultat est consultable
               sur le site de l'Assemblée.
             </Paragraph>
             <Paragraph>
-              L'outil produit deux résultats : une boussole politique (votre
+              L'outil produit deux résultats : une boussole parlementaire (votre
               positionnement sur deux axes) et un classement de concordance
               (quels élus votent le plus comme vous).
             </Paragraph>

@@ -27,7 +27,7 @@ export function SharePreview({ captureRef }: Props) {
           style={{ padding: 24, alignItems: "center" }}
         >
           <Text className="text-sm text-indigo-400 font-semibold mb-4">
-            Ma Boussole Politique
+            Ma Boussole Parlementaire
           </Text>
 
           <Compass

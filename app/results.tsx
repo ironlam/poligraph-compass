@@ -9,7 +9,7 @@ import { DeputyBanner } from "@/components/DeputyBanner";
 import { getQuadrantLabel } from "@/lib/theme-labels";
 import { getNextPhase } from "@/lib/phases";
 import { useDeputyStore } from "@/lib/deputy-store";
-import { computePoliticianConcordance, computeMinOverlap, computeScrutinWeights } from "@/lib/concordance";
+import { computePoliticianConcordance, computeScrutinWeights } from "@/lib/concordance";
 
 export default function Results() {
   const router = useRouter();
@@ -33,18 +33,19 @@ export default function Results() {
 
   const { selectedDeputy } = useDeputyStore();
 
-  // Compute concordance for the selected deputy
+  // Compute concordance for the selected deputy.
+  // Use a low fixed threshold (5) instead of the dynamic minOverlap:
+  // the user explicitly selected this deputy, so we always show them
+  // even if their overlap is below the stricter dynamic threshold.
   const deputyConcordance = (() => {
     if (!selectedDeputy || !quizPack || !answers) return null;
 
-    const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;
-    const minOverlap = computeMinOverlap(answeredCount);
     const weights = computeScrutinWeights(quizPack.partyMajorities, quizPack.parties);
     const r = computePoliticianConcordance(
       selectedDeputy.id,
       answers as Record<string, string>,
       quizPack.voteMatrix as Record<string, Record<string, string>>,
-      minOverlap,
+      5,
       weights
     );
 

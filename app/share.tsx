@@ -28,14 +28,14 @@ export default function ShareScreen() {
         const blob = await new Promise<Blob>((resolve, reject) =>
           canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), "image/png")
         );
-        const file = new File([blob], "ma-boussole-politique.png", { type: "image/png" });
+        const file = new File([blob], "ma-boussole-parlementaire.png", { type: "image/png" });
 
         if (navigator.canShare?.({ files: [file] })) {
           await navigator.share({ files: [file] });
         } else {
           const a = document.createElement("a");
           a.href = URL.createObjectURL(blob);
-          a.download = "ma-boussole-politique.png";
+          a.download = "ma-boussole-parlementaire.png";
           a.click();
           URL.revokeObjectURL(a.href);
         }
@@ -43,7 +43,7 @@ export default function ShareScreen() {
         const uri = await captureRef(previewRef, { format: "png", quality: 1 });
         await Sharing.shareAsync(uri, {
           mimeType: "image/png",
-          dialogTitle: "Partager ma boussole politique",
+          dialogTitle: "Partager ma boussole parlementaire",
         });
       }
       track({ name: "result_shared", data: { method: "image" } });
@@ -63,7 +63,7 @@ export default function ShareScreen() {
   async function handleChallenge() {
     if (challengeUrl) {
       await Share.share({
-        message: `Je te defie de faire le quiz politique ! Compare ta position avec la mienne : ${challengeUrl}`,
+        message: `Je te defie de faire le quiz parlementaire ! Compare ta position avec la mienne : ${challengeUrl}`,
       });
       track({ name: "challenge_created" });
     }

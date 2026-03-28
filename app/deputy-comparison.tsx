@@ -7,7 +7,6 @@ import { useDeputyStore } from "@/lib/deputy-store";
 import {
   classifyVotePair,
   computePoliticianConcordance,
-  computeMinOverlap,
   computeScrutinWeights,
 } from "@/lib/concordance";
 import { computeThemeConcordances } from "@/lib/theme-concordance";
@@ -36,11 +35,7 @@ export default function DeputyComparisonScreen() {
 
   const id = selectedDeputy.id;
 
-  // Compute concordance
-  const answeredCount = Object.values(answers).filter(
-    (a) => a !== "SKIP"
-  ).length;
-  const minOverlap = computeMinOverlap(answeredCount);
+  // Compute concordance — use low fixed threshold since user explicitly selected this deputy
   const weights = computeScrutinWeights(
     quizPack.partyMajorities,
     quizPack.parties
@@ -49,7 +44,7 @@ export default function DeputyComparisonScreen() {
     id,
     answers as Record<string, string>,
     quizPack.voteMatrix as Record<string, Record<string, string>>,
-    minOverlap,
+    5,
     weights
   );
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import Animated, {
   FadeIn,
   FadeOut,
@@ -104,35 +104,38 @@ export function QuizCard({ question, onAnswer }: Props) {
             pointerEvents="none"
           />
 
-          {/* Themed header area */}
-          <View style={{ backgroundColor: themeConfig.color + "12" }} className="px-5 pt-5 pb-4">
-            <ThemeBadge theme={question.theme} />
-            <Text className="text-2xl font-black text-gray-900 mt-3 leading-8">
-              {question.question}
-            </Text>
-            <Text className="text-xs text-gray-400 mt-2 tracking-wide uppercase">
-              {question.chamber === "AN" ? "Assemblée nationale" : "Sénat"}
-              {question.votingDate ? ` · ${question.votingDate}` : ""}
-            </Text>
-          </View>
+          {/* Scrollable content area */}
+          <ScrollView className="flex-1" bounces={false} showsVerticalScrollIndicator={false}>
+            {/* Themed header area */}
+            <View style={{ backgroundColor: themeConfig.color + "12" }} className="px-5 pt-5 pb-4">
+              <ThemeBadge theme={question.theme} />
+              <Text className="text-2xl font-black text-gray-900 mt-3 leading-8">
+                {question.question}
+              </Text>
+              <Text className="text-xs text-gray-400 mt-2 tracking-wide uppercase">
+                {question.chamber === "AN" ? "Assemblée nationale" : "Sénat"}
+                {question.votingDate ? ` · ${question.votingDate}` : ""}
+              </Text>
+            </View>
 
-          {/* Context area: short hook on card, full explanation in bottom sheet */}
-          {shortSummary ? (
-            <Pressable onPress={() => setShowContext(true)} className="mx-4 mt-3 bg-white rounded-xl p-3 border border-slate-100">
-              <Text className="text-xs text-slate-500 leading-4">
-                {shortSummary}
-              </Text>
-              <Text className="text-xs text-indigo-500 font-semibold mt-2">
-                {"En savoir plus \u2192"}
-              </Text>
-            </Pressable>
-          ) : hasFullContext ? (
-            <Pressable onPress={() => setShowContext(true)} className="mx-4 mt-3">
-              <Text className="text-xs text-indigo-500 font-semibold">
-                {"Comprendre ce vote \u2192"}
-              </Text>
-            </Pressable>
-          ) : null}
+            {/* Context area: short hook on card, full explanation in bottom sheet */}
+            {shortSummary ? (
+              <Pressable onPress={() => setShowContext(true)} className="mx-4 mt-3 mb-3 bg-white rounded-xl p-3 border border-slate-100">
+                <Text className="text-xs text-slate-500 leading-4">
+                  {shortSummary}
+                </Text>
+                <Text className="text-xs text-indigo-500 font-semibold mt-2">
+                  {"En savoir plus \u2192"}
+                </Text>
+              </Pressable>
+            ) : hasFullContext ? (
+              <Pressable onPress={() => setShowContext(true)} className="mx-4 mt-3 mb-3">
+                <Text className="text-xs text-indigo-500 font-semibold">
+                  {"Comprendre ce vote \u2192"}
+                </Text>
+              </Pressable>
+            ) : null}
+          </ScrollView>
 
           <ScrutinBottomSheet
             question={question}
@@ -140,8 +143,8 @@ export function QuizCard({ question, onAnswer }: Props) {
             onClose={() => setShowContext(false)}
           />
 
-          {/* Answer buttons */}
-          <View className="mt-auto px-4 pb-5 gap-2.5">
+          {/* Answer buttons — fixed at bottom of card */}
+          <View className="px-4 pb-5 pt-2 gap-2.5">
             <Pressable
               onPress={() => handleAnswer("POUR")}
               accessibilityRole="button"

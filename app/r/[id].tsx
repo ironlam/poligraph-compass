@@ -49,8 +49,8 @@ export default function SharedResult() {
   return (
     <>
       <Head>
-        <title>Ma Boussole Politique</title>
-        <meta property="og:title" content="Ma Boussole Politique" />
+        <title>Ma Boussole Parlementaire</title>
+        <meta property="og:title" content="Ma Boussole Parlementaire" />
         <meta property="og:description" content={`Decouvre ma position politique, d'apres ${data.answeredCount} votes reels au Parlement.`} />
         <meta property="og:image" content={`https://boussole.poligraph.fr/api/og/${id}`} />
         <meta property="og:type" content="website" />

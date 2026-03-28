@@ -59,7 +59,7 @@ export async function GET(request: Request, { id }: Record<string, string>) {
         }}
       >
         <div style={{ display: "flex", fontSize: 18, color: "#818cf8", fontWeight: 600, marginBottom: 16 }}>
-          Ma Boussole Politique
+          Ma Boussole Parlementaire
         </div>
 
         {/* Compass grid */}

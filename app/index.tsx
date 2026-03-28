@@ -19,7 +19,7 @@ export default function Home() {
       <View className="flex-1 items-center justify-center px-8">
         <Text className="text-5xl mb-4">🧭</Text>
         <Text className="text-3xl font-bold text-white text-center">
-          Ma Boussole{"\n"}Politique
+          Ma Boussole{"\n"}Parlementaire
         </Text>
         <Text className="text-sm text-indigo-400 mt-1">par Poligraph</Text>
         <Text className="text-base text-indigo-300 text-center mt-4 leading-6">

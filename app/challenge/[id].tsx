@@ -84,9 +84,9 @@ export default function ChallengePage() {
   return (
     <>
       <Head>
-        <title>On t'a defie ! | Ma Boussole Politique</title>
+        <title>On t'a defie ! | Ma Boussole Parlementaire</title>
         <meta property="og:title" content="On t'a defie ! Decouvre ta position politique" />
-        <meta property="og:description" content="Compare ta boussole politique avec celle de ton ami. Base sur les votes reels au Parlement." />
+        <meta property="og:description" content="Compare ta boussole parlementaire avec celle de ton ami. Base sur les votes reels au Parlement." />
         <meta property="og:image" content={`https://boussole.poligraph.fr/api/og/${id}`} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -97,7 +97,7 @@ export default function ChallengePage() {
             On t'a defie !
           </Text>
           <Text className="text-base text-indigo-300 text-center mt-3 leading-6">
-            Quelqu'un veut comparer sa position politique avec la tienne.
+            Quelqu'un veut comparer sa position parlementaire avec la tienne.
             Fais le quiz et decouvre si vous etes d'accord !
           </Text>
 
