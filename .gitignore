@@ -53,4 +53,9 @@ docs/superpowers/
 data/pipeline/candidates.json
 data/pipeline/drafts.json
 data/pipeline/*-audit-report.json
+
+# Generated data files (from scripts, not needed at build time)
+data/scrutin-details.json
+data/audit-report.json
+
 .vercel

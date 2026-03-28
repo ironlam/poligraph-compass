@@ -50,12 +50,12 @@ export function QuizCard({ question, onAnswer }: Props) {
 
   return (
     <>
+      {/* Scrollable question card — animates on question change */}
       <Animated.View
         entering={FadeIn.duration(250)}
         exiting={FadeOut.duration(150)}
-        className="flex-1 px-5 pt-4 pb-4"
+        className="flex-1 px-5 pt-4"
       >
-        {/* Card */}
         <View className="flex-1 rounded-2xl shadow-sm overflow-hidden" style={{ backgroundColor: "#FAFAF8" }}>
           {/* Flash overlay */}
           <Animated.View
@@ -102,49 +102,52 @@ export function QuizCard({ question, onAnswer }: Props) {
               </Pressable>
             ) : null}
           </ScrollView>
-
-          {/* Answer buttons — fixed at bottom of card */}
-          <View className="px-4 pb-5 pt-2 gap-2.5">
-            <Pressable
-              onPress={() => handleAnswer("POUR")}
-              accessibilityRole="button"
-              accessibilityLabel="Pour"
-              className="py-3.5 rounded-2xl items-center bg-emerald-600 active:bg-emerald-700"
-              style={{ minHeight: 48 }}
-            >
-              <Text className="text-base font-bold text-white tracking-wide">Pour</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => handleAnswer("CONTRE")}
-              accessibilityRole="button"
-              accessibilityLabel="Contre"
-              className="py-3.5 rounded-2xl items-center bg-red-600 active:bg-red-700"
-              style={{ minHeight: 48 }}
-            >
-              <Text className="text-base font-bold text-white tracking-wide">Contre</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => handleAnswer("ABSTENTION")}
-              accessibilityRole="button"
-              accessibilityLabel="Sans avis"
-              className="py-3.5 rounded-2xl items-center bg-white border border-slate-200 active:bg-slate-50"
-              style={{ minHeight: 48 }}
-            >
-              <Text className="text-base font-semibold text-slate-400 tracking-wide">Sans avis</Text>
-            </Pressable>
-          </View>
         </View>
-
-        {/* Skip below card */}
-        <Pressable
-          onPress={() => onAnswer("SKIP")}
-          accessibilityRole="button"
-          accessibilityLabel="Passer cette question"
-          className="py-3 items-center mt-2"
-        >
-          <Text className="text-sm text-indigo-400">Passer</Text>
-        </Pressable>
       </Animated.View>
+
+      {/* Answer buttons — pinned at bottom, outside the animated card */}
+      <View className="px-5 pb-4 pt-3 gap-2">
+        <View className="flex-row gap-2">
+          <Pressable
+            onPress={() => handleAnswer("POUR")}
+            accessibilityRole="button"
+            accessibilityLabel="Pour"
+            className="flex-1 py-3.5 rounded-2xl items-center bg-emerald-600 active:bg-emerald-700"
+            style={{ minHeight: 48 }}
+          >
+            <Text className="text-base font-bold text-white tracking-wide">Pour</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => handleAnswer("CONTRE")}
+            accessibilityRole="button"
+            accessibilityLabel="Contre"
+            className="flex-1 py-3.5 rounded-2xl items-center bg-red-600 active:bg-red-700"
+            style={{ minHeight: 48 }}
+          >
+            <Text className="text-base font-bold text-white tracking-wide">Contre</Text>
+          </Pressable>
+        </View>
+        <View className="flex-row gap-2">
+          <Pressable
+            onPress={() => handleAnswer("ABSTENTION")}
+            accessibilityRole="button"
+            accessibilityLabel="Sans avis"
+            className="flex-1 py-3 rounded-2xl items-center border border-indigo-400/30 active:bg-indigo-900/50"
+            style={{ minHeight: 44 }}
+          >
+            <Text className="text-sm font-semibold text-indigo-300 tracking-wide">Sans avis</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => handleAnswer("SKIP")}
+            accessibilityRole="button"
+            accessibilityLabel="Passer cette question"
+            className="flex-1 py-3 rounded-2xl items-center active:bg-indigo-900/50"
+            style={{ minHeight: 44 }}
+          >
+            <Text className="text-sm text-indigo-400">Passer</Text>
+          </Pressable>
+        </View>
+      </View>
 
       {/* Bottom sheet — must be outside the card's overflow-hidden container
           so Modal portals correctly on web */}
