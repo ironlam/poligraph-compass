@@ -24,18 +24,12 @@ export default function Home() {
         </Text>
         <Text className="text-sm text-indigo-400 mt-1">par Poligraph</Text>
         <Text className="text-base text-indigo-300 text-center mt-4 leading-6">
-          Découvrez quels élus votent comme vous
+          Découvre quels élus votent comme toi
         </Text>
 
         <View className="mt-6 gap-2">
           <Text className="text-sm text-indigo-400 text-center">
-            Basé sur les votes réels au Parlement
-          </Text>
-          <Text className="text-sm text-indigo-400 text-center">
-            Comparez-vous à votre député
-          </Text>
-          <Text className="text-sm text-indigo-400 text-center">
-            Résultats instantanés
+            Compare-toi à ton député
           </Text>
         </View>
 

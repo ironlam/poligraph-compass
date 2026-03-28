@@ -40,13 +40,12 @@ export default function RefineGate() {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 items-center justify-center px-8">
-        <Text className="text-5xl mb-6">{"🎯"}</Text>
         <Text className="text-xl font-extrabold text-gray-900 text-center">
           Envie d'aller plus loin ?
         </Text>
         <Text className="text-sm text-gray-500 text-center mt-3 leading-5">
           {label}
-          {"\n"}Vos résultats seront encore plus précis.
+          {"\n"}Tes résultats seront encore plus précis.
         </Text>
 
         <View className="w-full mt-10 gap-3">

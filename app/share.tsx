@@ -65,7 +65,7 @@ export default function ShareScreen() {
   async function handleChallenge() {
     if (challengeUrl) {
       await Share.share({
-        message: `Je te défie de faire le quiz parlementaire ! Compare ta position avec la mienne : ${challengeUrl}`,
+        message: `Compare ta position parlementaire avec la mienne : ${challengeUrl}`,
       });
       track({ name: "challenge_created" });
     }

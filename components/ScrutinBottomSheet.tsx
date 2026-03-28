@@ -109,7 +109,7 @@ export function ScrutinBottomSheet({ question, visible, onClose }: Props) {
             {question.officialTitle && (
               <View className="mt-4">
                 <Text className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">
-                  Intitulé officiel
+                  Titre officiel
                 </Text>
                 <Text className="text-xs text-gray-400 leading-4">
                   {question.officialTitle}

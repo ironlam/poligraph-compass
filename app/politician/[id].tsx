@@ -109,7 +109,7 @@ export default function PoliticianDetail() {
         {/* Summary */}
         <View className="mx-6 mt-4 p-4 bg-gray-50 rounded-2xl">
           <Text className="text-sm text-gray-700">
-            Vous êtes d'accord sur{" "}
+            Tu es d'accord sur{" "}
             <Text className="font-bold">{politician.agree} votes</Text> sur{" "}
             <Text className="font-bold">{politician.overlap}</Text> en commun.
           </Text>

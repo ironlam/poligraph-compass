@@ -19,7 +19,7 @@ export function RankingList({ politicians, parties, pinnedDeputy }: Props) {
   return (
     <View className="mt-8">
       <Text className="text-xl font-extrabold text-gray-900 px-6 mb-4">
-        Les élus qui votent comme vous
+        Les députés qui votent comme toi
       </Text>
 
       {/* Tabs */}

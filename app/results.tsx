@@ -72,10 +72,10 @@ export default function Results() {
       <ScrollView contentContainerClassName="pb-12">
         <View className="px-6 pt-6">
           <Text className="text-2xl font-bold text-gray-900">
-            Votre position
+            Ta position
           </Text>
           <Text className="text-sm text-gray-400 mt-1">
-            D'après vos réponses à {answeredCount} votes réels
+            D'après tes réponses à {answeredCount} votes réels
           </Text>
         </View>
 
@@ -87,7 +87,7 @@ export default function Results() {
             <View className="h-48 items-center justify-center">
               <Text className="text-gray-400 text-center px-8">
                 Pas assez de réponses pour afficher la boussole.{"\n"}
-                Répondez à plus de questions pour voir votre position.
+                Réponds à plus de questions pour voir ta position.
               </Text>
             </View>
           )}
@@ -97,7 +97,7 @@ export default function Results() {
         {quadrantLabel && (
           <View className="mx-6 mt-4 p-4 bg-indigo-50 rounded-xl">
             <Text className="text-sm text-indigo-700 text-center">
-              Vous êtes plutôt{" "}
+              Tu es plutôt{" "}
               <Text className="font-bold">{quadrantLabel}</Text>
             </Text>
           </View>
@@ -125,7 +125,7 @@ export default function Results() {
             {challengeContext.challengerTopParties.length > 0 && (
               <View className="gap-1">
                 <View className="flex-row justify-between">
-                  <Text className="text-xs text-gray-500">Vous</Text>
+                  <Text className="text-xs text-gray-500">Toi</Text>
                   <Text className="text-xs text-gray-500">Challenger</Text>
                 </View>
                 <View className="flex-row justify-between">
@@ -157,7 +157,7 @@ export default function Results() {
               onPress={handleRefine}
               className="flex-1 py-3 bg-gray-100 rounded-xl items-center border border-gray-200 active:bg-gray-200"
             >
-              <Text className="text-gray-700 font-bold">Affiner ↓</Text>
+              <Text className="text-gray-700 font-bold">Plus de questions ↓</Text>
             </Pressable>
           )}
         </View>

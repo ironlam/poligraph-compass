@@ -176,7 +176,7 @@ export function Compass({ userPosition, parties, partyPositions, challengerPosit
         <View className="flex-row flex-wrap justify-center gap-x-4 gap-y-1.5 mt-2 px-4">
           <View className="flex-row items-center gap-1.5">
             <Text className="text-xs" style={{ color: "#f59e0b" }}>{"★"}</Text>
-            <Text className="text-xs font-bold" style={{ color: "#d1d5db" }}>Vous</Text>
+            <Text className="text-xs font-bold" style={{ color: "#d1d5db" }}>Toi</Text>
           </View>
           {challengerPosition && (
             <View className="flex-row items-center gap-1.5">

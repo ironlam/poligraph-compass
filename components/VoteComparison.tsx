@@ -15,7 +15,7 @@ export function VoteComparison({ question, userVote, politicianVote, isAgreement
         {question}
       </Text>
       <View className="flex-row items-center gap-2">
-        <Text className="text-xs text-gray-400 w-10">Vous</Text>
+        <Text className="text-xs text-gray-400 w-10">Toi</Text>
         <VoteBadge vote={userVote} />
         <Text className="text-xs text-gray-300 mx-1">vs</Text>
         <VoteBadge vote={politicianVote} />

@@ -22,7 +22,7 @@ export function DeputyBanner() {
   async function handleSearch() {
     const trimmed = input.trim();
     if (!isValidCodePostal(trimmed)) {
-      setError("Entrez un code postal valide (5 chiffres)");
+      setError("Entre un code postal valide (5 chiffres)");
       return;
     }
 
@@ -58,7 +58,7 @@ export function DeputyBanner() {
         <View className="flex-row items-center justify-between">
           <View className="flex-1">
             <Text className="text-xs text-indigo-400 font-semibold uppercase tracking-wide">
-              Votre député(e)
+              Ton député(e)
             </Text>
             <Text className="text-base font-bold text-gray-900 mt-1">
               {selectedDeputy.fullName}
@@ -83,10 +83,10 @@ export function DeputyBanner() {
   return (
     <View className="mx-6 mt-6 p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
       <Text className="text-sm font-bold text-gray-900">
-        Découvrez comment votre député a voté
+        Découvre comment ton député a voté
       </Text>
       <Text className="text-xs text-gray-400 mt-1 mb-3">
-        Entrez votre code postal pour le trouver
+        Entre ton code postal pour le trouver
       </Text>
 
       <View className="flex-row gap-2">

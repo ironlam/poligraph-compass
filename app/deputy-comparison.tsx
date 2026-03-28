@@ -106,7 +106,7 @@ export default function DeputyComparisonScreen() {
         {/* Back button */}
         <Pressable onPress={() => router.back()} className="px-6 pt-4 mb-2">
           <Text className="text-sm text-indigo-500 font-semibold">
-            {"<-"} Résultats
+            ← Résultats
           </Text>
         </Pressable>
 
@@ -114,7 +114,7 @@ export default function DeputyComparisonScreen() {
         <View className="px-6">
           <View className="bg-indigo-500 self-start px-3 py-1 rounded-full mb-3">
             <Text className="text-xs font-bold text-white">
-              Votre député(e)
+              Ton député(e)
             </Text>
           </View>
         </View>
@@ -185,18 +185,14 @@ export default function DeputyComparisonScreen() {
 
         {/* Group discordance */}
         {groupDiscordance && groupDiscordance.discordance >= 0 && party && (
-          <View className="mx-6 mt-3 p-4 bg-amber-50 rounded-2xl flex-row items-center gap-3">
-            <Text className="text-2xl">
-              {groupDiscordance.discordance >= 20 ? "🔥" : "📊"}
-            </Text>
-            <View className="flex-1">
+          <View className="mx-6 mt-3 p-4 bg-amber-50 rounded-2xl">
               <Text className="text-sm text-gray-800">
                 Vote différemment de{" "}
                 <Text className="font-bold" style={{ color: partyColor }}>
                   {party.shortName}
                 </Text>
                 {" "}sur{" "}
-                <Text className="font-bold">
+                <Text className="font-bold" style={{ color: groupDiscordance.discordance >= 20 ? "#ef4444" : "#f59e0b" }}>
                   {groupDiscordance.discordance}%
                 </Text>
                 {" "}des scrutins
@@ -204,7 +200,6 @@ export default function DeputyComparisonScreen() {
               <Text className="text-xs text-gray-400 mt-0.5">
                 {groupDiscordance.divergent} divergences sur {groupDiscordance.comparable} votes
               </Text>
-            </View>
           </View>
         )}
 
