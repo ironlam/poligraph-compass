@@ -104,7 +104,7 @@ export function QuizCard({ question }: Props) {
               </Text>
             </View>
 
-            {/* Aide neutre Pour / Contre \u2014 fallback ou positionHelp si pr\u00e9sent */}
+            {/* Aide neutre Pour / Contre, fallback ou positionHelp si pr\u00e9sent */}
             <View className="mx-4 mb-4">
               <NeutralPositionHelp help={question.positionHelp} />
             </View>
