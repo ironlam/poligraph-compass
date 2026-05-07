@@ -10,7 +10,13 @@ import type { QuizPack, UserAnswer, CompassPosition } from "@/lib/types";
 import { QuizButtons } from "@/components/QuizButtons";
 import { computeCompassPosition } from "@/lib/compass";
 import { track } from "@/lib/analytics";
-import { computePoliticianConcordance, computePartyConcordance, computeMinOverlap, computeScrutinWeights } from "@/lib/concordance";
+import {
+  computePoliticianConcordance,
+  computePartyConcordance,
+  computeMinOverlap,
+  computeScrutinWeights,
+} from "@/lib/concordance";
+import { buildBoussoleProfile, type Position } from "@/lib/profile";
 
 export default function Quiz() {
   const router = useRouter();
@@ -66,28 +72,58 @@ export default function Quiz() {
       name: "phase_completed",
       data: {
         phase,
-        questionsAnswered: Object.values(answers).filter((a) => a !== "SKIP").length,
+        questionsAnswered: Object.values(answers).filter((a) => a !== "SKIP")
+          .length,
       },
     });
 
     const position = computeCompassPosition(answers, pack.axes);
-    const answeredCount = Object.values(answers).filter((a) => a !== "SKIP").length;
+    const answeredCount = Object.values(answers).filter(
+      (a) => a !== "SKIP",
+    ).length;
     const minOverlap = computeMinOverlap(answeredCount);
     const weights = computeScrutinWeights(pack.partyMajorities, pack.parties);
 
     const politicians = pack.politicians
       .map((pol) => {
-        const r = computePoliticianConcordance(pol.id, answers, pack.voteMatrix, minOverlap, weights);
+        const r = computePoliticianConcordance(
+          pol.id,
+          answers,
+          pack.voteMatrix,
+          minOverlap,
+          weights,
+        );
         const party = pack.parties.find((p) => p.id === pol.partyId);
-        return { id: pol.id, name: pol.fullName, slug: pol.slug, photoUrl: pol.photoUrl, partyShortName: pol.partyShortName, partyColor: party?.color ?? null, ...r };
+        return {
+          id: pol.id,
+          name: pol.fullName,
+          slug: pol.slug,
+          photoUrl: pol.photoUrl,
+          partyShortName: pol.partyShortName,
+          partyColor: party?.color ?? null,
+          ...r,
+        };
       })
       .filter((r) => r.concordance >= 0)
       .sort((a, b) => b.score - a.score);
 
     const parties = pack.parties
       .map((party) => {
-        const r = computePartyConcordance(party.id, answers, pack.partyMajorities, minOverlap, weights);
-        return { id: party.id, name: party.name, partyShortName: party.shortName, photoUrl: null, partyColor: party.color ?? null, ...r };
+        const r = computePartyConcordance(
+          party.id,
+          answers,
+          pack.partyMajorities,
+          minOverlap,
+          weights,
+        );
+        return {
+          id: party.id,
+          name: party.name,
+          partyShortName: party.shortName,
+          photoUrl: null,
+          partyColor: party.color ?? null,
+          ...r,
+        };
       })
       .filter((r) => r.concordance >= 0)
       .sort((a, b) => b.score - a.score);
@@ -96,7 +132,9 @@ export default function Quiz() {
     const partyPos: Record<string, CompassPosition> = {};
     for (const party of pack.parties) {
       const partyVotes: Record<string, string> = {};
-      for (const [scrutinId, partyVotesMap] of Object.entries(pack.partyMajorities)) {
+      for (const [scrutinId, partyVotesMap] of Object.entries(
+        pack.partyMajorities,
+      )) {
         const pos = partyVotesMap[party.id];
         if (pos) partyVotes[scrutinId] = pos;
       }
@@ -112,6 +150,20 @@ export default function Quiz() {
     });
     setPartyPositions(partyPos);
 
+    // Build the boussoleProfile for the optional newsletter capture on /results.
+    // Only POUR/CONTRE/ABSTENTION answers feed the profile (Poligraph schema rejects others).
+    const profileAnswers = Object.entries(answers)
+      .filter(([, a]) => a === "POUR" || a === "CONTRE" || a === "ABSTENTION")
+      .map(([scrutinId, position]) => ({
+        scrutinId,
+        position: position as Position,
+      }));
+    const topPartyMatches = parties
+      .slice(0, 5)
+      .map((p) => ({ partyId: p.id, score: Math.round(p.score) }));
+    const profile = buildBoussoleProfile(profileAnswers, topPartyMatches);
+    useQuizStore.getState().setProfile(profile);
+
     // Fire-and-forget: store result on server for shareable link
     fetch("/api/compute", {
       method: "POST",
@@ -120,17 +172,29 @@ export default function Quiz() {
     })
       .then((res) => res.json())
       .then((serverData) => {
-        if (serverData.shareId) useQuizStore.getState().setShareId(serverData.shareId);
+        if (serverData.shareId)
+          useQuizStore.getState().setShareId(serverData.shareId);
       })
       .catch(() => {});
 
     router.replace("/results");
-  }, [quizComplete, pack, answers, phase, setResults, setPartyPositions, router]);
+  }, [
+    quizComplete,
+    pack,
+    answers,
+    phase,
+    setResults,
+    setPartyPositions,
+    router,
+  ]);
 
   if (isLoading || !pack) {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
-        <View accessibilityLabel="Chargement" className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
+        <View
+          accessibilityLabel="Chargement"
+          className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full"
+        />
       </SafeAreaView>
     );
   }
@@ -139,7 +203,10 @@ export default function Quiz() {
     // Waiting for useEffect to redirect
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
-        <View accessibilityLabel="Chargement" className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
+        <View
+          accessibilityLabel="Chargement"
+          className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full"
+        />
       </SafeAreaView>
     );
   }
@@ -148,7 +215,10 @@ export default function Quiz() {
     // Waiting for useEffect to navigate
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
-        <View accessibilityLabel="Chargement" className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full" />
+        <View
+          accessibilityLabel="Chargement"
+          className="animate-spin h-8 w-8 border-2 border-indigo-400 border-t-transparent rounded-full"
+        />
       </SafeAreaView>
     );
   }
@@ -181,15 +251,16 @@ export default function Quiz() {
           <View style={{ width: 44 }} />
         )}
         <View className="flex-1">
-          <ProgressBar current={currentIndex + 1} total={questions.length} light />
+          <ProgressBar
+            current={currentIndex + 1}
+            total={questions.length}
+            light
+          />
         </View>
       </View>
       {/* Card area — fixed container so card animates without shifting buttons */}
       <View className="flex-1">
-        <QuizCard
-          key={currentQuestion.scrutinId}
-          question={currentQuestion}
-        />
+        <QuizCard key={currentQuestion.scrutinId} question={currentQuestion} />
       </View>
 
       {/* Buttons — outside QuizCard, never remount on question change */}

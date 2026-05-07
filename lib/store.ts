@@ -1,6 +1,13 @@
 import { create } from "zustand";
-import type { QuizPack, ComputeResult, UserAnswer, CompassPosition, ChallengeContext } from "./types";
+import type {
+  QuizPack,
+  ComputeResult,
+  UserAnswer,
+  CompassPosition,
+  ChallengeContext,
+} from "./types";
 import type { Phase } from "./phases";
+import type { BoussoleProfile } from "./profile";
 
 interface QuizState {
   // Quiz pack from API
@@ -24,6 +31,10 @@ interface QuizState {
   partyPositions: Record<string, CompassPosition> | null;
   setPartyPositions: (positions: Record<string, CompassPosition>) => void;
 
+  // Boussole profile (for newsletter subscription)
+  profile: BoussoleProfile | null;
+  setProfile: (profile: BoussoleProfile) => void;
+
   // Share
   shareId: string | null;
   setShareId: (id: string) => void;
@@ -46,6 +57,7 @@ const initialState = {
   phase: "core" as const,
   results: null,
   partyPositions: null,
+  profile: null,
   shareId: null,
   showPartiesOnShare: false,
   challengeContext: null,
@@ -67,6 +79,7 @@ export const useQuizStore = create<QuizState>((set) => ({
 
   setResults: (results) => set({ results }),
   setPartyPositions: (positions) => set({ partyPositions: positions }),
+  setProfile: (profile) => set({ profile }),
 
   setShareId: (id) => set({ shareId: id }),
   toggleShowPartiesOnShare: () =>
