@@ -3,6 +3,7 @@ import { View, Text, Pressable, ScrollView } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { ThemeBadge } from "./ThemeBadge";
 import { ScrutinBottomSheet } from "./ScrutinBottomSheet";
+import { NeutralPositionHelp } from "./NeutralPositionHelp";
 import { THEME_LABELS } from "@/lib/theme-labels";
 import type { QuizQuestion } from "@/lib/types";
 
@@ -10,12 +11,21 @@ interface Props {
   question: QuizQuestion;
 }
 
+const SUMMARY_TRUNCATE_THRESHOLD = 180;
+
 export function QuizCard({ question }: Props) {
   const [showContext, setShowContext] = useState(false);
 
-  const themeConfig = THEME_LABELS[question.theme] || { label: question.theme, color: "#6366f1" };
+  const themeConfig = THEME_LABELS[question.theme] || {
+    label: question.theme,
+    color: "#6366f1",
+  };
   const hasFullContext = question.officialTitle || question.voteCount;
-  const shortSummary = question.summary?.split(/(?<=[.!?])\s/)[0] || null;
+  const shortSummary = question.summary
+    ? question.summary.length > SUMMARY_TRUNCATE_THRESHOLD
+      ? question.summary.split(/(?<=[.!?])\s/)[0] || question.summary
+      : question.summary
+    : null;
 
   return (
     <>
@@ -24,10 +34,20 @@ export function QuizCard({ question }: Props) {
         exiting={FadeOut.duration(150)}
         style={{ flex: 1 }}
       >
-        <View className="flex-1 mx-5 mt-4 rounded-2xl shadow-sm overflow-hidden" style={{ backgroundColor: "#FAFAF8" }}>
-          <ScrollView className="flex-1" bounces={false} showsVerticalScrollIndicator={false}>
+        <View
+          className="flex-1 mx-5 mt-4 rounded-2xl shadow-sm overflow-hidden"
+          style={{ backgroundColor: "#FAFAF8" }}
+        >
+          <ScrollView
+            className="flex-1"
+            bounces={false}
+            showsVerticalScrollIndicator={false}
+          >
             {/* Themed header area */}
-            <View style={{ backgroundColor: themeConfig.color + "12" }} className="px-5 pt-5 pb-4">
+            <View
+              style={{ backgroundColor: themeConfig.color + "12" }}
+              className="px-5 pt-5 pb-4"
+            >
               <ThemeBadge theme={question.theme} />
               <Text className="text-2xl font-black text-gray-900 mt-3 leading-8">
                 {question.question}
@@ -65,6 +85,29 @@ export function QuizCard({ question }: Props) {
                 </Text>
               </Pressable>
             ) : null}
+
+            {/* Ce vote concerne \u2014 metadata row */}
+            <View className="mx-4 mt-3 mb-1">
+              <Text className="text-[10px] uppercase tracking-wider text-gray-400">
+                Ce vote concerne
+              </Text>
+              <Text className="text-xs text-gray-600 mt-0.5">
+                {[
+                  themeConfig.label,
+                  question.chamber === "AN"
+                    ? "Assembl\u00e9e nationale"
+                    : "S\u00e9nat",
+                  question.votingDate,
+                ]
+                  .filter(Boolean)
+                  .join(" \u00b7 ")}
+              </Text>
+            </View>
+
+            {/* Aide neutre Pour / Contre \u2014 fallback ou positionHelp si pr\u00e9sent */}
+            <View className="mx-4 mb-4">
+              <NeutralPositionHelp help={question.positionHelp} />
+            </View>
           </ScrollView>
         </View>
       </Animated.View>
