@@ -13,16 +13,23 @@ export const ScrutinConfigSchema = z.object({
   officialTitle: z.string().optional(),
   summary: z.string().optional(),
   result: z.enum(["adopte", "rejete"]).optional(),
-  voteCount: z.object({
-    pour: z.number(),
-    contre: z.number(),
-    abstention: z.number(),
-  }).optional(),
+  voteCount: z
+    .object({
+      pour: z.number(),
+      contre: z.number(),
+      abstention: z.number(),
+    })
+    .optional(),
 });
 
 // --- User Input ---
 
-export const UserAnswerSchema = z.enum(["POUR", "CONTRE", "ABSTENTION", "SKIP"]);
+export const UserAnswerSchema = z.enum([
+  "POUR",
+  "CONTRE",
+  "ABSTENTION",
+  "SKIP",
+]);
 
 export const ComputeRequestSchema = z.object({
   answers: z.record(z.string(), UserAnswerSchema),
@@ -30,7 +37,13 @@ export const ComputeRequestSchema = z.object({
 
 // --- Vote Data ---
 
-export const VotePositionSchema = z.enum(["POUR", "CONTRE", "ABSTENTION", "ABSENT", "NON_VOTANT"]);
+export const VotePositionSchema = z.enum([
+  "POUR",
+  "CONTRE",
+  "ABSTENTION",
+  "ABSENT",
+  "NON_VOTANT",
+]);
 
 export const PoliticianSchema = z.object({
   id: z.string(),
@@ -51,6 +64,14 @@ export const PartySchema = z.object({
 
 // --- Quiz Pack (served by API) ---
 
+export const PositionHelpSchema = z
+  .object({
+    pour: z.string(),
+    contre: z.string(),
+    abstention: z.string().optional(),
+  })
+  .optional();
+
 export const QuizQuestionSchema = z.object({
   scrutinId: z.string(),
   question: z.string(),
@@ -62,11 +83,16 @@ export const QuizQuestionSchema = z.object({
   officialTitle: z.string().optional(),
   summary: z.string().optional(),
   result: z.enum(["adopte", "rejete"]).optional(),
-  voteCount: z.object({
-    pour: z.number(),
-    contre: z.number(),
-    abstention: z.number(),
-  }).optional(),
+  voteCount: z
+    .object({
+      pour: z.number(),
+      contre: z.number(),
+      abstention: z.number(),
+    })
+    .optional(),
+  neutralContext: z.string().optional(),
+  politicalDimension: z.string().optional(),
+  positionHelp: PositionHelpSchema,
 });
 
 export const QuizPackSchema = z.object({
@@ -74,10 +100,19 @@ export const QuizPackSchema = z.object({
   voteMatrix: z.record(z.string(), z.record(z.string(), VotePositionSchema)),
   politicians: z.array(PoliticianSchema),
   parties: z.array(PartySchema),
-  partyMajorities: z.record(z.string(), z.record(z.string(), VotePositionSchema)),
+  partyMajorities: z.record(
+    z.string(),
+    z.record(z.string(), VotePositionSchema),
+  ),
   axes: z.object({
-    economy: z.object({ scrutinIds: z.array(z.string()), polarities: z.record(z.string(), z.union([z.literal(1), z.literal(-1)])) }),
-    society: z.object({ scrutinIds: z.array(z.string()), polarities: z.record(z.string(), z.union([z.literal(1), z.literal(-1)])) }),
+    economy: z.object({
+      scrutinIds: z.array(z.string()),
+      polarities: z.record(z.string(), z.union([z.literal(1), z.literal(-1)])),
+    }),
+    society: z.object({
+      scrutinIds: z.array(z.string()),
+      polarities: z.record(z.string(), z.union([z.literal(1), z.literal(-1)])),
+    }),
   }),
   generatedAt: z.string(),
 });
