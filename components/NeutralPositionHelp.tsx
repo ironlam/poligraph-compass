@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { View, Text, Pressable } from "react-native";
-import { NEUTRAL_FALLBACKS } from "@/lib/wording-rules";
 
 interface PositionHelp {
   pour: string;
@@ -8,11 +7,16 @@ interface PositionHelp {
   abstention?: string;
 }
 
+/**
+ * Bloc expandable affichant les conséquences factuelles d'un vote Pour / Contre.
+ * Rendu conditionnel à la présence de `help` : tant qu'aucune conséquence
+ * concrète n'est renseignée sur la question, on ne rend rien (les anciens
+ * fallbacks de NEUTRAL_FALLBACKS étaient tautologiques et sans valeur ajoutée).
+ */
 export function NeutralPositionHelp({ help }: { help?: PositionHelp }) {
   const [open, setOpen] = useState(false);
 
-  const pourText = help?.pour ?? NEUTRAL_FALLBACKS.POUR;
-  const contreText = help?.contre ?? NEUTRAL_FALLBACKS.CONTRE;
+  if (!help) return null;
 
   return (
     <View className="mt-3 rounded-lg border border-gray-200 p-3">
@@ -28,10 +32,10 @@ export function NeutralPositionHelp({ help }: { help?: PositionHelp }) {
       {open && (
         <View className="mt-2 space-y-2">
           <Text className="text-sm">
-            <Text className="font-semibold">Pour :</Text> {pourText}
+            <Text className="font-semibold">Pour :</Text> {help.pour}
           </Text>
           <Text className="text-sm">
-            <Text className="font-semibold">Contre :</Text> {contreText}
+            <Text className="font-semibold">Contre :</Text> {help.contre}
           </Text>
         </View>
       )}
