@@ -14,6 +14,10 @@
       "pour": 127,
       "contre": 41,
       "abstention": 42
+    },
+    "positionHelp": {
+      "pour": "L'État rachète les sites français d'ArcelorMittal, qui passent sous gestion publique.",
+      "contre": "ArcelorMittal conserve la propriété et la gestion de ses sites français, libre de poursuivre ses choix de production, fermetures et délocalisations."
     }
   },
   {
@@ -31,6 +35,10 @@
       "pour": 247,
       "contre": 232,
       "abstention": 90
+    },
+    "positionHelp": {
+      "pour": "Le projet de loi de financement est adopté avec les niveaux de dépenses proposés par le gouvernement pour les hôpitaux, retraites et assurance maladie.",
+      "contre": "Le projet est rejeté ; le gouvernement doit représenter un texte modifié ou s'appuyer sur la procédure de loi spéciale."
     }
   },
   {
@@ -48,6 +56,10 @@
       "pour": 105,
       "contre": 56,
       "abstention": 4
+    },
+    "positionHelp": {
+      "pour": "Un plafond légal limite les hausses de loyer dans les zones tendues, et les droits des locataires (préavis, conditions de congé) sont étendus.",
+      "contre": "Le cadre actuel reste en vigueur, sans nouveau plafond légal ni renforcement supplémentaire des droits des locataires."
     }
   },
   {
@@ -65,6 +77,10 @@
       "pour": 316,
       "contre": 223,
       "abstention": 25
+    },
+    "positionHelp": {
+      "pour": "Plusieurs normes environnementales, sanitaires et administratives applicables aux exploitations agricoles sont assouplies ou supprimées.",
+      "contre": "Les normes actuelles restent en vigueur, les exploitations continuent à devoir s'y conformer."
     }
   },
   {
@@ -82,6 +98,10 @@
       "pour": 65,
       "contre": 41,
       "abstention": 52
+    },
+    "positionHelp": {
+      "pour": "Les délais d'instruction des autorisations d'urbanisme sont raccourcis et plusieurs procédures de construction et de rénovation sont allégées.",
+      "contre": "Les procédures actuelles d'urbanisme et les délais d'instruction restent inchangés."
     }
   },
   {
@@ -99,6 +119,10 @@
       "pour": 299,
       "contre": 226,
       "abstention": 37
+    },
+    "positionHelp": {
+      "pour": "Un cadre légal autorise les personnes majeures atteintes d'une maladie incurable en phase terminale à demander une aide médicale à mourir, sous conditions médicales définies.",
+      "contre": "Le cadre actuel demeure : la sédation profonde et continue reste possible, mais l'aide médicale à mourir reste interdite."
     }
   },
   {
@@ -116,6 +140,10 @@
       "pour": 303,
       "contre": 168,
       "abstention": 1
+    },
+    "positionHelp": {
+      "pour": "Un dispositif élargi permet de maintenir en rétention de sûreté certaines personnes ayant fini de purger leur peine, sur décision judiciaire fondée sur le risque de récidive.",
+      "contre": "Le cadre actuel reste en vigueur ; la rétention de sûreté ne peut s'appliquer qu'aux conditions plus restrictives existantes."
     }
   },
   {
@@ -133,6 +161,10 @@
       "pour": 98,
       "contre": 37,
       "abstention": 2
+    },
+    "positionHelp": {
+      "pour": "Les titres de séjour de longue durée sont renouvelés automatiquement pour les détenteurs remplissant les conditions, sans nouvelle instruction administrative à chaque échéance.",
+      "contre": "Chaque renouvellement reste soumis à une instruction administrative individuelle au cas par cas."
     }
   },
   {
@@ -150,6 +182,10 @@
       "pour": 130,
       "contre": 21,
       "abstention": 6
+    },
+    "positionHelp": {
+      "pour": "Les plateformes doivent vérifier l'âge des utilisateurs et obtenir un accord parental pour les inscriptions de moins de 15 ans, sous peine de sanctions.",
+      "contre": "L'accès des mineurs aux réseaux sociaux reste régi par les conditions générales des plateformes, sans obligation légale de vérification d'âge ni d'accord parental."
     }
   },
   {
@@ -167,6 +203,10 @@
       "pour": 144,
       "contre": 100,
       "abstention": 2
+    },
+    "positionHelp": {
+      "pour": "Des crédits supplémentaires sont alloués à la création de places d'hébergement et au renforcement de l'accompagnement social pour les mineurs isolés et les sans-abri.",
+      "contre": "Le niveau actuel de financement et de places d'hébergement est maintenu, sans augmentation supplémentaire pour ces publics."
     }
   },
   {
@@ -184,6 +224,10 @@
       "pour": 149,
       "contre": 174,
       "abstention": 8
+    },
+    "positionHelp": {
+      "pour": "Les industriels et distributeurs doivent indiquer le pays d'origine des ingrédients sur l'étiquetage de tous les produits alimentaires vendus en France, sous peine de sanctions.",
+      "contre": "Les obligations actuelles d'étiquetage restent en vigueur, sans extension de l'affichage du pays d'origine sur l'ensemble des produits."
     }
   },
   {
@@ -201,6 +245,10 @@
       "pour": 56,
       "contre": 8,
       "abstention": 12
+    },
+    "positionHelp": {
+      "pour": "Des crédits publics sont alloués à la rénovation des barrages existants et à la construction de nouveaux ouvrages hydroélectriques.",
+      "contre": "Pas de plan d'investissement supplémentaire dédié à l'hydroélectricité ; les financements actuels sont maintenus en l'état."
     }
   },
   {
@@ -218,6 +266,10 @@
       "pour": 143,
       "contre": 25,
       "abstention": 8
+    },
+    "positionHelp": {
+      "pour": "Les règles d'embauche des plus de 55 ans sont assouplies (contrats plus flexibles) et certaines règles du dialogue social en entreprise sont adaptées.",
+      "contre": "Les règles actuelles d'embauche et de dialogue social restent en vigueur sans modification spécifique pour les seniors."
     }
   },
   {
@@ -235,6 +287,10 @@
       "pour": 195,
       "contre": 0,
       "abstention": 51
+    },
+    "positionHelp": {
+      "pour": "La Poste applique les mêmes tarifs sur tout le territoire, métropole et outre-mer ; l'État compense le surcoût.",
+      "contre": "Les tarifs postaux outre-mer continuent d'inclure le surcoût de transport et restent supérieurs à ceux pratiqués en métropole."
     }
   },
   {
@@ -252,6 +308,10 @@
       "pour": 43,
       "contre": 13,
       "abstention": 17
+    },
+    "positionHelp": {
+      "pour": "Les parkings des hôpitaux publics deviennent gratuits pour patients, visiteurs et soignants ; le manque à gagner est compensé selon les modalités prévues par la loi.",
+      "contre": "La tarification actuelle des parkings hospitaliers reste en vigueur, fixée par chaque établissement."
     }
   },
   {
@@ -269,6 +329,10 @@
       "pour": 114,
       "contre": 0,
       "abstention": 0
+    },
+    "positionHelp": {
+      "pour": "L'État reconnaît officiellement le préjudice subi par les personnes condamnées pour homosexualité entre 1945 et 1982 et verse une indemnisation aux victimes ou ayants droit.",
+      "contre": "Aucune reconnaissance officielle ni indemnisation prévue par cette loi pour les personnes concernées."
     }
   },
   {
@@ -286,6 +350,10 @@
       "pour": 106,
       "contre": 0,
       "abstention": 1
+    },
+    "positionHelp": {
+      "pour": "L'obligation de relations sexuelles entre époux est retirée du Code civil ; le refus de relations ne peut plus constituer une faute conjugale.",
+      "contre": "La notion de devoir conjugal reste inscrite dans la jurisprudence existante du Code civil."
     }
   },
   {
@@ -303,6 +371,10 @@
       "pour": 155,
       "contre": 31,
       "abstention": 5
+    },
+    "positionHelp": {
+      "pour": "La définition pénale du viol et des agressions sexuelles est modifiée pour intégrer explicitement la notion de consentement ; l'absence de non ne suffit plus à écarter la qualification.",
+      "contre": "La définition actuelle du viol et des agressions sexuelles reste en vigueur, fondée sur les critères jurisprudentiels existants."
     }
   },
   {
@@ -320,6 +392,10 @@
       "pour": 93,
       "contre": 0,
       "abstention": 0
+    },
+    "positionHelp": {
+      "pour": "L'État reconnaît officiellement le préjudice subi par les femmes condamnées pour avortement ou aide à l'avortement avant la loi Veil de 1975.",
+      "contre": "Aucune reconnaissance officielle prévue par cette loi pour les personnes concernées."
     }
   },
   {
@@ -337,6 +413,10 @@
       "pour": 85,
       "contre": 0,
       "abstention": 13
+    },
+    "positionHelp": {
+      "pour": "Des mesures d'urgence sont mises en place : encadrement de certains prix et régulation des marges des entreprises ultramarines, pour réduire les écarts avec la métropole.",
+      "contre": "Les mécanismes existants de surveillance des prix restent en vigueur, sans nouvel encadrement ni régulation supplémentaire des marges."
     }
   },
   {
@@ -354,6 +434,10 @@
       "pour": 118,
       "contre": 115,
       "abstention": 0
+    },
+    "positionHelp": {
+      "pour": "Une taxe temporaire est instaurée sur les superprofits des entreprises énergétiques ; les recettes financent des mesures sociales définies par la loi.",
+      "contre": "Aucune taxe additionnelle sur ces profits ; le régime fiscal existant des entreprises énergétiques est maintenu."
     }
   },
   {
@@ -371,6 +455,10 @@
       "pour": 142,
       "contre": 141,
       "abstention": 1
+    },
+    "positionHelp": {
+      "pour": "La prime de 50% des sièges accordée à la liste arrivée en tête est supprimée ; la répartition des sièges se fait au prorata des voix obtenues.",
+      "contre": "La prime majoritaire actuelle est conservée ; la liste arrivée en tête continue d'obtenir au moins 50% des sièges."
     }
   },
   {
@@ -388,6 +476,10 @@
       "pour": 110,
       "contre": 110,
       "abstention": 3
+    },
+    "positionHelp": {
+      "pour": "L'Assurance maladie rembourse à 100% les lunettes médicales, comme avant 2015.",
+      "contre": "Le niveau actuel de remboursement (partiel, complété par les complémentaires santé) est maintenu."
     }
   },
   {
@@ -405,6 +497,10 @@
       "pour": 119,
       "contre": 122,
       "abstention": 4
+    },
+    "positionHelp": {
+      "pour": "Le montant de l'aide militaire et financière française à l'Ukraine est augmenté au-delà du niveau actuel.",
+      "contre": "Le niveau actuel d'aide est maintenu sans augmentation supplémentaire."
     }
   },
   {
@@ -422,6 +518,10 @@
       "pour": 114,
       "contre": 122,
       "abstention": 0
+    },
+    "positionHelp": {
+      "pour": "Les crédits publics consacrés à la construction de logements sociaux sont augmentés.",
+      "contre": "Le niveau actuel de financement public du logement social est maintenu, sans hausse supplémentaire."
     }
   },
   {
@@ -439,6 +539,10 @@
       "pour": 122,
       "contre": 120,
       "abstention": 6
+    },
+    "positionHelp": {
+      "pour": "Les avantages fiscaux liés à l'achat de véhicules de société émettant plus de 130 g CO2/km sont supprimés.",
+      "contre": "Les avantages fiscaux actuels pour ces véhicules de société sont maintenus."
     }
   },
   {
@@ -456,6 +560,10 @@
       "pour": 117,
       "contre": 120,
       "abstention": 6
+    },
+    "positionHelp": {
+      "pour": "Certains remboursements de soins via l'Aide médicale d'État (AME) sont restreints pour les étrangers en situation irrégulière.",
+      "contre": "Le périmètre actuel de l'AME et des soins remboursés aux étrangers en situation irrégulière est maintenu."
     }
   },
   {
@@ -473,6 +581,10 @@
       "pour": 105,
       "contre": 97,
       "abstention": 0
+    },
+    "positionHelp": {
+      "pour": "Plusieurs étapes et documents obligatoires pour créer ou gérer une entreprise sont supprimés ou allégés.",
+      "contre": "Les démarches administratives actuelles applicables aux entreprises restent inchangées."
     }
   },
   {
@@ -490,6 +602,10 @@
       "pour": 164,
       "contre": 153,
       "abstention": 3
+    },
+    "positionHelp": {
+      "pour": "Les subventions publiques versées aux associations sont diminuées de 10%.",
+      "contre": "Le niveau actuel des subventions aux associations est maintenu."
     }
   },
   {
@@ -507,6 +623,10 @@
       "pour": 111,
       "contre": 120,
       "abstention": 2
+    },
+    "positionHelp": {
+      "pour": "L'exonération de taxe d'habitation sur les résidences secondaires est supprimée ; les propriétaires concernés deviennent redevables.",
+      "contre": "L'exonération actuelle de taxe d'habitation pour les résidences secondaires est maintenue."
     }
   },
   {
@@ -524,6 +644,10 @@
       "pour": 113,
       "contre": 113,
       "abstention": 0
+    },
+    "positionHelp": {
+      "pour": "Une niche fiscale dont bénéficient certaines entreprises est supprimée ; les recettes correspondantes reviennent à l'État.",
+      "contre": "La niche fiscale concernée est maintenue dans le régime fiscal actuel."
     }
   },
   {
@@ -541,6 +665,10 @@
       "pour": 122,
       "contre": 123,
       "abstention": 1
+    },
+    "positionHelp": {
+      "pour": "Un plafond est introduit sur le montant maximal remboursé par l'Assurance maladie pour certains soins.",
+      "contre": "Le mécanisme actuel de remboursement, fondé sur les tarifs conventionnels sans plafond global, reste en vigueur."
     }
   },
   {
@@ -558,6 +686,10 @@
       "pour": 106,
       "contre": 107,
       "abstention": 2
+    },
+    "positionHelp": {
+      "pour": "Le taux des cotisations sociales versées par les entreprises au titre de la protection sociale est augmenté.",
+      "contre": "Le taux actuel des cotisations sociales patronales est maintenu."
     }
   },
   {
@@ -575,6 +707,10 @@
       "pour": 139,
       "contre": 145,
       "abstention": 0
+    },
+    "positionHelp": {
+      "pour": "La hausse prévue des cotisations sociales pour les travailleurs indépendants est annulée ; ils restent au taux actuel.",
+      "contre": "La hausse prévue s'applique comme initialement programmée."
     }
   },
   {
@@ -592,6 +728,10 @@
       "pour": 115,
       "contre": 117,
       "abstention": 3
+    },
+    "positionHelp": {
+      "pour": "Plusieurs dispositifs de réductions d'impôts spécifiques aux entreprises sont supprimés ; les recettes fiscales correspondantes sont récupérées par l'État.",
+      "contre": "L'ensemble des dispositifs fiscaux actuels en faveur des entreprises est conservé."
     }
   },
   {
@@ -609,6 +749,10 @@
       "pour": 150,
       "contre": 147,
       "abstention": 4
+    },
+    "positionHelp": {
+      "pour": "L'exonération de cotisations patronales appliquée aux heures supplémentaires est supprimée ; ces heures redeviennent soumises aux cotisations classiques.",
+      "contre": "L'exonération actuelle des cotisations patronales sur les heures supplémentaires est maintenue."
     }
   },
   {
@@ -626,6 +770,10 @@
       "pour": 127,
       "contre": 125,
       "abstention": 4
+    },
+    "positionHelp": {
+      "pour": "La part des dépenses de santé remboursée par les mutuelles est plafonnée à 30% du reste à charge.",
+      "contre": "Le niveau actuel de remboursement par les mutuelles est maintenu, sans plafond légal."
     }
   },
   {
@@ -643,6 +791,10 @@
       "pour": 97,
       "contre": 97,
       "abstention": 5
+    },
+    "positionHelp": {
+      "pour": "Les exonérations de cotisations sociales applicables aux hauts revenus sont supprimées au-delà d'un certain seuil.",
+      "contre": "Les exonérations actuelles applicables aux hauts revenus restent en vigueur."
     }
   },
   {
@@ -660,6 +812,10 @@
       "pour": 152,
       "contre": 156,
       "abstention": 4
+    },
+    "positionHelp": {
+      "pour": "L'exonération de cotisations sociales sur les heures supplémentaires est supprimée ; salariés et employeurs cotisent normalement sur ces heures.",
+      "contre": "L'exonération actuelle de cotisations sociales sur les heures supplémentaires est maintenue."
     }
   },
   {
@@ -677,6 +833,10 @@
       "pour": 151,
       "contre": 153,
       "abstention": 6
+    },
+    "positionHelp": {
+      "pour": "Tous les producteurs de denrées alimentaires sont tenus d'indiquer systématiquement le pays d'origine sur les étiquettes.",
+      "contre": "Les obligations actuelles d'étiquetage de l'origine restent inchangées."
     }
   },
   {
@@ -694,6 +854,10 @@
       "pour": 170,
       "contre": 162,
       "abstention": 1
+    },
+    "positionHelp": {
+      "pour": "La prise en charge par l'Assurance maladie de certains soins est supprimée ; les patients en assument le coût.",
+      "contre": "La prise en charge actuelle de ces soins par l'Assurance maladie est maintenue."
     }
   },
   {
@@ -711,6 +875,10 @@
       "pour": 105,
       "contre": 102,
       "abstention": 3
+    },
+    "positionHelp": {
+      "pour": "L'impôt sur les sociétés applicable aux grandes entreprises est majoré.",
+      "contre": "Le taux actuel d'imposition des grandes entreprises est maintenu."
     }
   },
   {
@@ -728,6 +896,10 @@
       "pour": 149,
       "contre": 151,
       "abstention": 7
+    },
+    "positionHelp": {
+      "pour": "Tous les produits alimentaires transformés vendus en France doivent afficher l'origine géographique de leurs ingrédients sur l'emballage.",
+      "contre": "Les obligations actuelles d'étiquetage de l'origine restent en vigueur."
     }
   },
   {
@@ -745,6 +917,10 @@
       "pour": 113,
       "contre": 109,
       "abstention": 3
+    },
+    "positionHelp": {
+      "pour": "L'exonération fiscale accordée aux entreprises s'installant en zones franches urbaines est supprimée pour les nouvelles installations à partir de 2026.",
+      "contre": "Le régime d'exonération actuel des zones franches urbaines est maintenu pour les nouvelles installations."
     }
   },
   {
@@ -762,6 +938,10 @@
       "pour": 118,
       "contre": 113,
       "abstention": 4
+    },
+    "positionHelp": {
+      "pour": "La fiscalité applicable aux grandes surfaces alimentaires est majorée de 2% ; les recettes financent des aides aux petits commerces.",
+      "contre": "La fiscalité actuelle des grandes surfaces est maintenue, sans nouvelle taxe."
     }
   },
   {
@@ -779,6 +959,10 @@
       "pour": 100,
       "contre": 95,
       "abstention": 3
+    },
+    "positionHelp": {
+      "pour": "La prise en charge par l'Assurance maladie est étendue à certains soins dentaires aujourd'hui non couverts.",
+      "contre": "Le périmètre actuel des soins dentaires remboursés par l'Assurance maladie est maintenu."
     }
   },
   {
@@ -796,6 +980,10 @@
       "pour": 125,
       "contre": 132,
       "abstention": 4
+    },
+    "positionHelp": {
+      "pour": "Le remboursement des médicaments non génériques est réduit ; l'Assurance maladie incite davantage au recours aux génériques équivalents.",
+      "contre": "Le niveau actuel de remboursement des médicaments non génériques est maintenu."
     }
   },
   {
@@ -813,6 +1001,10 @@
       "pour": 113,
       "contre": 122,
       "abstention": 1
+    },
+    "positionHelp": {
+      "pour": "L'impôt sur les sociétés des grandes entreprises est majoré ; les recettes financent les services publics.",
+      "contre": "Le taux actuel d'imposition des grandes entreprises est maintenu."
     }
   },
   {
@@ -830,6 +1022,10 @@
       "pour": 123,
       "contre": 128,
       "abstention": 6
+    },
+    "positionHelp": {
+      "pour": "Les médicaments homéopathiques sont retirés de la liste des produits remboursés par la Sécurité sociale.",
+      "contre": "Le remboursement partiel actuel des médicaments homéopathiques est maintenu."
     }
   },
   {
@@ -847,6 +1043,10 @@
       "pour": 141,
       "contre": 155,
       "abstention": 0
+    },
+    "positionHelp": {
+      "pour": "Le remboursement partiel des dépassements d'honoraires médicaux par l'Assurance maladie est supprimé ; le reste à charge incombe entièrement au patient et à sa complémentaire.",
+      "contre": "Le mécanisme actuel de prise en charge partielle des dépassements d'honoraires est maintenu."
     }
   }
 ]
