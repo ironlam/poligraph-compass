@@ -46,13 +46,13 @@ export function NewsletterCapture({
     });
     if (r.success && r.alreadyConfirmed) {
       setState("success");
-      setMessage("Tu es deja abonne, a dimanche !");
+      setMessage("Tu es déjà abonné, à dimanche !");
     } else if (r.success) {
       setState("success");
-      setMessage("Verifie ta boite mail pour confirmer ton inscription.");
+      setMessage("Vérifie ta boîte mail pour confirmer ton inscription.");
     } else {
       setState("error");
-      setMessage("Une erreur est survenue. Reessaye.");
+      setMessage("Une erreur est survenue. Réessaye.");
     }
   };
 
@@ -62,21 +62,21 @@ export function NewsletterCapture({
         className="mx-6 mt-4 rounded-xl bg-green-50 p-4"
         accessibilityRole="alert"
       >
-        <Text className="font-semibold text-green-800">Merci !</Text>
-        <Text className="mt-1 text-sm text-green-700">{message}</Text>
+        <Text className="font-display text-green-800">Merci !</Text>
+        <Text className="mt-1 text-sm font-body text-green-700">{message}</Text>
       </View>
     );
   }
 
   return (
     <View className="mx-6 mt-4 rounded-xl bg-white p-4 border border-gray-100">
-      <Text className="text-base font-semibold text-gray-900">
-        Recois chaque dimanche le recap parlementaire
+      <Text className="text-base font-display text-ink">
+        Reçois chaque dimanche le récap parlementaire
       </Text>
-      <Text className="mt-1 text-sm text-gray-500">
+      <Text className="mt-1 text-sm font-body text-gray-500">
         {deputyName
-          ? `Avec un focus sur ton depute ${deputyName}, en 5 minutes de lecture.`
-          : "Le resume hebdomadaire des votes, affaires et fact-checks."}
+          ? `Avec un focus sur ton député ${deputyName}, en 5 minutes de lecture.`
+          : "Le résumé hebdomadaire des votes, affaires et fact-checks."}
       </Text>
 
       <TextInput
@@ -90,41 +90,43 @@ export function NewsletterCapture({
         autoCapitalize="none"
         autoCorrect={false}
         accessibilityLabel="Adresse email"
-        className="mt-3 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900"
+        className="mt-3 rounded-lg border border-gray-300 px-3 py-2 text-sm font-body text-ink"
       />
 
       <Pressable
         onPress={() => setConsent((c) => !c)}
         accessibilityRole="checkbox"
         accessibilityState={{ checked: consent }}
-        accessibilityLabel="J'accepte de recevoir la newsletter Poligraph par email. Je peux me desinscrire a tout moment."
+        accessibilityLabel="J'accepte de recevoir la newsletter Poligraph par email. Je peux me désinscrire à tout moment."
         className="mt-3 flex-row items-start gap-2"
         style={{ minHeight: 44 }}
       >
         <View
           className={`mt-0.5 h-5 w-5 rounded border ${
-            consent ? "border-blue-600 bg-blue-600" : "border-gray-400 bg-white"
+            consent
+              ? "border-indigo-600 bg-indigo-600"
+              : "border-gray-400 bg-white"
           }`}
         >
           {consent && (
-            <Text className="text-center text-xs leading-5 text-white">v</Text>
+            <Text className="text-center text-xs leading-5 text-white">✓</Text>
           )}
         </View>
-        <Text className="flex-1 text-xs text-gray-700 leading-relaxed">
+        <Text className="flex-1 text-xs font-body text-gray-700 leading-relaxed">
           J{"'"}accepte de recevoir la newsletter Poligraph par email. Je peux
-          me desinscrire a tout moment.
+          me désinscrire à tout moment.
         </Text>
       </Pressable>
 
       <Pressable
         onPress={() => Linking.openURL(PRIVACY_URL).catch(() => {})}
         accessibilityRole="link"
-        accessibilityLabel="Voir comment mes donnees sont traitees"
+        accessibilityLabel="Voir comment mes données sont traitées"
         style={{ minHeight: 44 }}
         className="mt-1 justify-center"
       >
-        <Text className="text-xs text-gray-500 underline">
-          Voir comment mes donnees sont traitees
+        <Text className="text-xs font-body text-gray-500 underline">
+          Voir comment mes données sont traitées
         </Text>
       </Pressable>
 
@@ -132,23 +134,23 @@ export function NewsletterCapture({
         onPress={onSubmit}
         disabled={!isValid || state === "submitting"}
         accessibilityRole="button"
-        accessibilityLabel="S'abonner a la newsletter Poligraph"
+        accessibilityLabel="S'abonner à la newsletter Poligraph"
         accessibilityState={{ disabled: !isValid || state === "submitting" }}
         className={`mt-3 min-h-[48px] flex-row items-center justify-center rounded-xl px-4 py-3 ${
-          isValid ? "bg-blue-600 active:bg-blue-700" : "bg-gray-300"
+          isValid ? "bg-indigo-600 active:bg-indigo-700" : "bg-gray-300"
         }`}
       >
         {state === "submitting" ? (
           <ActivityIndicator color="white" />
         ) : (
-          <Text className="text-base font-semibold text-white">
+          <Text className="text-base font-display text-white">
             S{"'"}abonner
           </Text>
         )}
       </Pressable>
 
       {state === "error" && message && (
-        <Text className="mt-2 text-sm text-red-600">{message}</Text>
+        <Text className="mt-2 text-sm font-body text-red-600">{message}</Text>
       )}
     </View>
   );

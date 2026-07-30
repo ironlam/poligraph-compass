@@ -57,14 +57,14 @@ export function DeputyBanner() {
       <View className="mx-6 mt-6 p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
         <View className="flex-row items-center justify-between">
           <View className="flex-1">
-            <Text className="text-xs text-indigo-400 font-semibold uppercase tracking-wide">
+            <Text className="text-xs font-body-700 text-indigo-400 uppercase tracking-wide">
               Ton député(e)
             </Text>
-            <Text className="text-base font-bold text-gray-900 mt-1">
+            <Text className="text-base font-display text-ink mt-1">
               {selectedDeputy.fullName}
             </Text>
             {selectedDeputy.circonscription && (
-              <Text className="text-xs text-gray-400 mt-0.5">
+              <Text className="text-xs font-body text-gray-400 mt-0.5">
                 {selectedDeputy.circonscription}
               </Text>
             )}
@@ -76,7 +76,7 @@ export function DeputyBanner() {
             className="px-3 py-1.5"
             style={{ minHeight: 44, justifyContent: "center" }}
           >
-            <Text className="text-xs text-indigo-500 font-semibold">
+            <Text className="text-xs font-body-700 text-indigo-500">
               Changer
             </Text>
           </Pressable>
@@ -88,10 +88,10 @@ export function DeputyBanner() {
   // State: no deputy or editing
   return (
     <View className="mx-6 mt-6 p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
-      <Text className="text-sm font-bold text-gray-900">
+      <Text className="text-sm font-display text-ink">
         Découvre comment ton député a voté
       </Text>
-      <Text className="text-xs text-gray-400 mt-1 mb-3">
+      <Text className="text-xs font-body text-gray-400 mt-1 mb-3">
         Entre ton code postal pour le trouver
       </Text>
 
@@ -104,7 +104,7 @@ export function DeputyBanner() {
           accessibilityHint="Entre ton code postal pour trouver ton député"
           keyboardType="number-pad"
           maxLength={5}
-          className="flex-1 bg-white rounded-xl px-4 py-2.5 text-sm text-gray-900 border border-gray-200"
+          className="flex-1 bg-white rounded-xl px-4 py-2.5 text-sm font-body text-ink border border-gray-200"
           editable={!isLoading}
           onSubmitEditing={handleSearch}
           returnKeyType="search"
@@ -120,12 +120,14 @@ export function DeputyBanner() {
           {isLoading ? (
             <ActivityIndicator size="small" color="#fff" />
           ) : (
-            <Text className="text-white font-bold text-sm">OK</Text>
+            <Text className="text-white font-display text-sm">OK</Text>
           )}
         </Pressable>
       </View>
 
-      {error && <Text className="text-xs text-red-500 mt-2">{error}</Text>}
+      {error && (
+        <Text className="text-xs font-body text-red-500 mt-2">{error}</Text>
+      )}
 
       {selectedDeputy && isEditing && (
         <Pressable
@@ -135,7 +137,7 @@ export function DeputyBanner() {
           className="mt-2"
           style={{ minHeight: 44, justifyContent: "center" }}
         >
-          <Text className="text-xs text-gray-400 underline">
+          <Text className="text-xs font-body text-gray-400 underline">
             Supprimer la sélection
           </Text>
         </Pressable>

@@ -35,7 +35,7 @@ export function DeputyPinnedCard({ entry }: Props) {
     >
       {/* Badge */}
       <View className="bg-indigo-500 self-start px-2.5 py-0.5 rounded-full mb-3">
-        <Text className="text-xs font-bold text-white">Ton député(e)</Text>
+        <Text className="text-xs font-body-700 text-white">Ton député(e)</Text>
       </View>
 
       <View className="flex-row items-center gap-4">
@@ -48,34 +48,36 @@ export function DeputyPinnedCard({ entry }: Props) {
           />
         ) : (
           <View
-            className="w-16 h-16 rounded-full bg-gray-200 items-center justify-center"
-            style={{ borderWidth: 3, borderColor: partyColor }}
+            className="w-16 h-16 rounded-full items-center justify-center"
+            style={{
+              backgroundColor: partyColor,
+              borderWidth: 3,
+              borderColor: partyColor,
+            }}
           >
-            <Text className="text-lg text-gray-400 font-bold">
+            <Text className="text-lg font-display text-white">
               {entry.name.charAt(0)}
             </Text>
           </View>
         )}
 
         <View className="flex-1">
-          <Text className="text-base font-extrabold text-gray-900">
-            {entry.name}
-          </Text>
+          <Text className="text-base font-display text-ink">{entry.name}</Text>
           {entry.partyShortName && (
             <Text
-              className="text-sm font-semibold mt-0.5"
+              className="text-sm font-body-700 mt-0.5"
               style={{ color: partyColor }}
             >
               {entry.partyShortName}
             </Text>
           )}
-          <Text className="text-xs text-gray-400 mt-1">
+          <Text className="text-xs font-body text-gray-400 mt-1">
             D'accord sur {entry.agree} votes sur {entry.overlap}
           </Text>
         </View>
 
         <View className="items-end">
-          <Text className="text-2xl font-extrabold" style={{ color }}>
+          <Text className="text-2xl font-display" style={{ color }}>
             {entry.score}%
           </Text>
           <View
@@ -87,7 +89,7 @@ export function DeputyPinnedCard({ entry }: Props) {
               marginTop: 4,
             }}
           >
-            <Text style={{ color, fontSize: 11, fontWeight: "700" }}>
+            <Text className="font-body-700" style={{ color, fontSize: 11 }}>
               {label}
             </Text>
           </View>
@@ -98,7 +100,7 @@ export function DeputyPinnedCard({ entry }: Props) {
         <ConcordanceBar score={entry.score} color={color} height={6} />
       </View>
 
-      <Text className="text-xs text-indigo-400 text-center mt-3 font-semibold">
+      <Text className="text-xs font-body-700 text-indigo-400 text-center mt-3">
         Voir la comparaison détaillée
       </Text>
     </Pressable>

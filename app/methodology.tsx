@@ -2,10 +2,16 @@ import { View, Text, ScrollView, Pressable, Linking } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <View className="mt-8">
-      <Text className="text-lg font-bold text-gray-900 mb-3">{title}</Text>
+      <Text className="text-lg font-display text-ink mb-3">{title}</Text>
       {children}
     </View>
   );
@@ -13,20 +19,29 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function Paragraph({ children }: { children: React.ReactNode }) {
   return (
-    <Text className="text-sm text-gray-700 leading-5 mb-3">{children}</Text>
+    <Text className="text-sm font-body text-gray-700 leading-5 mb-3">
+      {children}
+    </Text>
   );
 }
 
 function Bullet({ children }: { children: React.ReactNode }) {
   return (
     <View className="flex-row mb-2 pl-2">
-      <Text className="text-sm text-gray-400 mr-2">{"•"}</Text>
-      <Text className="text-sm text-gray-700 leading-5 flex-1">{children}</Text>
+      <Text className="text-sm font-body text-gray-400 mr-2">{"•"}</Text>
+      <Text className="text-sm font-body text-gray-700 leading-5 flex-1">
+        {children}
+      </Text>
     </View>
   );
 }
 
-function Reference({ authors, title, year, onPress }: {
+function Reference({
+  authors,
+  title,
+  year,
+  onPress,
+}: {
   authors: string;
   title: string;
   year: string;
@@ -39,9 +54,11 @@ function Reference({ authors, title, year, onPress }: {
       accessibilityLabel={`${authors}, ${title}, ${year}`}
       className="mb-3"
     >
-      <Text className="text-xs text-gray-500 leading-4">
-        <Text className="font-bold">{authors}</Text>
-        {" "}({year}). <Text className={onPress ? "text-indigo-600 underline" : ""}>{title}</Text>
+      <Text className="text-xs font-body text-gray-500 leading-4">
+        <Text className="font-body-700">{authors}</Text> ({year}).{" "}
+        <Text className={onPress ? "text-indigo-600 underline" : ""}>
+          {title}
+        </Text>
       </Text>
     </Pressable>
   );
@@ -62,12 +79,12 @@ export default function Methodology() {
             className="mb-4"
             style={{ minHeight: 44, justifyContent: "center" }}
           >
-            <Text className="text-sm text-indigo-500">← Retour</Text>
+            <Text className="text-sm font-body text-indigo-500">← Retour</Text>
           </Pressable>
-          <Text className="text-2xl font-bold text-gray-900">
+          <Text className="text-2xl font-display text-ink">
             Notre méthodologie
           </Text>
-          <Text className="text-sm text-gray-400 mt-1">
+          <Text className="text-sm font-body text-gray-400 mt-1">
             Comment fonctionne Ma Boussole Parlementaire
           </Text>
         </View>
@@ -76,8 +93,8 @@ export default function Methodology() {
           {/* Intro */}
           <Section title="Le principe">
             <Paragraph>
-              Ma Boussole Parlementaire compare vos opinions avec les votes réels
-              des députés à l'Assemblée nationale. Chaque question du quiz
+              Ma Boussole Parlementaire compare vos opinions avec les votes
+              réels des députés à l'Assemblée nationale. Chaque question du quiz
               correspond à un scrutin public dont le résultat est consultable
               sur le site de l'Assemblée.
             </Paragraph>
@@ -91,29 +108,29 @@ export default function Methodology() {
           {/* Compass */}
           <Section title="La boussole : deux axes">
             <Paragraph>
-              Votre position est calculée sur deux axes, un modèle validé par
-              la recherche en science politique depuis les années 1990.
+              Votre position est calculée sur deux axes, un modèle validé par la
+              recherche en science politique depuis les années 1990.
             </Paragraph>
             <View className="bg-gray-50 rounded-xl p-4 mb-3">
-              <Text className="text-sm font-bold text-gray-900 mb-1">
+              <Text className="text-sm font-body-700 text-ink mb-1">
                 Axe horizontal : Économie
               </Text>
-              <Text className="text-xs text-gray-500">
+              <Text className="text-xs font-body text-gray-500">
                 Intervention de l'État ← → Libéralisme économique
               </Text>
-              <Text className="text-sm font-bold text-gray-900 mt-3 mb-1">
+              <Text className="text-sm font-body-700 text-ink mt-3 mb-1">
                 Axe vertical : Société
               </Text>
-              <Text className="text-xs text-gray-500">
+              <Text className="text-xs font-body text-gray-500">
                 Conservateur ← → Progressiste
               </Text>
             </View>
             <Paragraph>
               Chaque scrutin est assigné à un axe et porte une polarité : voter
               POUR pousse votre position dans une direction, voter CONTRE dans
-              l'autre. Votre score sur chaque axe est la moyenne de vos
-              réponses (de -1 à +1). Un minimum de 3 réponses par axe est
-              requis pour afficher votre position.
+              l'autre. Votre score sur chaque axe est la moyenne de vos réponses
+              (de -1 à +1). Un minimum de 3 réponses par axe est requis pour
+              afficher votre position.
             </Paragraph>
           </Section>
 
@@ -121,65 +138,68 @@ export default function Methodology() {
           <Section title="Le classement : concordance pondérée">
             <Paragraph>
               Le pourcentage affiché pour chaque élu mesure à quel point ses
-              votes correspondent aux vôtres, ajusté par un indice de
-              confiance. Trois mécanismes travaillent ensemble.
+              votes correspondent aux vôtres, ajusté par un indice de confiance.
+              Trois mécanismes travaillent ensemble.
             </Paragraph>
 
-            <Text className="text-sm font-bold text-gray-800 mt-2 mb-1">
+            <Text className="text-sm font-body-700 text-gray-800 mt-2 mb-1">
               1. Pouvoir discriminant des scrutins
             </Text>
             <Paragraph>
-              Tous les votes ne se valent pas. Un vote unanime (tous les
-              groupes votent pareil) n'apporte aucune information sur votre
+              Tous les votes ne se valent pas. Un vote unanime (tous les groupes
+              votent pareil) n'apporte aucune information sur votre
               positionnement. À l'inverse, un vote qui divise clairement la
               gauche et la droite est très informatif. Chaque scrutin reçoit un
               poids entre 0 et 1 selon sa capacité à discriminer.
             </Paragraph>
 
-            <Text className="text-sm font-bold text-gray-800 mt-2 mb-1">
+            <Text className="text-sm font-body-700 text-gray-800 mt-2 mb-1">
               2. Score de confiance (Wilson)
             </Text>
             <Paragraph>
               Plutôt que d'afficher un pourcentage brut, nous utilisons
               l'intervalle de confiance de Wilson, une méthode statistique
               éprouvée (utilisée notamment par Reddit pour classer les
-              commentaires). Ce score pénalise naturellement les résultats
-              basés sur peu de données : un élu avec 3 votes en commun ne sera
-              pas classé devant un élu avec 15 votes, même si le pourcentage
-              brut est plus élevé.
+              commentaires). Ce score pénalise naturellement les résultats basés
+              sur peu de données : un élu avec 3 votes en commun ne sera pas
+              classé devant un élu avec 15 votes, même si le pourcentage brut
+              est plus élevé.
             </Paragraph>
 
-            <Text className="text-sm font-bold text-gray-800 mt-2 mb-1">
+            <Text className="text-sm font-body-700 text-gray-800 mt-2 mb-1">
               3. Seuil minimum de votes
             </Text>
             <Paragraph>
               Un élu n'apparaît dans le classement que s'il a suffisamment de
-              votes en commun avec vos réponses. Ce seuil s'adapte au nombre
-              de questions auxquelles vous avez répondu.
+              votes en commun avec vos réponses. Ce seuil s'adapte au nombre de
+              questions auxquelles vous avez répondu.
             </Paragraph>
           </Section>
 
           {/* Biases */}
           <Section title="Limites et biais connus">
             <Bullet>
-              <Text className="font-bold">Vote sur un texte, pas sur une idée.</Text>
-              {" "}Un député peut voter CONTRE une loi sociale non pas parce
-              qu'il est contre l'idée, mais parce que le texte ne va pas assez
-              loin. Nous sélectionnons les scrutins où le POUR/CONTRE
-              correspond le plus clairement à une position idéologique.
+              <Text className="font-body-700">
+                Vote sur un texte, pas sur une idée.
+              </Text>{" "}
+              Un député peut voter CONTRE une loi sociale non pas parce qu'il
+              est contre l'idée, mais parce que le texte ne va pas assez loin.
+              Nous sélectionnons les scrutins où le POUR/CONTRE correspond le
+              plus clairement à une position idéologique.
             </Bullet>
             <Bullet>
-              <Text className="font-bold">Convergence de l'opposition.</Text>
-              {" "}L'extrême gauche et l'extrême droite votent parfois toutes
-              les deux CONTRE un texte du gouvernement, pour des raisons
-              opposées. Les poids discriminants réduisent l'impact de ces votes
-              ambigus.
+              <Text className="font-body-700">
+                Convergence de l'opposition.
+              </Text>{" "}
+              L'extrême gauche et l'extrême droite votent parfois toutes les
+              deux CONTRE un texte du gouvernement, pour des raisons opposées.
+              Les poids discriminants réduisent l'impact de ces votes ambigus.
             </Bullet>
             <Bullet>
-              <Text className="font-bold">Couverture variable.</Text>
-              {" "}Certains députés sont absents lors de nombreux scrutins, ce
-              qui rend leur concordance moins fiable. Le score de Wilson et le
-              seuil minimum compensent ce biais.
+              <Text className="font-body-700">Couverture variable.</Text>{" "}
+              Certains députés sont absents lors de nombreux scrutins, ce qui
+              rend leur concordance moins fiable. Le score de Wilson et le seuil
+              minimum compensent ce biais.
             </Bullet>
           </Section>
 
@@ -205,7 +225,11 @@ export default function Methodology() {
                 authors="Tiberj, V."
                 title="La politique des deux axes"
                 year="2012"
-                onPress={() => Linking.openURL("https://shs.cairn.info/revue-francaise-de-science-politique-2012-1-page-71")}
+                onPress={() =>
+                  Linking.openURL(
+                    "https://shs.cairn.info/revue-francaise-de-science-politique-2012-1-page-71",
+                  )
+                }
               />
               <Reference
                 authors="Chapel Hill Expert Survey"
@@ -225,8 +249,8 @@ export default function Methodology() {
           <Section title="Données et transparence">
             <Paragraph>
               Les votes des députés proviennent des données publiques de
-              l'Assemblée nationale, collectées et structurées par Poligraph.
-              Le code source de l'application est ouvert.
+              l'Assemblée nationale, collectées et structurées par Poligraph. Le
+              code source de l'application est ouvert.
             </Paragraph>
             <Paragraph>
               Aucune donnée personnelle n'est collectée. Vos réponses restent
@@ -236,14 +260,16 @@ export default function Methodology() {
 
           {/* Footer */}
           <View className="mt-10 pt-6 border-t border-gray-100">
-            <Text className="text-xs text-gray-400 text-center">
+            <Text className="text-xs font-body text-gray-400 text-center">
               Un projet de l'Association Sankofa
             </Text>
             <Pressable
               onPress={() => Linking.openURL("https://poligraph.fr")}
               className="mt-2 items-center"
             >
-              <Text className="text-xs text-indigo-500">poligraph.fr</Text>
+              <Text className="text-xs font-body text-indigo-500">
+                poligraph.fr
+              </Text>
             </Pressable>
           </View>
         </View>

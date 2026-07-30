@@ -11,25 +11,36 @@ interface Props {
 }
 
 export function SharePreview({ captureRef }: Props) {
-  const { results, showPartiesOnShare, toggleShowPartiesOnShare, partyPositions } = useQuizStore();
+  const {
+    results,
+    showPartiesOnShare,
+    toggleShowPartiesOnShare,
+    partyPositions,
+  } = useQuizStore();
 
   if (!results) return null;
 
   const { position, parties } = results;
   const hasValidPosition = position.xValid && position.yValid;
-  const quadrantLabel = hasValidPosition ? getQuadrantLabel(position.x, position.y) : null;
+  const quadrantLabel = hasValidPosition
+    ? getQuadrantLabel(position.x, position.y)
+    : null;
   const topParties = parties.slice(0, 3);
 
   return (
     <View className="mx-6">
-      <View ref={captureRef} collapsable={false} className="rounded-2xl overflow-hidden">
+      <View
+        ref={captureRef}
+        collapsable={false}
+        className="rounded-2xl overflow-hidden"
+      >
         <LinearGradient
           colors={["#1e1b4b", "#0f0a2e", "#000000"]}
           style={{ padding: 24, alignItems: "center" }}
         >
           <View className="flex-row items-center gap-2 mb-4">
             <Logo size={28} />
-            <Text className="text-sm text-indigo-400 font-semibold">
+            <Text className="text-sm font-body-700 text-indigo-400">
               Ma Boussole Parlementaire
             </Text>
           </View>
@@ -37,11 +48,13 @@ export function SharePreview({ captureRef }: Props) {
           <Compass
             userPosition={position}
             parties={showPartiesOnShare ? parties : []}
-            partyPositions={showPartiesOnShare ? (partyPositions ?? undefined) : undefined}
+            partyPositions={
+              showPartiesOnShare ? (partyPositions ?? undefined) : undefined
+            }
           />
 
           {quadrantLabel && (
-            <Text className="text-white text-center mt-4 font-extrabold text-xl">
+            <Text className="text-white text-center mt-4 font-display text-xl">
               {quadrantLabel}
             </Text>
           )}
@@ -49,25 +62,30 @@ export function SharePreview({ captureRef }: Props) {
           {topParties.length > 0 && (
             <View className="mt-4 gap-1">
               {topParties.map((party, i) => (
-                <Text key={party.id} className="text-indigo-300 text-xs text-center">
-                  {i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉"}{" "}
-                  {party.name} ({party.score}%)
+                <Text
+                  key={party.id}
+                  className="font-body text-indigo-300 text-xs text-center"
+                >
+                  {i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉"} {party.name} (
+                  {party.score}%)
                 </Text>
               ))}
             </View>
           )}
 
-          <Text className="text-indigo-200 text-center mt-6 font-bold text-lg">
+          <Text className="text-indigo-200 text-center mt-6 font-display text-lg">
             Et toi, tu es où ?
           </Text>
-          <Text className="text-indigo-500 text-xs mt-1">
+          <Text className="font-body text-indigo-500 text-xs mt-1">
             poligraph.fr
           </Text>
         </LinearGradient>
       </View>
 
       <View className="flex-row items-center justify-between mt-4 px-2">
-        <Text className="text-sm text-gray-600">Afficher les partis proches</Text>
+        <Text className="text-sm font-body text-gray-600">
+          Afficher les partis proches
+        </Text>
         <Switch
           value={showPartiesOnShare}
           onValueChange={toggleShowPartiesOnShare}

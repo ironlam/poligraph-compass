@@ -81,7 +81,7 @@ export default function PoliticianDetail() {
           className="px-6 pt-4 mb-2"
           style={{ minHeight: 44, justifyContent: "center" }}
         >
-          <Text className="text-sm text-indigo-500 font-semibold">
+          <Text className="text-sm font-body-700 text-indigo-500">
             ← Résultats
           </Text>
         </Pressable>
@@ -97,21 +97,25 @@ export default function PoliticianDetail() {
             />
           ) : (
             <View
-              className="w-20 h-20 rounded-full bg-gray-200 items-center justify-center"
-              style={{ borderWidth: 3, borderColor: partyColor }}
+              className="w-20 h-20 rounded-full items-center justify-center"
+              style={{
+                backgroundColor: partyColor,
+                borderWidth: 3,
+                borderColor: partyColor,
+              }}
             >
-              <Text className="text-2xl text-gray-400 font-bold">
+              <Text className="text-2xl font-display text-white">
                 {politician.name.charAt(0)}
               </Text>
             </View>
           )}
           <View className="flex-1">
-            <Text className="text-xl font-extrabold text-gray-900">
+            <Text className="text-xl font-display text-ink">
               {politician.name}
             </Text>
             {politician.partyShortName && (
               <Text
-                className="text-sm font-bold mt-0.5"
+                className="text-sm font-body-700 mt-0.5"
                 style={{ color: partyColor }}
               >
                 {politician.partyShortName}
@@ -120,38 +124,37 @@ export default function PoliticianDetail() {
           </View>
           <View className="items-center">
             <Text
-              className="text-3xl font-extrabold"
+              className="text-3xl font-display"
               style={{ color: scoreColor }}
             >
               {politician.score}%
             </Text>
-            <Text className="text-xs text-gray-400">concordance</Text>
+            <Text className="text-xs font-body text-gray-400">concordance</Text>
           </View>
         </View>
 
         {/* Summary */}
         <View className="mx-6 mt-4 p-4 bg-gray-50 rounded-2xl">
-          <Text className="text-sm text-gray-700">
+          <Text className="text-sm font-body text-gray-700">
             Tu es d'accord sur{" "}
-            <Text className="font-bold">{politician.agree} votes</Text> sur{" "}
-            <Text className="font-bold">{politician.overlap}</Text> en commun.
+            <Text className="font-body-700">{politician.agree} votes</Text> sur{" "}
+            <Text className="font-body-700">{politician.overlap}</Text> en
+            commun.
           </Text>
         </View>
 
         {/* Theme breakdown */}
         <View className="px-6 mt-6">
-          <Text className="text-lg font-extrabold text-gray-900 mb-4">
-            Par thème
-          </Text>
+          <Text className="text-lg font-display text-ink mb-4">Par thème</Text>
           <ThemeBreakdown themes={themes} />
         </View>
 
         {/* Vote by vote */}
         <View className="px-6 mt-8">
-          <Text className="text-lg font-extrabold text-gray-900 mb-2">
+          <Text className="text-lg font-display text-ink mb-2">
             Vote par vote
           </Text>
-          <Text className="text-xs text-gray-400 mb-4">
+          <Text className="text-xs font-body text-gray-400 mb-4">
             {comparisons.length} votes en commun
           </Text>
           {comparisons.map((c) => (
@@ -176,7 +179,7 @@ export default function PoliticianDetail() {
             className="mx-6 mt-8 py-3 bg-indigo-500 rounded-2xl items-center active:bg-indigo-600"
             style={{ minHeight: 48 }}
           >
-            <Text className="text-white font-bold">
+            <Text className="text-white font-display">
               Voir son profil complet sur Poligraph
             </Text>
           </Pressable>
