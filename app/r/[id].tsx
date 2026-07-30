@@ -25,7 +25,7 @@ export default function SharedResult() {
   if (isLoading) {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
-        <Text className="text-indigo-300">Chargement...</Text>
+        <Text className="font-body text-indigo-300">Chargement...</Text>
       </SafeAreaView>
     );
   }
@@ -33,14 +33,14 @@ export default function SharedResult() {
   if (error || !data) {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center px-8">
-        <Text className="text-white text-xl font-bold text-center">
+        <Text className="text-white text-xl font-display text-center">
           Ce résultat n'existe plus
         </Text>
         <Pressable
           onPress={handleStartQuiz}
           className="mt-6 bg-amber-500 px-8 py-3 rounded-full"
         >
-          <Text className="font-bold text-indigo-950">Faire le quiz</Text>
+          <Text className="font-display text-indigo-950">Faire le quiz</Text>
         </Pressable>
       </SafeAreaView>
     );
@@ -51,40 +51,50 @@ export default function SharedResult() {
       <Head>
         <title>Ma Boussole Parlementaire</title>
         <meta property="og:title" content="Ma Boussole Parlementaire" />
-        <meta property="og:description" content={`Découvre ma position politique, d'après ${data.answeredCount} votes réels au Parlement.`} />
-        <meta property="og:image" content={`https://boussole.poligraph.fr/api/og/${id}`} />
+        <meta
+          property="og:description"
+          content={`Découvre ma position politique, d'après ${data.answeredCount} votes réels au Parlement.`}
+        />
+        <meta
+          property="og:image"
+          content={`https://boussole.poligraph.fr/api/og/${id}`}
+        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <SafeAreaView className="flex-1 bg-white">
         <View className="flex-1 items-center justify-center px-8">
-          <Text className="text-xl font-bold text-gray-900 mb-6">
+          <Text className="text-xl font-display text-ink mb-6">
             Résultat partagé
           </Text>
           <Compass
             userPosition={data.position}
-            parties={data.topParties?.length ? data.topParties.map((p) => ({
-              id: p.id,
-              name: p.name,
-              partyShortName: p.shortName,
-              partyColor: p.color,
-              concordance: p.score,
-              score: p.score,
-              agree: 0,
-              disagree: 0,
-              partial: 0,
-              overlap: 0,
-              photoUrl: null,
-            })) : []}
+            parties={
+              data.topParties?.length
+                ? data.topParties.map((p) => ({
+                    id: p.id,
+                    name: p.name,
+                    partyShortName: p.shortName,
+                    partyColor: p.color,
+                    concordance: p.score,
+                    score: p.score,
+                    agree: 0,
+                    disagree: 0,
+                    partial: 0,
+                    overlap: 0,
+                    photoUrl: null,
+                  }))
+                : []
+            }
           />
-          <Text className="text-gray-500 mt-4 text-center">
+          <Text className="font-body text-gray-500 mt-4 text-center">
             D'après {data.answeredCount} votes réels au Parlement
           </Text>
           <Pressable
             onPress={handleStartQuiz}
             className="mt-8 bg-indigo-500 px-8 py-4 rounded-full active:bg-indigo-600"
           >
-            <Text className="text-white font-bold text-base">
+            <Text className="text-white font-display text-base">
               Et toi, tu es où ? Fais le test
             </Text>
           </Pressable>

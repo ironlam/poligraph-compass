@@ -224,7 +224,7 @@ export default function Results() {
         {/* Challenge comparison */}
         {challengeContext && (
           <View className="mx-6 mt-4 p-4 bg-indigo-50 rounded-xl gap-3">
-            <Text className="text-sm font-bold text-indigo-900 text-center">
+            <Text className="text-sm font-display text-indigo-900 text-center">
               Comparaison avec le challenger
             </Text>
             <View className="items-center">
@@ -237,7 +237,7 @@ export default function Results() {
                   Math.round((1 - distance / 2.83) * 100),
                 );
                 return (
-                  <Text className="text-2xl font-extrabold text-indigo-700">
+                  <Text className="text-2xl font-display text-indigo-700">
                     {similarity}% similaires
                   </Text>
                 );
@@ -246,14 +246,16 @@ export default function Results() {
             {challengeContext.challengerTopParties.length > 0 && (
               <View className="gap-1">
                 <View className="flex-row justify-between">
-                  <Text className="text-xs text-gray-500">Toi</Text>
-                  <Text className="text-xs text-gray-500">Challenger</Text>
+                  <Text className="text-xs font-body text-gray-500">Toi</Text>
+                  <Text className="text-xs font-body text-gray-500">
+                    Challenger
+                  </Text>
                 </View>
                 <View className="flex-row justify-between">
-                  <Text className="text-sm font-bold text-gray-900">
+                  <Text className="text-sm font-body-700 text-ink">
                     {parties[0]?.partyShortName ?? parties[0]?.name ?? "---"}
                   </Text>
-                  <Text className="text-sm font-bold text-indigo-700">
+                  <Text className="text-sm font-body-700 text-indigo-700">
                     {challengeContext.challengerTopParties[0]?.shortName ??
                       "---"}
                   </Text>

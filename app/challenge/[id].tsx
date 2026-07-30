@@ -15,7 +15,11 @@ function getQuadrantLabel(x: number, y: number): string {
 
   if (xCenter && yCenter) return "Au centre";
 
-  const xLabel = xCenter ? null : x > 0 ? "Libéralisme économique" : "Intervention de l'État";
+  const xLabel = xCenter
+    ? null
+    : x > 0
+      ? "Libéralisme économique"
+      : "Intervention de l'État";
   const yLabel = yCenter ? null : y > 0 ? "Progressiste" : "Conservateur";
 
   if (xLabel && yLabel) return `${yLabel}, ${xLabel.toLowerCase()}`;
@@ -53,7 +57,7 @@ export default function ChallengePage() {
   if (isLoading) {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center">
-        <Text className="text-indigo-300">Chargement...</Text>
+        <Text className="font-body text-indigo-300">Chargement...</Text>
       </SafeAreaView>
     );
   }
@@ -61,55 +65,62 @@ export default function ChallengePage() {
   if (error || !data) {
     return (
       <SafeAreaView className="flex-1 bg-indigo-950 items-center justify-center px-8">
-        <Text className="text-white text-xl font-bold text-center">
+        <Text className="text-white text-xl font-display text-center">
           Ce défi n'existe plus
         </Text>
-        <Text className="text-indigo-400 text-center mt-3">
+        <Text className="font-body text-indigo-400 text-center mt-3">
           Le lien a peut-être expiré ou est invalide.
         </Text>
         <Pressable
           onPress={() => router.replace("/")}
           className="mt-6 bg-amber-500 px-8 py-3 rounded-full active:bg-amber-600"
         >
-          <Text className="font-bold text-indigo-950">Faire le quiz</Text>
+          <Text className="font-display text-indigo-950">Faire le quiz</Text>
         </Pressable>
       </SafeAreaView>
     );
   }
 
-  const quadrantLabel = (data.position.xValid && data.position.yValid)
-    ? getQuadrantLabel(data.position.x, data.position.y)
-    : null;
+  const quadrantLabel =
+    data.position.xValid && data.position.yValid
+      ? getQuadrantLabel(data.position.x, data.position.y)
+      : null;
 
   return (
     <>
       <Head>
         <title>On t'a défié ! | Ma Boussole Parlementaire</title>
-        <meta property="og:title" content="On t'a défié ! Découvre ta position politique" />
-        <meta property="og:description" content="Compare ta boussole parlementaire avec celle de ton ami. Basé sur les votes réels au Parlement." />
-        <meta property="og:image" content={`https://boussole.poligraph.fr/api/og/${id}`} />
+        <meta
+          property="og:title"
+          content="On t'a défié ! Découvre ta position politique"
+        />
+        <meta
+          property="og:description"
+          content="Compare ta boussole parlementaire avec celle de ton ami. Basé sur les votes réels au Parlement."
+        />
+        <meta
+          property="og:image"
+          content={`https://boussole.poligraph.fr/api/og/${id}`}
+        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <SafeAreaView className="flex-1 bg-indigo-950">
         <View className="flex-1 items-center justify-center px-8">
-          <Text className="text-2xl font-extrabold text-white text-center">
+          <Text className="text-2xl font-display text-white text-center">
             On t'a défié !
           </Text>
-          <Text className="text-base text-indigo-300 text-center mt-3 leading-6">
+          <Text className="text-base font-body text-indigo-300 text-center mt-3 leading-6">
             Quelqu'un veut comparer sa position parlementaire avec la tienne.
             Fais le quiz et découvre si tu es d'accord avec cette personne !
           </Text>
 
           {/* Challenger's compass (preview) */}
           <View className="mt-6 opacity-70">
-            <Compass
-              userPosition={data.position}
-              parties={[]}
-            />
+            <Compass userPosition={data.position} parties={[]} />
           </View>
           {quadrantLabel && (
-            <Text className="text-indigo-400 text-sm mt-2 text-center">
+            <Text className="font-body text-indigo-400 text-sm mt-2 text-center">
               Position du challenger : {quadrantLabel}
             </Text>
           )}
@@ -121,12 +132,12 @@ export default function ChallengePage() {
             className="mt-8 bg-amber-500 px-10 py-4 rounded-full active:bg-amber-600"
             style={{ minHeight: 48 }}
           >
-            <Text className="text-lg font-bold text-indigo-950">
+            <Text className="text-lg font-display text-indigo-950">
               Relever le défi
             </Text>
           </Pressable>
 
-          <Text className="text-sm text-indigo-500 mt-4">
+          <Text className="text-sm font-body text-indigo-500 mt-4">
             2 min, 20 questions
           </Text>
         </View>

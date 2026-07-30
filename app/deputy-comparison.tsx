@@ -113,7 +113,7 @@ export default function DeputyComparisonScreen() {
           className="px-6 pt-4 mb-2"
           style={{ minHeight: 44, justifyContent: "center" }}
         >
-          <Text className="text-sm text-indigo-500 font-semibold">
+          <Text className="text-sm font-body-700 text-indigo-500">
             ← Résultats
           </Text>
         </Pressable>
@@ -121,7 +121,9 @@ export default function DeputyComparisonScreen() {
         {/* Badge */}
         <View className="px-6">
           <View className="bg-indigo-500 self-start px-3 py-1 rounded-full mb-3">
-            <Text className="text-xs font-bold text-white">Ton député(e)</Text>
+            <Text className="text-xs font-body-700 text-white">
+              Ton député(e)
+            </Text>
           </View>
         </View>
 
@@ -136,56 +138,61 @@ export default function DeputyComparisonScreen() {
             />
           ) : (
             <View
-              className="w-20 h-20 rounded-full bg-gray-200 items-center justify-center"
-              style={{ borderWidth: 3, borderColor: partyColor }}
+              className="w-20 h-20 rounded-full items-center justify-center"
+              style={{
+                backgroundColor: partyColor,
+                borderWidth: 3,
+                borderColor: partyColor,
+              }}
             >
-              <Text className="text-2xl text-gray-400 font-bold">
+              <Text className="text-2xl font-display text-white">
                 {selectedDeputy.fullName.charAt(0)}
               </Text>
             </View>
           )}
           <View className="flex-1">
-            <Text className="text-xl font-extrabold text-gray-900">
+            <Text className="text-xl font-display text-ink">
               {selectedDeputy.fullName}
             </Text>
             {selectedDeputy.partyShortName && (
               <Text
-                className="text-sm font-bold mt-0.5"
+                className="text-sm font-body-700 mt-0.5"
                 style={{ color: partyColor }}
               >
                 {selectedDeputy.partyShortName}
               </Text>
             )}
             {selectedDeputy.circonscription && (
-              <Text className="text-xs text-gray-400 mt-0.5">
+              <Text className="text-xs font-body text-gray-400 mt-0.5">
                 {selectedDeputy.circonscription}
               </Text>
             )}
           </View>
           <View className="items-center">
             <Text
-              className="text-3xl font-extrabold"
+              className="text-3xl font-display"
               style={{ color: scoreColor }}
             >
               {concordanceResult.score >= 0
                 ? `${concordanceResult.score}%`
                 : "N/A"}
             </Text>
-            <Text className="text-xs text-gray-400">concordance</Text>
+            <Text className="text-xs font-body text-gray-400">concordance</Text>
           </View>
         </View>
 
         {/* Summary stats */}
         <View className="mx-6 mt-4 p-4 bg-gray-50 rounded-2xl">
-          <Text className="text-sm text-gray-700">
-            D'accord sur <Text className="font-bold">{agreeCount} votes</Text>{" "}
-            sur <Text className="font-bold">{comparisons.length}</Text> en
+          <Text className="text-sm font-body text-gray-700">
+            D'accord sur{" "}
+            <Text className="font-body-700">{agreeCount} votes</Text> sur{" "}
+            <Text className="font-body-700">{comparisons.length}</Text> en
             commun.
           </Text>
           {disagreeCount > 0 && (
-            <Text className="text-sm text-gray-500 mt-1">
+            <Text className="text-sm font-body text-gray-500 mt-1">
               En désaccord sur{" "}
-              <Text className="font-bold">{disagreeCount} votes</Text>.
+              <Text className="font-body-700">{disagreeCount} votes</Text>.
             </Text>
           )}
         </View>
@@ -193,24 +200,24 @@ export default function DeputyComparisonScreen() {
         {/* Group discordance */}
         {groupDiscordance && groupDiscordance.discordance >= 0 && party && (
           <View className="mx-6 mt-3 p-4 bg-amber-50 rounded-2xl">
-            <Text className="text-sm text-gray-800">
+            <Text className="text-sm font-body text-gray-800">
               Vote différemment de{" "}
-              <Text className="font-bold" style={{ color: partyColor }}>
+              <Text className="font-body-700" style={{ color: partyColor }}>
                 {party.shortName}
               </Text>{" "}
               sur{" "}
               <Text
-                className="font-bold"
+                className="font-body-700"
                 style={{
                   color:
-                    groupDiscordance.discordance >= 20 ? "#ef4444" : "#f59e0b",
+                    groupDiscordance.discordance >= 20 ? "#e5484d" : "#d97706",
                 }}
               >
                 {groupDiscordance.discordance}%
               </Text>{" "}
               des scrutins
             </Text>
-            <Text className="text-xs text-gray-400 mt-0.5">
+            <Text className="text-xs font-body text-gray-400 mt-0.5">
               {groupDiscordance.divergent} divergences sur{" "}
               {groupDiscordance.comparable} votes
             </Text>
@@ -220,7 +227,7 @@ export default function DeputyComparisonScreen() {
         {/* Compass overlay */}
         {results.position.xValid && results.position.yValid && (
           <View className="mt-6 items-center">
-            <Text className="text-lg font-extrabold text-gray-900 px-6 mb-2 self-start">
+            <Text className="text-lg font-display text-ink px-6 mb-2 self-start">
               Sur la boussole
             </Text>
             <Compass
@@ -233,18 +240,16 @@ export default function DeputyComparisonScreen() {
 
         {/* Theme breakdown */}
         <View className="px-6 mt-6">
-          <Text className="text-lg font-extrabold text-gray-900 mb-4">
-            Par thème
-          </Text>
+          <Text className="text-lg font-display text-ink mb-4">Par thème</Text>
           <ThemeBreakdown themes={themes} />
         </View>
 
         {/* Vote by vote */}
         <View className="px-6 mt-8">
-          <Text className="text-lg font-extrabold text-gray-900 mb-2">
+          <Text className="text-lg font-display text-ink mb-2">
             Vote par vote
           </Text>
-          <Text className="text-xs text-gray-400 mb-4">
+          <Text className="text-xs font-body text-gray-400 mb-4">
             {comparisons.length} votes en commun
           </Text>
           {comparisons.map((c) => (
@@ -271,7 +276,7 @@ export default function DeputyComparisonScreen() {
             className="mx-6 mt-8 py-3 bg-indigo-500 rounded-2xl items-center active:bg-indigo-600"
             style={{ minHeight: 48 }}
           >
-            <Text className="text-white font-bold">
+            <Text className="text-white font-display">
               Voir son profil complet sur Poligraph
             </Text>
           </Pressable>

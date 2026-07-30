@@ -1,5 +1,13 @@
 import { useRef } from "react";
-import { View, Text, Pressable, Alert, Share, ScrollView, Platform } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  Alert,
+  Share,
+  ScrollView,
+  Platform,
+} from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { captureRef } from "react-native-view-shot";
@@ -12,8 +20,12 @@ import { track } from "@/lib/analytics";
 export default function ShareScreen() {
   const router = useRouter();
   const { shareId, reset } = useQuizStore();
-  const shareUrl = shareId ? `https://boussole.poligraph.fr/r/${shareId}` : null;
-  const challengeUrl = shareId ? `https://boussole.poligraph.fr/challenge/${shareId}` : null;
+  const shareUrl = shareId
+    ? `https://boussole.poligraph.fr/r/${shareId}`
+    : null;
+  const challengeUrl = shareId
+    ? `https://boussole.poligraph.fr/challenge/${shareId}`
+    : null;
   const previewRef = useRef<View>(null);
 
   async function handleShare() {
@@ -23,14 +35,16 @@ export default function ShareScreen() {
         // is unsupported on web. Use html-to-image which handles inline
         // SVGs (the Compass component) natively.
         const { toBlob } = await import("html-to-image");
-        const node = (previewRef.current as unknown as HTMLElement);
+        const node = previewRef.current as unknown as HTMLElement;
         if (!node) throw new Error("Preview ref not ready");
         const blob = await toBlob(node, {
           pixelRatio: 2,
           cacheBust: true,
         });
         if (!blob) throw new Error("toBlob returned null");
-        const file = new File([blob], "ma-boussole-parlementaire.png", { type: "image/png" });
+        const file = new File([blob], "ma-boussole-parlementaire.png", {
+          type: "image/png",
+        });
 
         if (navigator.canShare?.({ files: [file] })) {
           await navigator.share({ files: [file] });
@@ -90,10 +104,21 @@ export default function ShareScreen() {
             onPress={handleShare}
             accessibilityRole="button"
             accessibilityLabel="Partager l'image de mes résultats"
-            className="py-4 bg-gray-900 rounded-xl items-center active:bg-gray-800"
-            style={{ minHeight: 48 }}
+            className="items-center justify-center active:opacity-90"
+            style={{
+              height: 54,
+              borderRadius: 18,
+              backgroundColor: "#4f46e5",
+              shadowColor: "#4f46e5",
+              shadowOffset: { width: 0, height: 12 },
+              shadowOpacity: 0.4,
+              shadowRadius: 16,
+              elevation: 4,
+            }}
           >
-            <Text className="text-white font-bold">Partager l'image</Text>
+            <Text className="text-white font-display" style={{ fontSize: 16 }}>
+              Partager l'image
+            </Text>
           </Pressable>
 
           {shareUrl && (
@@ -101,10 +126,16 @@ export default function ShareScreen() {
               onPress={handleCopyLink}
               accessibilityRole="button"
               accessibilityLabel="Copier le lien de partage"
-              className="py-4 bg-gray-100 rounded-xl items-center active:bg-gray-200"
-              style={{ minHeight: 48 }}
+              className="items-center justify-center active:opacity-80"
+              style={{
+                height: 54,
+                borderRadius: 18,
+                backgroundColor: "#f0f1f6",
+              }}
             >
-              <Text className="text-gray-700 font-bold">Copier le lien</Text>
+              <Text className="text-ink font-display" style={{ fontSize: 16 }}>
+                Copier le lien
+              </Text>
             </Pressable>
           )}
 
@@ -113,10 +144,19 @@ export default function ShareScreen() {
               onPress={handleChallenge}
               accessibilityRole="button"
               accessibilityLabel="Défier un ami à comparer ses résultats"
-              className="py-4 bg-indigo-500 rounded-xl items-center active:bg-indigo-600"
-              style={{ minHeight: 48 }}
+              className="items-center justify-center active:opacity-80"
+              style={{
+                height: 54,
+                borderRadius: 18,
+                backgroundColor: "#eef2ff",
+              }}
             >
-              <Text className="text-white font-bold">Défier un ami</Text>
+              <Text
+                className="text-indigo-600 font-display"
+                style={{ fontSize: 16 }}
+              >
+                Défier un ami
+              </Text>
             </Pressable>
           )}
 
@@ -127,7 +167,9 @@ export default function ShareScreen() {
             className="py-3 items-center"
             style={{ minHeight: 44 }}
           >
-            <Text className="text-gray-400">Recommencer</Text>
+            <Text className="font-body" style={{ color: "#9aa0ae" }}>
+              Recommencer
+            </Text>
           </Pressable>
         </View>
       </ScrollView>
