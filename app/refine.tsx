@@ -40,10 +40,16 @@ export default function RefineGate() {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 items-center justify-center px-8">
-        <Text className="text-xl font-extrabold text-gray-900 text-center">
+        <Text
+          className="font-display text-ink text-center"
+          style={{ fontSize: 22 }}
+        >
           Envie d'aller plus loin ?
         </Text>
-        <Text className="text-sm text-gray-500 text-center mt-3 leading-5">
+        <Text
+          className="font-body text-center mt-3"
+          style={{ color: "#6b7280", fontSize: 14, lineHeight: 21 }}
+        >
           {label}
           {"\n"}Tes résultats seront encore plus précis.
         </Text>
@@ -53,17 +59,32 @@ export default function RefineGate() {
             onPress={handleContinue}
             accessibilityRole="button"
             accessibilityLabel="Continuer avec les questions supplémentaires"
-            className="py-4 bg-indigo-600 rounded-2xl items-center active:bg-indigo-700"
-            style={{ minHeight: 48 }}
+            className="items-center justify-center active:opacity-90"
+            style={{
+              height: 54,
+              borderRadius: 18,
+              backgroundColor: "#4f46e5",
+              shadowColor: "#4f46e5",
+              shadowOffset: { width: 0, height: 12 },
+              shadowOpacity: 0.4,
+              shadowRadius: 16,
+              elevation: 4,
+            }}
           >
-            <Text className="text-white font-bold text-base">Continuer</Text>
+            <Text className="text-white font-display" style={{ fontSize: 16 }}>
+              Continuer
+            </Text>
           </Pressable>
           <Pressable
             onPress={handleSkip}
             accessibilityRole="button"
-            className="py-3 items-center"
+            className="items-center"
+            style={{ minHeight: 44, justifyContent: "center" }}
           >
-            <Text className="text-gray-400 text-sm">
+            <Text
+              className="font-body"
+              style={{ color: "#9aa0ae", fontSize: 14 }}
+            >
               Non merci, partager mes résultats
             </Text>
           </Pressable>

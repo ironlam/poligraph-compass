@@ -6,7 +6,11 @@ import Animated, {
   withTiming,
   runOnJS,
 } from "react-native-reanimated";
-import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
 import { ThemeBadge } from "./ThemeBadge";
 import type { QuizQuestion } from "@/lib/types";
 
@@ -47,7 +51,12 @@ export function ScrutinBottomSheet({ question, visible, onClose }: Props) {
   if (!hasContext) return null;
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+    <Modal
+      visible={visible}
+      transparent
+      animationType="slide"
+      onRequestClose={onClose}
+    >
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Pressable className="flex-1 bg-black/40" onPress={onClose} />
         <Animated.View
@@ -73,13 +82,19 @@ export function ScrutinBottomSheet({ question, visible, onClose }: Props) {
           <ScrollView showsVerticalScrollIndicator={false}>
             <ThemeBadge theme={question.theme} />
 
-            <Text className="text-lg font-extrabold text-gray-900 mt-3">
+            <Text
+              className="font-display text-ink mt-3"
+              style={{ fontSize: 20 }}
+            >
               Comprendre ce vote
             </Text>
 
             {/* Full educational summary with POUR/CONTRE arguments */}
             {question.summary && (
-              <Text className="text-sm text-gray-700 mt-3 leading-5">
+              <Text
+                className="font-body text-gray-700 mt-3"
+                style={{ fontSize: 14, lineHeight: 21 }}
+              >
                 {question.summary}
               </Text>
             )}
@@ -87,18 +102,24 @@ export function ScrutinBottomSheet({ question, visible, onClose }: Props) {
             {/* Vote result */}
             {question.result && (
               <View className="mt-4 bg-slate-50 rounded-xl p-3">
-                <Text className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                <Text className="text-xs font-body-700 text-gray-500 uppercase tracking-wide mb-2">
                   Résultat du vote
                 </Text>
                 <View className="flex-row items-center gap-2">
-                  <View className={`px-3 py-1 rounded-full ${question.result === "adopte" ? "bg-emerald-100" : "bg-red-100"}`}>
-                    <Text className={`text-xs font-bold ${question.result === "adopte" ? "text-emerald-700" : "text-red-700"}`}>
+                  <View
+                    className={`px-3 py-1 rounded-full ${question.result === "adopte" ? "bg-emerald-100" : "bg-red-100"}`}
+                  >
+                    <Text
+                      className={`text-xs font-body-700 ${question.result === "adopte" ? "text-emerald-700" : "text-red-700"}`}
+                    >
                       {question.result === "adopte" ? "Adopté" : "Rejeté"}
                     </Text>
                   </View>
                   {question.voteCount && (
-                    <Text className="text-xs text-gray-400">
-                      {question.voteCount.pour} pour · {question.voteCount.contre} contre · {question.voteCount.abstention} abs.
+                    <Text className="text-xs font-body text-gray-400">
+                      {question.voteCount.pour} pour ·{" "}
+                      {question.voteCount.contre} contre ·{" "}
+                      {question.voteCount.abstention} abs.
                     </Text>
                   )}
                 </View>
@@ -108,10 +129,10 @@ export function ScrutinBottomSheet({ question, visible, onClose }: Props) {
             {/* Official title as reference, deemphasized */}
             {question.officialTitle && (
               <View className="mt-4">
-                <Text className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">
+                <Text className="text-xs font-body-700 text-gray-400 uppercase tracking-wide mb-1">
                   Titre officiel
                 </Text>
-                <Text className="text-xs text-gray-400 leading-4">
+                <Text className="text-xs font-body text-gray-400 leading-4">
                   {question.officialTitle}
                 </Text>
               </View>
@@ -125,7 +146,7 @@ export function ScrutinBottomSheet({ question, visible, onClose }: Props) {
             className="mt-4 py-3 bg-gray-100 rounded-2xl items-center active:bg-gray-200"
             style={{ minHeight: 48 }}
           >
-            <Text className="text-sm font-bold text-gray-700">Fermer</Text>
+            <Text className="text-sm font-display text-ink">Fermer</Text>
           </Pressable>
         </Animated.View>
       </GestureHandlerRootView>

@@ -9,7 +9,7 @@ export function ThemeBadge({ theme }: { theme: string }) {
       className="self-start px-3 py-1 rounded-full"
       style={{ backgroundColor: config.color + "20" }}
     >
-      <Text className="text-xs font-semibold" style={{ color: config.color }}>
+      <Text className="text-xs font-body-700" style={{ color: config.color }}>
         {config.label}
       </Text>
     </View>

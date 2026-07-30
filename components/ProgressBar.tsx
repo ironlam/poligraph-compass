@@ -19,7 +19,9 @@ export function ProgressBar({ current, total, light }: Props) {
           style={{ width: `${progress}%` }}
         />
       </View>
-      <Text className={`text-sm font-semibold ${light ? "text-indigo-300" : "text-gray-400"}`}>
+      <Text
+        className={`text-sm font-body-700 ${light ? "text-indigo-300" : "text-gray-400"}`}
+      >
         {current}/{total}
       </Text>
     </View>
