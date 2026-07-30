@@ -1,5 +1,12 @@
 import { useEffect } from "react";
-import { View, Text, ScrollView, Pressable, Image, Linking } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  Image,
+  Linking,
+} from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuizStore } from "@/lib/store";
@@ -7,12 +14,7 @@ import { classifyVotePair } from "@/lib/concordance";
 import { computeThemeConcordances } from "@/lib/theme-concordance";
 import { ThemeBreakdown } from "@/components/ThemeBreakdown";
 import { VoteComparison } from "@/components/VoteComparison";
-
-function getConcordanceColor(value: number): string {
-  if (value >= 60) return "#10b981";
-  if (value >= 40) return "#f59e0b";
-  return "#ef4444";
-}
+import { concordanceDisplay } from "@/lib/concordance-display";
 
 export default function PoliticianDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -32,14 +34,14 @@ export default function PoliticianDetail() {
 
   const polData = quizPack.politicians.find((p) => p.id === id);
   const partyColor = politician.partyColor || "#9ca3af";
-  const scoreColor = getConcordanceColor(politician.score);
+  const scoreColor = concordanceDisplay(politician.score).color;
 
   // Per-theme breakdown
   const themes = computeThemeConcordances(
     id,
     answers as Record<string, string>,
     quizPack.voteMatrix as Record<string, Record<string, string>>,
-    quizPack.questions
+    quizPack.questions,
   );
 
   // Vote-by-vote comparison
@@ -47,7 +49,13 @@ export default function PoliticianDetail() {
     .filter((q) => {
       const userAnswer = answers[q.scrutinId];
       const polVote = quizPack.voteMatrix[q.scrutinId]?.[id];
-      return userAnswer && userAnswer !== "SKIP" && polVote && polVote !== "ABSENT" && polVote !== "NON_VOTANT";
+      return (
+        userAnswer &&
+        userAnswer !== "SKIP" &&
+        polVote &&
+        polVote !== "ABSENT" &&
+        polVote !== "NON_VOTANT"
+      );
     })
     .map((q) => {
       const userAnswer = answers[q.scrutinId];
@@ -73,7 +81,9 @@ export default function PoliticianDetail() {
           className="px-6 pt-4 mb-2"
           style={{ minHeight: 44, justifyContent: "center" }}
         >
-          <Text className="text-sm text-indigo-500 font-semibold">← Résultats</Text>
+          <Text className="text-sm text-indigo-500 font-semibold">
+            ← Résultats
+          </Text>
         </Pressable>
 
         {/* Header */}
@@ -100,13 +110,19 @@ export default function PoliticianDetail() {
               {politician.name}
             </Text>
             {politician.partyShortName && (
-              <Text className="text-sm font-bold mt-0.5" style={{ color: partyColor }}>
+              <Text
+                className="text-sm font-bold mt-0.5"
+                style={{ color: partyColor }}
+              >
                 {politician.partyShortName}
               </Text>
             )}
           </View>
           <View className="items-center">
-            <Text className="text-3xl font-extrabold" style={{ color: scoreColor }}>
+            <Text
+              className="text-3xl font-extrabold"
+              style={{ color: scoreColor }}
+            >
               {politician.score}%
             </Text>
             <Text className="text-xs text-gray-400">concordance</Text>
@@ -152,7 +168,9 @@ export default function PoliticianDetail() {
         {/* External link */}
         {polData?.slug && (
           <Pressable
-            onPress={() => Linking.openURL(`https://poligraph.fr/politiques/${polData.slug}`)}
+            onPress={() =>
+              Linking.openURL(`https://poligraph.fr/politiques/${polData.slug}`)
+            }
             accessibilityRole="link"
             accessibilityLabel={`Voir le profil complet de ${politician.name} sur Poligraph`}
             className="mx-6 mt-8 py-3 bg-indigo-500 rounded-2xl items-center active:bg-indigo-600"

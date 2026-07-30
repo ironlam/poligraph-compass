@@ -2,11 +2,18 @@ import { useEffect } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
 import { useQuizStore } from "@/lib/store";
 import { Compass } from "@/components/Compass";
 import { RankingList } from "@/components/RankingList";
 import { DeputyBanner } from "@/components/DeputyBanner";
 import { NewsletterCapture } from "@/components/NewsletterCapture";
+import {
+  SparklesIcon,
+  CompassIcon,
+  Share2Icon,
+  PlusIcon,
+} from "@/components/icons";
 import { getQuadrantLabel } from "@/lib/theme-labels";
 import { getNextPhase } from "@/lib/phases";
 import { useDeputyStore } from "@/lib/deputy-store";
@@ -82,42 +89,136 @@ export default function Results() {
     router.push("/refine");
   }
 
+  const canRefine = Boolean(getNextPhase(phase));
+
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView contentContainerClassName="pb-12">
-        <View className="px-6 pt-6">
-          <Text className="text-2xl font-bold text-gray-900">Ta position</Text>
-          <Text className="text-sm text-gray-400 mt-1">
-            D'après tes réponses à {answeredCount} votes réels
+      <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
+        {/* Header */}
+        <View className="px-6" style={{ paddingTop: 8 }}>
+          <View
+            className="flex-row items-center self-start"
+            style={{
+              gap: 7,
+              backgroundColor: "#eef2ff",
+              paddingHorizontal: 12,
+              paddingVertical: 6,
+              borderRadius: 999,
+            }}
+          >
+            <SparklesIcon size={14} color="#4f46e5" />
+            <Text
+              className="font-body-700"
+              style={{
+                color: "#4f46e5",
+                fontSize: 12,
+                letterSpacing: 0.5,
+                textTransform: "uppercase",
+              }}
+            >
+              Ton résultat
+            </Text>
+          </View>
+          <Text
+            className="font-display text-ink"
+            style={{ fontSize: 30, marginTop: 14 }}
+          >
+            Ta position
+          </Text>
+          <Text
+            className="font-body"
+            style={{ color: "#6b7280", fontSize: 14.5, marginTop: 2 }}
+          >
+            D'après tes réponses à{" "}
+            <Text className="font-body-700 text-ink">
+              {answeredCount} votes réels
+            </Text>
           </Text>
         </View>
 
-        {/* Compass */}
-        <View className="mt-6 items-center">
-          {hasValidPosition ? (
+        {/* Compass card */}
+        {hasValidPosition ? (
+          <View
+            style={{
+              marginHorizontal: 20,
+              marginTop: 18,
+              backgroundColor: "#fff",
+              borderWidth: 1,
+              borderColor: "#e8eaf0",
+              borderRadius: 26,
+              paddingTop: 18,
+              paddingHorizontal: 16,
+              paddingBottom: 14,
+              shadowColor: "#1e1b4b",
+              shadowOffset: { width: 0, height: 10 },
+              shadowOpacity: 0.15,
+              shadowRadius: 18,
+              elevation: 2,
+            }}
+          >
             <Compass
               userPosition={position}
               parties={parties}
               partyPositions={partyPositions ?? undefined}
               challengerPosition={challengeContext?.challengerPosition}
             />
-          ) : (
-            <View className="h-48 items-center justify-center">
-              <Text className="text-gray-400 text-center px-8">
-                Pas assez de réponses pour afficher la boussole.{"\n"}
-                Réponds à plus de questions pour voir ta position.
-              </Text>
-            </View>
-          )}
-        </View>
-
-        {/* Quadrant label */}
-        {quadrantLabel && (
-          <View className="mx-6 mt-4 p-4 bg-indigo-50 rounded-xl">
-            <Text className="text-sm text-indigo-700 text-center">
-              Tu es plutôt <Text className="font-bold">{quadrantLabel}</Text>
+          </View>
+        ) : (
+          <View className="h-48 items-center justify-center px-8">
+            <Text
+              className="font-body text-center"
+              style={{ color: "#9aa0ae" }}
+            >
+              Pas assez de réponses pour afficher la boussole.{"\n"}
+              Réponds à plus de questions pour voir ta position.
             </Text>
           </View>
+        )}
+
+        {/* Quadrant verdict card */}
+        {quadrantLabel && (
+          <LinearGradient
+            colors={["#4f46e5", "#6366f1"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{
+              marginHorizontal: 20,
+              marginTop: 16,
+              borderRadius: 20,
+              paddingVertical: 18,
+              paddingHorizontal: 20,
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 14,
+            }}
+          >
+            <View
+              style={{
+                width: 46,
+                height: 46,
+                borderRadius: 14,
+                backgroundColor: "rgba(255,255,255,0.16)",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <CompassIcon size={24} color="#fff" />
+            </View>
+            <View className="flex-1">
+              <Text
+                className="font-body"
+                style={{ color: "#d7d9fb", fontSize: 12.5 }}
+              >
+                Tu es plutôt
+              </Text>
+              <Text
+                className="font-display text-white"
+                style={{ fontSize: 20, lineHeight: 23, marginTop: 2 }}
+              >
+                {quadrantLabel}
+              </Text>
+            </View>
+          </LinearGradient>
         )}
 
         {/* Challenge comparison */}
@@ -176,26 +277,48 @@ export default function Results() {
         )}
 
         {/* Action buttons */}
-        <View className="flex-row gap-3 mx-6 mt-6">
+        <View
+          className="flex-row"
+          style={{ gap: 12, marginHorizontal: 20, marginTop: 22 }}
+        >
           <Pressable
             onPress={() => router.push("/share")}
             accessibilityRole="button"
             accessibilityLabel="Partager mes résultats"
-            className="flex-1 py-3 bg-indigo-500 rounded-xl items-center active:bg-indigo-600"
-            style={{ minHeight: 48 }}
+            className="flex-1 flex-row items-center justify-center active:opacity-90"
+            style={{
+              height: 54,
+              borderRadius: 18,
+              gap: 8,
+              backgroundColor: "#4f46e5",
+              shadowColor: "#4f46e5",
+              shadowOffset: { width: 0, height: 12 },
+              shadowOpacity: 0.5,
+              shadowRadius: 16,
+              elevation: 4,
+            }}
           >
-            <Text className="text-white font-bold">Partager</Text>
+            <Share2Icon size={19} color="#fff" />
+            <Text className="font-display text-white" style={{ fontSize: 16 }}>
+              Partager
+            </Text>
           </Pressable>
-          {getNextPhase(phase) && (
+          {canRefine && (
             <Pressable
               onPress={handleRefine}
               accessibilityRole="button"
               accessibilityLabel="Répondre à plus de questions pour affiner les résultats"
-              className="flex-1 py-3 bg-gray-100 rounded-xl items-center border border-gray-200 active:bg-gray-200"
-              style={{ minHeight: 48 }}
+              className="flex-1 flex-row items-center justify-center active:opacity-80"
+              style={{
+                height: 54,
+                borderRadius: 18,
+                gap: 8,
+                backgroundColor: "#f0f1f6",
+              }}
             >
-              <Text className="text-gray-700 font-bold">
-                Plus de questions ↓
+              <PlusIcon size={19} color="#1f2430" />
+              <Text className="font-display text-ink" style={{ fontSize: 16 }}>
+                Plus
               </Text>
             </Pressable>
           )}
@@ -213,10 +336,18 @@ export default function Results() {
           onPress={() => router.push("/methodology")}
           accessibilityRole="link"
           accessibilityLabel="Comment ça marche ? Voir la méthodologie"
-          className="mx-6 mt-6 py-3 items-center"
-          style={{ minHeight: 44 }}
+          className="items-center"
+          style={{
+            marginHorizontal: 24,
+            marginTop: 20,
+            minHeight: 44,
+            justifyContent: "center",
+          }}
         >
-          <Text className="text-sm text-gray-400 underline">
+          <Text
+            className="font-body underline"
+            style={{ color: "#6b7280", fontSize: 13 }}
+          >
             Comment ça marche ?
           </Text>
         </Pressable>

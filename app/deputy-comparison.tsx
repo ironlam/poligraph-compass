@@ -1,5 +1,12 @@
 import { useEffect } from "react";
-import { View, Text, ScrollView, Pressable, Image, Linking } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  Image,
+  Linking,
+} from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuizStore } from "@/lib/store";
@@ -14,12 +21,7 @@ import { computeThemeConcordances } from "@/lib/theme-concordance";
 import { ThemeBreakdown } from "@/components/ThemeBreakdown";
 import { VoteComparison } from "@/components/VoteComparison";
 import { Compass } from "@/components/Compass";
-
-function getConcordanceColor(value: number): string {
-  if (value >= 60) return "#10b981";
-  if (value >= 40) return "#f59e0b";
-  return "#ef4444";
-}
+import { concordanceDisplay } from "@/lib/concordance-display";
 
 export default function DeputyComparisonScreen() {
   const router = useRouter();
@@ -39,19 +41,19 @@ export default function DeputyComparisonScreen() {
   // Compute concordance — use low fixed threshold since user explicitly selected this deputy
   const weights = computeScrutinWeights(
     quizPack.partyMajorities,
-    quizPack.parties
+    quizPack.parties,
   );
   const concordanceResult = computePoliticianConcordance(
     id,
     answers as Record<string, string>,
     quizPack.voteMatrix as Record<string, Record<string, string>>,
     5,
-    weights
+    weights,
   );
 
   const party = quizPack.parties.find((p) => p.id === selectedDeputy.partyId);
   const partyColor = party?.color || "#9ca3af";
-  const scoreColor = getConcordanceColor(concordanceResult.score);
+  const scoreColor = concordanceDisplay(concordanceResult.score).color;
 
   // Group discordance: how often this deputy breaks from their group
   const groupDiscordance = selectedDeputy.partyId
@@ -59,7 +61,7 @@ export default function DeputyComparisonScreen() {
         id,
         selectedDeputy.partyId,
         quizPack.voteMatrix as Record<string, Record<string, string>>,
-        quizPack.partyMajorities as Record<string, Record<string, string>>
+        quizPack.partyMajorities as Record<string, Record<string, string>>,
       )
     : null;
 
@@ -68,7 +70,7 @@ export default function DeputyComparisonScreen() {
     id,
     answers as Record<string, string>,
     quizPack.voteMatrix as Record<string, Record<string, string>>,
-    quizPack.questions
+    quizPack.questions,
   );
 
   // Vote-by-vote comparison
@@ -119,9 +121,7 @@ export default function DeputyComparisonScreen() {
         {/* Badge */}
         <View className="px-6">
           <View className="bg-indigo-500 self-start px-3 py-1 rounded-full mb-3">
-            <Text className="text-xs font-bold text-white">
-              Ton député(e)
-            </Text>
+            <Text className="text-xs font-bold text-white">Ton député(e)</Text>
           </View>
         </View>
 
@@ -178,9 +178,9 @@ export default function DeputyComparisonScreen() {
         {/* Summary stats */}
         <View className="mx-6 mt-4 p-4 bg-gray-50 rounded-2xl">
           <Text className="text-sm text-gray-700">
-            D'accord sur{" "}
-            <Text className="font-bold">{agreeCount} votes</Text> sur{" "}
-            <Text className="font-bold">{comparisons.length}</Text> en commun.
+            D'accord sur <Text className="font-bold">{agreeCount} votes</Text>{" "}
+            sur <Text className="font-bold">{comparisons.length}</Text> en
+            commun.
           </Text>
           {disagreeCount > 0 && (
             <Text className="text-sm text-gray-500 mt-1">
@@ -193,20 +193,27 @@ export default function DeputyComparisonScreen() {
         {/* Group discordance */}
         {groupDiscordance && groupDiscordance.discordance >= 0 && party && (
           <View className="mx-6 mt-3 p-4 bg-amber-50 rounded-2xl">
-              <Text className="text-sm text-gray-800">
-                Vote différemment de{" "}
-                <Text className="font-bold" style={{ color: partyColor }}>
-                  {party.shortName}
-                </Text>
-                {" "}sur{" "}
-                <Text className="font-bold" style={{ color: groupDiscordance.discordance >= 20 ? "#ef4444" : "#f59e0b" }}>
-                  {groupDiscordance.discordance}%
-                </Text>
-                {" "}des scrutins
-              </Text>
-              <Text className="text-xs text-gray-400 mt-0.5">
-                {groupDiscordance.divergent} divergences sur {groupDiscordance.comparable} votes
-              </Text>
+            <Text className="text-sm text-gray-800">
+              Vote différemment de{" "}
+              <Text className="font-bold" style={{ color: partyColor }}>
+                {party.shortName}
+              </Text>{" "}
+              sur{" "}
+              <Text
+                className="font-bold"
+                style={{
+                  color:
+                    groupDiscordance.discordance >= 20 ? "#ef4444" : "#f59e0b",
+                }}
+              >
+                {groupDiscordance.discordance}%
+              </Text>{" "}
+              des scrutins
+            </Text>
+            <Text className="text-xs text-gray-400 mt-0.5">
+              {groupDiscordance.divergent} divergences sur{" "}
+              {groupDiscordance.comparable} votes
+            </Text>
           </View>
         )}
 
@@ -256,7 +263,7 @@ export default function DeputyComparisonScreen() {
           <Pressable
             onPress={() =>
               Linking.openURL(
-                `https://poligraph.fr/politiques/${selectedDeputy.slug}`
+                `https://poligraph.fr/politiques/${selectedDeputy.slug}`,
               )
             }
             accessibilityRole="link"
