@@ -68,25 +68,36 @@ export async function loadQuizPackData(): Promise<QuizPack> {
 
   const axes = {
     economy: {
-      scrutinIds: scrutinsConfig.filter((s) => s.axis === "economy").map((s) => s.scrutinId),
+      scrutinIds: scrutinsConfig
+        .filter((s) => s.axis === "economy")
+        .map((s) => s.scrutinId),
       polarities: Object.fromEntries(
-        scrutinsConfig.filter((s) => s.axis === "economy").map((s) => [s.scrutinId, s.polarity])
+        scrutinsConfig
+          .filter((s) => s.axis === "economy")
+          .map((s) => [s.scrutinId, s.polarity]),
       ) as Record<string, 1 | -1>,
     },
     society: {
-      scrutinIds: scrutinsConfig.filter((s) => s.axis === "society").map((s) => s.scrutinId),
+      scrutinIds: scrutinsConfig
+        .filter((s) => s.axis === "society")
+        .map((s) => s.scrutinId),
       polarities: Object.fromEntries(
-        scrutinsConfig.filter((s) => s.axis === "society").map((s) => [s.scrutinId, s.polarity])
+        scrutinsConfig
+          .filter((s) => s.axis === "society")
+          .map((s) => [s.scrutinId, s.polarity]),
       ) as Record<string, 1 | -1>,
     },
   };
 
   const quizPack: QuizPack = {
     questions,
-    voteMatrix: synced?.voteMatrix ?? {},
+    // synced data is JSON (vote positions typed as string); trust it to hold
+    // the VotePosition enum values the schema expects.
+    voteMatrix: (synced?.voteMatrix ?? {}) as QuizPack["voteMatrix"],
     politicians: synced?.politicians ?? [],
     parties: synced?.parties ?? [],
-    partyMajorities: synced?.partyMajorities ?? {},
+    partyMajorities: (synced?.partyMajorities ??
+      {}) as QuizPack["partyMajorities"],
     axes,
     generatedAt: synced?.syncedAt ?? new Date().toISOString(),
   };
