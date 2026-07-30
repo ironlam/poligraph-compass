@@ -1,6 +1,7 @@
 import { View, Text, Pressable, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { ConcordanceBar } from "./ConcordanceBar";
+import { concordanceDisplay } from "@/lib/concordance-display";
 import type { ConcordanceEntry } from "@/lib/types";
 
 interface Props {
@@ -8,15 +9,9 @@ interface Props {
   rank: number;
 }
 
-function getConcordanceColor(value: number): string {
-  if (value >= 60) return "#10b981";
-  if (value >= 40) return "#f59e0b";
-  return "#ef4444";
-}
-
 export function RankingItem({ entry, rank }: Props) {
   const router = useRouter();
-  const color = getConcordanceColor(entry.score);
+  const { color, label } = concordanceDisplay(entry.score);
   const partyColor = entry.partyColor || "#9ca3af";
 
   function handlePress() {
@@ -27,11 +22,24 @@ export function RankingItem({ entry, rank }: Props) {
     <Pressable
       onPress={handlePress}
       accessibilityRole="button"
-      accessibilityLabel={`${rank}e, ${entry.name}, ${entry.partyShortName ?? ""}, ${entry.score}%`}
-      className="flex-row items-center gap-3 px-4 py-3 rounded-2xl bg-gray-50 active:bg-gray-100"
-      style={{ borderLeftWidth: 3, borderLeftColor: partyColor, minHeight: 48 }}
+      accessibilityLabel={`${rank}e, ${entry.name}, ${entry.partyShortName ?? ""}, ${entry.score}%, ${label}`}
+      className="flex-row items-center active:opacity-90"
+      style={{
+        gap: 13,
+        paddingVertical: 13,
+        paddingHorizontal: 15,
+        borderRadius: 18,
+        backgroundColor: "#f6f7fb",
+        borderLeftWidth: 4,
+        borderLeftColor: partyColor,
+        minHeight: 48,
+      }}
     >
-      <Text className="text-sm font-extrabold text-gray-300 w-6 text-center" aria-hidden>
+      <Text
+        className="font-display text-center"
+        style={{ color: "#b7bccb", fontSize: 15, width: 20 }}
+        aria-hidden
+      >
         {rank}
       </Text>
 
@@ -39,37 +47,64 @@ export function RankingItem({ entry, rank }: Props) {
         <Image
           source={{ uri: entry.photoUrl }}
           accessibilityLabel={`Photo de ${entry.name}`}
-          className="w-10 h-10 rounded-full"
-          style={{ borderWidth: 2, borderColor: partyColor }}
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: 22,
+            borderWidth: 2,
+            borderColor: partyColor,
+          }}
         />
       ) : (
         <View
-          className="w-10 h-10 rounded-full bg-gray-200 items-center justify-center"
-          style={{ borderWidth: 2, borderColor: partyColor }}
+          className="items-center justify-center"
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: 22,
+            backgroundColor: partyColor,
+            borderWidth: 2,
+            borderColor: partyColor,
+          }}
         >
-          <Text className="text-xs text-gray-400" aria-hidden>
+          <Text
+            className="font-display text-white"
+            style={{ fontSize: 15 }}
+            aria-hidden
+          >
             {entry.name.charAt(0)}
           </Text>
         </View>
       )}
 
       <View className="flex-1">
-        <Text className="text-sm font-bold text-gray-900">{entry.name}</Text>
+        <Text className="font-body-700 text-ink" style={{ fontSize: 14.5 }}>
+          {entry.name}
+        </Text>
         {entry.partyShortName && (
-          <Text className="text-xs font-semibold" style={{ color: partyColor }}>
+          <Text
+            className="font-body-700"
+            style={{ color: partyColor, fontSize: 12 }}
+          >
             {entry.partyShortName}
           </Text>
         )}
-        <View className="mt-1">
-          <ConcordanceBar score={entry.score} color={color} />
+        <View style={{ marginTop: 8 }}>
+          <ConcordanceBar score={entry.score} color={color} height={6} />
         </View>
       </View>
 
       <View className="items-end">
-        <Text className="text-lg font-extrabold" style={{ color }}>
+        <Text
+          className="font-display"
+          style={{ color, fontSize: 19, lineHeight: 21 }}
+        >
           {entry.score}%
         </Text>
-        <Text className="text-xs text-gray-400">
+        <Text
+          className="font-body"
+          style={{ color: "#6b7280", fontSize: 11, marginTop: 2 }}
+        >
           {entry.overlap} votes
         </Text>
       </View>

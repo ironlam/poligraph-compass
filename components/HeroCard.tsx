@@ -1,21 +1,16 @@
 import { View, Text, Pressable, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { ConcordanceBar } from "./ConcordanceBar";
+import { concordanceDisplay } from "@/lib/concordance-display";
 import type { ConcordanceEntry } from "@/lib/types";
 
 interface Props {
   entry: ConcordanceEntry;
 }
 
-function getConcordanceColor(value: number): string {
-  if (value >= 60) return "#10b981";
-  if (value >= 40) return "#f59e0b";
-  return "#ef4444";
-}
-
 export function HeroCard({ entry }: Props) {
   const router = useRouter();
-  const color = getConcordanceColor(entry.score);
+  const { color, bg, label } = concordanceDisplay(entry.score);
   const partyColor = entry.partyColor || "#9ca3af";
 
   function handlePress() {
@@ -26,60 +21,98 @@ export function HeroCard({ entry }: Props) {
     <Pressable
       onPress={handlePress}
       accessibilityRole="button"
-      accessibilityLabel={`${entry.name}, ${entry.partyShortName ?? ""}, ${entry.score}% de concordance`}
-      className="rounded-2xl bg-gray-50 p-5 active:bg-gray-100"
+      accessibilityLabel={`${entry.name}, ${entry.partyShortName ?? ""}, ${entry.score}% de concordance, ${label}`}
+      className="bg-white active:opacity-90"
       style={{
-        borderLeftWidth: 4,
+        borderRadius: 22,
+        borderWidth: 1,
+        borderColor: "#e8eaf0",
+        borderLeftWidth: 5,
         borderLeftColor: partyColor,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 3,
-        elevation: 2,
+        padding: 18,
+        shadowColor: "#1e1b4b",
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.18,
+        shadowRadius: 18,
+        elevation: 3,
       }}
     >
-      <View className="flex-row items-center gap-4">
+      <View className="flex-row items-center" style={{ gap: 15 }}>
         {entry.photoUrl ? (
           <Image
             source={{ uri: entry.photoUrl }}
             accessibilityLabel={`Photo de ${entry.name}`}
-            className="w-16 h-16 rounded-full"
-            style={{ borderWidth: 3, borderColor: partyColor }}
+            style={{
+              width: 62,
+              height: 62,
+              borderRadius: 31,
+              borderWidth: 3,
+              borderColor: partyColor,
+            }}
           />
         ) : (
           <View
-            className="w-16 h-16 rounded-full bg-gray-200 items-center justify-center"
-            style={{ borderWidth: 3, borderColor: partyColor }}
+            className="items-center justify-center"
+            style={{
+              width: 62,
+              height: 62,
+              borderRadius: 31,
+              backgroundColor: partyColor,
+              borderWidth: 3,
+              borderColor: partyColor,
+            }}
           >
-            <Text className="text-lg text-gray-400 font-bold">
+            <Text className="font-display text-white" style={{ fontSize: 22 }}>
               {entry.name.charAt(0)}
             </Text>
           </View>
         )}
 
         <View className="flex-1">
-          <Text className="text-base font-extrabold text-gray-900">
+          <Text className="font-display text-ink" style={{ fontSize: 18 }}>
             {entry.name}
           </Text>
           {entry.partyShortName && (
-            <Text className="text-sm font-semibold mt-0.5" style={{ color: partyColor }}>
+            <Text
+              className="font-body-700"
+              style={{ color: partyColor, fontSize: 13.5, marginTop: 1 }}
+            >
               {entry.partyShortName}
             </Text>
           )}
-          <Text className="text-xs text-gray-400 mt-1">
+          <Text
+            className="font-body"
+            style={{ color: "#6b7280", fontSize: 12.5, marginTop: 4 }}
+          >
             D'accord sur {entry.agree} votes sur {entry.overlap}
           </Text>
         </View>
 
         <View className="items-end">
-          <Text className="text-2xl font-extrabold" style={{ color }}>
+          <Text
+            className="font-display"
+            style={{ color, fontSize: 30, lineHeight: 32 }}
+          >
             {entry.score}%
           </Text>
+          <View
+            style={{
+              backgroundColor: bg,
+              borderRadius: 999,
+              paddingHorizontal: 9,
+              paddingVertical: 2,
+              marginTop: 5,
+            }}
+          >
+            <Text className="font-body-700" style={{ color, fontSize: 11 }}>
+              {label}
+            </Text>
+          </View>
         </View>
       </View>
 
-      <View className="mt-3">
-        <ConcordanceBar score={entry.score} color={color} height={6} />
+      <View style={{ marginTop: 14 }}>
+        <ConcordanceBar score={entry.score} color={color} height={8} />
       </View>
     </Pressable>
   );

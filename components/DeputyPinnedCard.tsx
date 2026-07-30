@@ -1,21 +1,16 @@
 import { View, Text, Pressable, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { ConcordanceBar } from "./ConcordanceBar";
+import { concordanceDisplay } from "@/lib/concordance-display";
 import type { ConcordanceEntry } from "@/lib/types";
 
 interface Props {
   entry: ConcordanceEntry;
 }
 
-function getConcordanceColor(value: number): string {
-  if (value >= 60) return "#10b981";
-  if (value >= 40) return "#f59e0b";
-  return "#ef4444";
-}
-
 export function DeputyPinnedCard({ entry }: Props) {
   const router = useRouter();
-  const color = getConcordanceColor(entry.score);
+  const { color, bg, label } = concordanceDisplay(entry.score);
   const partyColor = entry.partyColor || "#9ca3af";
 
   function handlePress() {
@@ -83,6 +78,19 @@ export function DeputyPinnedCard({ entry }: Props) {
           <Text className="text-2xl font-extrabold" style={{ color }}>
             {entry.score}%
           </Text>
+          <View
+            style={{
+              backgroundColor: bg,
+              borderRadius: 999,
+              paddingHorizontal: 9,
+              paddingVertical: 2,
+              marginTop: 4,
+            }}
+          >
+            <Text style={{ color, fontSize: 11, fontWeight: "700" }}>
+              {label}
+            </Text>
+          </View>
         </View>
       </View>
 

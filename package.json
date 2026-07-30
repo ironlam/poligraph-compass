@@ -18,6 +18,8 @@
     "pipeline:audit": "npx tsx scripts/audit-scrutins.ts"
   },
   "dependencies": {
+    "@expo-google-fonts/atkinson-hyperlegible": "^0.4.1",
+    "@expo-google-fonts/outfit": "^0.4.3",
     "@expo/metro-runtime": "^55.0.6",
     "@expo/server": "^0.7.5",
     "@react-native-async-storage/async-storage": "^2.2.0",
@@ -31,10 +33,12 @@
     "expo": "~55.0.8",
     "expo-clipboard": "~55.0.9",
     "expo-constants": "~55.0.9",
+    "expo-font": "~55.0.8",
     "expo-linear-gradient": "~55.0.9",
     "expo-linking": "~55.0.8",
     "expo-router": "~55.0.7",
     "expo-sharing": "^55.0.14",
+    "expo-splash-screen": "~55.0.12",
     "expo-status-bar": "~55.0.4",
     "html-to-image": "^1.11.13",
     "nativewind": "^4.2.3",
