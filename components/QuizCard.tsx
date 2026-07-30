@@ -35,8 +35,18 @@ export function QuizCard({ question }: Props) {
         style={{ flex: 1 }}
       >
         <View
-          className="flex-1 mx-5 mt-4 rounded-2xl shadow-sm overflow-hidden"
-          style={{ backgroundColor: "#FAFAF8" }}
+          className="flex-1 mx-5 mt-4 overflow-hidden"
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: 22,
+            borderWidth: 1,
+            borderColor: "#e8eaf0",
+            shadowColor: "#1e1b4b",
+            shadowOffset: { width: 0, height: 10 },
+            shadowOpacity: 0.15,
+            shadowRadius: 18,
+            elevation: 2,
+          }}
         >
           <ScrollView
             className="flex-1"
@@ -49,10 +59,16 @@ export function QuizCard({ question }: Props) {
               className="px-5 pt-5 pb-4"
             >
               <ThemeBadge theme={question.theme} />
-              <Text className="text-2xl font-black text-gray-900 mt-3 leading-8">
+              <Text
+                className="font-display text-ink mt-3"
+                style={{ fontSize: 24, lineHeight: 30 }}
+              >
                 {question.question}
               </Text>
-              <Text className="text-xs text-gray-400 mt-2 tracking-wide uppercase">
+              <Text
+                className="font-body mt-2 uppercase"
+                style={{ color: "#9aa0ae", fontSize: 11, letterSpacing: 0.5 }}
+              >
                 {question.chamber === "AN" ? "Assemblée nationale" : "Sénat"}
                 {question.votingDate ? ` · ${question.votingDate}` : ""}
               </Text>
@@ -64,13 +80,24 @@ export function QuizCard({ question }: Props) {
                 onPress={() => setShowContext(true)}
                 accessibilityRole="button"
                 accessibilityLabel="En savoir plus sur ce vote"
-                className="mx-4 mt-3 mb-3 bg-white rounded-xl p-3 border border-slate-100"
+                className="mx-4 mt-3 mb-3 rounded-xl p-3"
+                style={{
+                  backgroundColor: "#f6f7fb",
+                  borderWidth: 1,
+                  borderColor: "#e8eaf0",
+                }}
               >
-                <Text className="text-xs text-slate-500 leading-4">
+                <Text
+                  className="font-body"
+                  style={{ color: "#6b7280", fontSize: 12.5, lineHeight: 18 }}
+                >
                   {shortSummary}
                 </Text>
-                <Text className="text-xs text-indigo-500 font-semibold mt-2">
-                  {"En savoir plus \u2192"}
+                <Text
+                  className="font-body-700 mt-2"
+                  style={{ color: "#4f46e5", fontSize: 12.5 }}
+                >
+                  {"En savoir plus →"}
                 </Text>
               </Pressable>
             ) : hasFullContext ? (
@@ -80,31 +107,38 @@ export function QuizCard({ question }: Props) {
                 accessibilityLabel="Comprendre ce vote"
                 className="mx-4 mt-3 mb-3"
               >
-                <Text className="text-xs text-indigo-500 font-semibold">
-                  {"Comprendre ce vote \u2192"}
+                <Text
+                  className="font-body-700"
+                  style={{ color: "#4f46e5", fontSize: 12.5 }}
+                >
+                  {"Comprendre ce vote →"}
                 </Text>
               </Pressable>
             ) : null}
 
-            {/* Ce vote concerne \u2014 metadata row */}
+            {/* Ce vote concerne — metadata row */}
             <View className="mx-4 mt-3 mb-1">
-              <Text className="text-[10px] uppercase tracking-wider text-gray-400">
+              <Text
+                className="font-body uppercase"
+                style={{ color: "#9aa0ae", fontSize: 10, letterSpacing: 0.6 }}
+              >
                 Ce vote concerne
               </Text>
-              <Text className="text-xs text-gray-600 mt-0.5">
+              <Text
+                className="font-body mt-0.5"
+                style={{ color: "#6b7280", fontSize: 12 }}
+              >
                 {[
                   themeConfig.label,
-                  question.chamber === "AN"
-                    ? "Assembl\u00e9e nationale"
-                    : "S\u00e9nat",
+                  question.chamber === "AN" ? "Assemblée nationale" : "Sénat",
                   question.votingDate,
                 ]
                   .filter(Boolean)
-                  .join(" \u00b7 ")}
+                  .join(" · ")}
               </Text>
             </View>
 
-            {/* Aide neutre Pour / Contre, fallback ou positionHelp si pr\u00e9sent */}
+            {/* Aide neutre Pour / Contre, fallback ou positionHelp si présent */}
             <View className="mx-4 mb-4">
               <NeutralPositionHelp help={question.positionHelp} />
             </View>

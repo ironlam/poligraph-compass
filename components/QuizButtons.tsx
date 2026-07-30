@@ -18,10 +18,10 @@ const VARIANT_CONTAINER: Record<QuizButtonConfig["variant"], string> = {
 };
 
 const VARIANT_TEXT: Record<QuizButtonConfig["variant"], string> = {
-  "primary-pour": "text-base font-bold text-white tracking-wide",
-  "primary-contre": "text-base font-bold text-white tracking-wide",
-  secondary: "text-sm font-semibold text-indigo-300 tracking-wide text-center",
-  tertiary: "text-sm text-indigo-400",
+  "primary-pour": "text-base font-display text-white tracking-wide",
+  "primary-contre": "text-base font-display text-white tracking-wide",
+  secondary: "text-sm font-body-700 text-indigo-300 tracking-wide text-center",
+  tertiary: "text-sm font-body text-indigo-400",
 };
 
 const VARIANT_MIN_HEIGHT: Record<QuizButtonConfig["variant"], number> = {
